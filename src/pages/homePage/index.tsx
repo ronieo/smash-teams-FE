@@ -1,6 +1,7 @@
-// 홈페이지
+import { HomeContainer } from './style'
+
 function HomePage() {
-  return <>HomePage</>
+  return <HomeContainer>HomePage</HomeContainer>
 }
 
 export default HomePage

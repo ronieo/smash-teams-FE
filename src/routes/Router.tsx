@@ -8,19 +8,19 @@ import ManagePage from '../pages/managePage'
 import NightSheetPage from '../pages/nightsheetPage'
 import ProfilePage from '../pages/profilePage'
 import HistoryPage from '../pages/historyPage'
-import Layout from '../components/common/layout'
+import SideBar from '../components/common/sidebar'
 
 function Router() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Layout />}>
+        <Route path="/" element={<SideBar />}>
+          <Route path="/" element={<HomePage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/admin" element={<AdminPage />} />
           <Route path="/dayoff" element={<DayOffPage />} />
           <Route path="/history" element={<HistoryPage />} />
-          <Route path="/" element={<HomePage />} />
           <Route path="/manage" element={<ManagePage />} />
           <Route path="/nightsheet" element={<NightSheetPage />} />
           <Route path="/profile" element={<ProfilePage />} />
