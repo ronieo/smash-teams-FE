@@ -1,6 +1,8 @@
+import { LoginContainer } from './style'
+
 // 로그인 페이지
 function LoginPage() {
-  return <>login</>
+  return <LoginContainer>login</LoginContainer>
 }
 
 export default LoginPage
