@@ -40,34 +40,36 @@
  * grayConfirmButton: 연차, 당직  관리하기 /  처리된 페이지 ,관리자 유저 권한 설정에 활용되는 확인버튼 BG컬러입니다.
  *
  */
-export const GlobalColors = {
-  mainColor: '#AA2727',
+export const theme = {
+  colors: {
+    mainColor: '#AA2727',
 
-  white: '#FFFFFF',
+    white: '#FFFFFF',
 
-  black: '#2D2D2D',
-  blackTabBar: '#383838',
-  blackTeamName: '#000000',
-  blackCompleteList: '#2C2C2C',
+    black: '#2D2D2D',
+    blackTabBar: '#383838',
+    blackTeamName: '#000000',
+    blackCompleteList: '#2C2C2C',
 
-  red: '#952A2A',
-  redSideMenu: '#F7CCCC',
+    red: '#952A2A',
+    redSideMenu: '#F7CCCC',
 
-  redTodayButton: '#E15E5E',
-  redContainer: '#C94F4F',
+    redTodayButton: '#E15E5E',
+    redContainer: '#C94F4F',
 
-  redConfirmButton: '#6B1E1E',
+    redConfirmButton: '#6B1E1E',
 
-  redReject: '#D34747',
-  redDisable: '#E9A3A3',
+    redReject: '#D34747',
+    redDisable: '#E9A3A3',
 
-  redDelete: '#812E2E',
+    redDelete: '#812E2E',
 
-  blue: '#476FD3',
-  blueDisable: '#A3B7E9',
+    blue: '#476FD3',
+    blueDisable: '#A3B7E9',
 
-  gray: '#D9D9D9',
-  grayFont: '#A1A1A1',
-  grayConfirmButton: '#454545',
-  grayAddTeam: '#474747',
+    gray: '#D9D9D9',
+    grayFont: '#A1A1A1',
+    grayConfirmButton: '#454545',
+    grayAddTeam: '#474747',
+  },
 }
