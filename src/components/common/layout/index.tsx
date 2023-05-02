@@ -1,12 +1,21 @@
 import { Outlet } from 'react-router-dom'
+import Navbar from '../navbar'
+import Header from '../header'
+import { ContensWrapper, LayoutWrapper, SideBar } from './style'
+import ProfileBar from '../profilebar'
 
 function Layout() {
   return (
-    <>
-      Layout
-      <br />
-      <Outlet />
-    </>
+    <LayoutWrapper>
+      <Header />
+      <ContensWrapper>
+        <SideBar>
+          <Navbar />
+          <ProfileBar></ProfileBar>
+        </SideBar>
+        <Outlet />
+      </ContensWrapper>
+    </LayoutWrapper>
   )
 }
 
