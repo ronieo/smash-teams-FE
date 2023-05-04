@@ -1,0 +1,16 @@
+{
+  "data": {
+    "teamList": [
+      {
+        "teamId": 1,
+        "teamName": "개발팀",
+        "teamCount": 15
+      },
+      {
+        "teamId": 2,
+        "teamName": "회계팀",
+        "teamCount": 7
+      }
+    ]
+  }
+}
