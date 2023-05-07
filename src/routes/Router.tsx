@@ -18,7 +18,9 @@ function Router() {
           <Route path="/" element={<HomePage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
-          <Route path="/admin" element={<AdminPage />} />
+          <Route path="/admin" element={<AdminPage />}>
+            <Route path=":id" element={<AdminPage />} />
+          </Route>
           <Route path="/dayoff" element={<DayOffPage />} />
           <Route path="/history" element={<HistoryPage />} />
           <Route path="/manage" element={<ManagePage />} />
