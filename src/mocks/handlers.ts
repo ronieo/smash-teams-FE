@@ -20,7 +20,6 @@ export const handlers = [
 
   // 로그인
   rest.post('/login', async (req, res, ctx) => {
-    console.log(req)
     const { email, password } = await req.json()
     const userEmail = loginInfo.find((user) => user.email === email)
     const userPw = loginInfo.find((user) => user.password === password)
@@ -120,6 +119,28 @@ export const handlers = [
   // 매니저 오너 스케줄 조회
   rest.get('/auth/super/schedule', async (req, res, ctx) => {
     return res(ctx.status(200), ctx.json(superSchedule))
+  }),
+
+  // 연차,반차,당직 신청
+  rest.post('/auth/user/:userId/approve', async (req, res, ctx) => {
+    const { userId } = req.params
+    const { email, startDate, endDate, type, reason } = await req.json()
+    const user = users.find((user) => user.userId === Number(userId))
+    if (!user) {
+      return res(ctx.status(400), ctx.json({ message: '가입되지 않은 회원입니다.' }))
+    }
+    const scheduleId = superSchedule.length + 1
+    const schedule = {
+      scheduleId,
+      email,
+      startDate,
+      endDate,
+      type,
+      reason,
+      status: 'FIRST',
+    }
+    mySchedule.push(schedule)
+    return res(ctx.status(200), ctx.json(schedule))
   }),
 
   // 관리자  승인, 거절
