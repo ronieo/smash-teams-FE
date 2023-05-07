@@ -14,6 +14,8 @@ function Router() {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
         <Route path="/" element={<SideBar />}>
           <Route path="/" element={<HomePage />} />
           <Route path="/login" element={<LoginPage />} />
@@ -21,6 +23,7 @@ function Router() {
           <Route path="/admin" element={<AdminPage />}>
             <Route path=":id" element={<AdminPage />} />
           </Route>
+          <Route path="/admin" element={<AdminPage />} />
           <Route path="/dayoff" element={<DayOffPage />} />
           <Route path="/history" element={<HistoryPage />} />
           <Route path="/manage" element={<ManagePage />} />

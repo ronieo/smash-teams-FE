@@ -1,0 +1,51 @@
+[
+  {
+    "msg": "OK",
+    "data": {
+      "scheduleList": [
+        {
+          "user": {
+            "userId": 0,
+            "name": "김개발",
+            "email": "test@test.com",
+            "teamName": "개발팀",
+            "role": "팀원",
+            "profileImage": "/public/noprofile.png"
+          },
+          "startDate": "2023-05-15T09:00:00",
+          "endDate": "2023-05-16T09:00:00",
+          "type": "연차",
+          "reason": "힘들어서"
+        },
+        {
+          "user": {
+            "userId": 1,
+            "name": "김디자인",
+            "email": "test2@test.com",
+            "teamName": "디자인팀",
+            "role": "팀원",
+            "profileImage": "/public/noprofile.png"
+          },
+          "startDate": "2023-05-15T09:00:00",
+          "endDate": "2023-05-16T09:00:00",
+          "type": "연차",
+          "reason": "힘들어서"
+        },
+        {
+          "user": {
+            "userId": 2,
+            "name": "김개발",
+            "email": "test3@test.com",
+            "teamName": "개발팀",
+            "role": "팀원",
+            "profileImage": "/public/noprofile.png"
+          },
+          "startDate": "2023-05-15T09:00:00",
+          "endDate": "2023-05-16T09:00:00",
+          "type": "연차",
+          "reason": "힘들어서"
+        }
+      ]
+    }
+  }
+]
