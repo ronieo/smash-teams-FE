@@ -1,0 +1,66 @@
+[
+  {
+    "msg": "OK",
+    "data": {
+      "scheduleList": [
+        {
+          "scheduleId": 1,
+          "startDate": "2023-05-20T09:00",
+          "endDate": "2023-05-22T18:00",
+          "type": "DAYOFF",
+          "status": "APPROVED",
+          "reason": "개인사정",
+          "approver": "CEO",
+          "user": {
+            "userId": 1,
+            "profileImage": "https://서버/폴더/파일.jpg",
+            "name": "김사장",
+            "email": "김사장@gmail.com",
+            "phoneNumber": "010-1111-2222",
+            "startWork": "2023-02-01T09:00",
+            "role": "CEO",
+            "teamName": null
+          }
+        },
+        {
+          "scheduleId": 2,
+          "startDate": "2023-05-22T09:00",
+          "endDate": "2023-05-23T18:00",
+          "type": "DAYOFF",
+          "status": "APPROVED",
+          "reason": "개인사정",
+          "approver": "CEO",
+          "user": {
+            "userId": 2,
+            "profileImage": "https://서버/폴더/파일.jpg",
+            "name": "김팀장",
+            "email": "김팀장@gmail.com",
+            "phoneNumber": "010-1234-4321",
+            "startWork": "2023-02-01T09:00",
+            "role": "MANAGER",
+            "teamName": "개발팀"
+          }
+        },
+        {
+          "scheduleId": 3,
+          "startDate": "2023-05-24T09:00",
+          "endDate": "2023-05-26T18:00",
+          "type": "DAYOFF",
+          "status": "APPROVED",
+          "reason": "개인사정",
+          "approver": "MANAGER",
+          "user": {
+            "userId": 3,
+            "profileImage": "https://서버주소/폴더이름/파일이름.jpg",
+            "name": "김연차",
+            "email": "김연차@gmail.com",
+            "phoneNumber": "010-3333-3333",
+            "startWork": "2023-02-01T09:00",
+            "role": "USER",
+            "teamName": "개발팀"
+          }
+        }
+      ]
+    }
+  }
+]
