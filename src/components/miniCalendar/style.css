@@ -1,0 +1,74 @@
+.miniCalendarContainer {
+  display: flex;
+  flex-direction: column;
+  min-width: 48%;
+  max-height: 114%;
+  border-radius: 8px;
+  /* box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.25); */
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 4px 10px;
+  background-color: #fff;
+}
+
+.container {
+  margin: 12px;
+  min-height: 68%;
+}
+
+.todayButton {
+  background-color: #e15e5e;
+  border-color: #e15e5e;
+  border-radius: 6px;
+  color: #fff;
+  padding: 5px 7px;
+}
+.arrowButton {
+  background-color: #aa2727;
+  border-color: #aa2727;
+  border-radius: 6px;
+  color: #fff;
+}
+
+.todayButton:hover {
+  color: #e15e5e;
+  border: solid 1px #e15e5e;
+  background-color: #fff;
+}
+
+.todayButton:active {
+  background-color: #f9f9f9;
+  border: solid 1px #e15e5e;
+  outline: none;
+}
+
+.btn:disabled {
+  background-color: #f9f9f9;
+  border: solid 1px #ddd;
+  color: #bbb;
+}
+
+.btn:focus:active,
+.btn:focus,
+.btn:active {
+  outline: none;
+}
+
+.move-today {
+  padding: 0 16px;
+  line-height: 30px;
+}
+
+.move-day {
+  padding: 8px;
+}
+
+.miniCalendarNav {
+  margin: 25px 12px;
+}
+
+.render-range {
+  padding: 12px;
+  color: #aa2727;
+  font-size: 23px;
+  font-weight: 900;
+  vertical-align: middle;
+}
