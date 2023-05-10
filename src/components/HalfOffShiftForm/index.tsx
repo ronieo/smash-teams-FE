@@ -4,6 +4,7 @@ import * as S from './style'
 import DropDown from '../common/dropdown'
 import 'swiper/swiper-bundle.min.css'
 import SwiperList from '../common/SwiperList'
+import ListToggleTopWrapper from '../TopWrapper'
 
 function HalfOffShiftForm(scheduleData: { scheduleData: MyScheduleData[] | undefined }) {
   const [isRequestList, setIsRequestList] = useState(true) // 승인 목록
@@ -75,23 +76,16 @@ function HalfOffShiftForm(scheduleData: { scheduleData: MyScheduleData[] | undef
   return (
     <>
       <S.DayOffList>
-        <S.TopWrapper>
-          <DropDown
-            list={items}
-            width={'70px'}
-            fontSize={'20px'}
+        <>
+          <ListToggleTopWrapper
+            items={items}
             selectedItem={selectedItem}
             setSelectedItem={setSelectedItem}
-          />
-          <S.ButtonWrapper>
-            <S.RequestingButton isButtonStatus={isRequestList} onClick={() => listHandleButtonClick('request')}>
-              신청중 목록
-            </S.RequestingButton>
-            <S.Completionbutton isButtonStatus={isCompletedList} onClick={() => listHandleButtonClick('completed')}>
-              완료된 목록
-            </S.Completionbutton>
-          </S.ButtonWrapper>
-        </S.TopWrapper>
+            isRequestList={isRequestList}
+            isCompletedList={isCompletedList}
+            listHandleButtonClick={listHandleButtonClick}
+          ></ListToggleTopWrapper>
+        </>
         <S.BottomWrapper>
           <SwiperList seletedData={halfOffData}></SwiperList>
         </S.BottomWrapper>
