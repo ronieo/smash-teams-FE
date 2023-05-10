@@ -1,29 +1,44 @@
-// 전체 / 팀 / 개인 필터링 기능
-// 당직 / 연차 / 반차 -> 정보 보여주기
+// 전체 / 팀 / 개인 필터링 기능 (+당직, 연차, 반차 필터링 기능)
+// 필터링 옆에 V 아이콘 추가하기
+// DAYOFF(연차), HALFOFF(반차), SHIFT(당직)
 
-/* eslint-disable no-console */
-import './styles.scss'
+import './styles.css'
 import * as S from './style'
-import data from './data'
-
 import type { EventObject, ExternalEventTypes, Options } from '@toast-ui/calendar'
 import type { ChangeEvent, MouseEvent } from 'react'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import Calendar from '@toast-ui/react-calendar'
-
-import { theme } from './theme'
+import { AiFillInfoCircle } from 'react-icons/ai'
+import { useQuery } from 'react-query'
+import { getMainSchedule } from '../../apis/services/Schedule'
+import { HomeProps } from '../../interface/main'
+import DropDown from '../../components/common/dropdown'
+import { useParams } from 'react-router-dom'
 
 export default function HomePage() {
+  // home api
+  const [returnData, setReturnData] = useState<HomeProps[]>([])
+  const { data, isLoading, error } = useQuery(['user'], () =>
+    getMainSchedule().then((a) => {
+      return a[0].data.scheduleList
+    }),
+  )
+  // filter
+  const [filterData, setFilterData] = useState<HomeProps[]>([])
+  // info
+  const [isInfo, setIsInfo] = useState(false)
+  // ref
   const calendarRef = useRef<typeof Calendar>(null)
+  // month
   const [selectedDateRangeText, setSelectedDateRangeText] = useState('')
-  const initialCalendars: Options['calendars'] = [
+  // 캘린더 테마
+  const [option, setOption] = useState([
     {
       id: '0',
       name: '디자인팀',
       backgroundColor: '#664f88',
       borderColor: '#664f88',
       dragBackgroundColor: '#664f88',
-      color: '#fff',
     },
     {
       id: '1',
@@ -31,7 +46,6 @@ export default function HomePage() {
       backgroundColor: '#3b7794',
       borderColor: '#3b7794',
       dragBackgroundColor: '#3b7794',
-      color: '#fff',
     },
     {
       id: '2',
@@ -41,11 +55,117 @@ export default function HomePage() {
       dragBackgroundColor: '#abca45',
       color: '#000',
     },
-  ]
+  ])
+  const initialCalendars: Options['calendars'] = option
+  // 캘린더 데이터
+  const initialEvents: Partial<EventObject>[] = returnData
 
-  const initialEvents: Partial<EventObject>[] = data
+  // dropdown
+  const [selectItem, setSelectItem] = useState('전체')
+  const [selectItem2, setSelectItem2] = useState('전체팀')
 
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // 받아온 데이터를 library 형식에 맞게 변환
+  useEffect(() => {
+    if (!isLoading) {
+      setReturnData([])
+      setFilterData([])
+      setSelectItem2('전체팀')
+      if (selectItem === '전체') {
+        data.filter((list) => {
+          setFilterData((filterData) => filterData.concat(list))
+          return true
+        })
+      } else if (selectItem === '당직') {
+        data.filter((list) => {
+          if (list.user.teamName === '개발팀') {
+            setFilterData((filterData) => filterData.concat(list))
+          }
+          return true
+        })
+      } else if (selectItem === '연차') {
+        data.filter((list) => {
+          if (list.user.userId === 0) {
+            setFilterData((filterData) => filterData.concat(list))
+          }
+          return true
+        })
+      } else {
+        data.filter((list) => {
+          if (list.type === 'HALFOFF') {
+            setFilterData((filterData) => filterData.concat(list))
+          }
+          return true
+        })
+      }
+    }
+  }, [data, selectItem])
+
+  useEffect(() => {
+    if (!isLoading) {
+      console.log(data)
+      setReturnData([])
+      setFilterData([])
+      setSelectItem('전체')
+      if (selectItem2 === '전체팀') {
+        data.filter((list) => {
+          setFilterData((filterData) => filterData.concat(list))
+          return true
+        })
+      } else if (selectItem2 === '나의팀') {
+        data.filter((list) => {
+          if (list.type === 'SHIFT') {
+            setFilterData((filterData) => filterData.concat(list))
+          }
+          return true
+        })
+      } else {
+        data.filter((list) => {
+          if (list.type === 'HALFOFF') {
+            setFilterData((filterData) => filterData.concat(list))
+          }
+          return true
+        })
+      }
+    }
+  }, [data, selectItem2])
+
+  useEffect(() => {
+    filterData.filter((list) => {
+      const type = (type: string) => {
+        switch (type) {
+          case 'DAYOFF':
+            return { calendarId: '2', isAllday: true, category: 'allday', isReadOnly: true }
+          case 'HALFOFF':
+            return { calendarId: '1', isAllday: false, category: 'milestone', isReadOnly: true }
+          case 'SHIFT':
+            return { calendarId: '0', isAllday: false, category: 'time', isReadOnly: true }
+          default:
+            return { calendarId: '', isAllday: false, category: '', isReadOnly: true }
+        }
+      }
+
+      const { calendarId, isAllday, category, isReadOnly } = type(list.type)
+
+      setReturnData((returnData) => [
+        ...returnData,
+        {
+          calendarId: calendarId,
+          isAllday: isAllday,
+          category: category,
+          isReadOnly: isReadOnly,
+          id: list.user.userId,
+          title: list.user.name,
+          body: list.reason,
+          start: list.startDate.split('T')[0],
+          end: list.endDate.split('T')[0],
+          attendees: [`${list.user.email}`],
+          state: list.user.profileImage,
+        },
+      ])
+      return true
+    })
+  }, [filterData])
+
   // 년월
   const getCalInstance = useCallback(() => calendarRef.current?.getInstance?.(), [])
 
@@ -57,8 +177,6 @@ export default function HomePage() {
 
     const viewName = calInstance.getViewName()
     const calDate = calInstance.getDate()
-    const rangeStart = calInstance.getDateRangeStart()
-    const rangeEnd = calInstance.getDateRangeEnd()
 
     let year = calDate.getFullYear()
     let month = calDate.getMonth() + 1
@@ -81,21 +199,7 @@ export default function HomePage() {
     updateRenderRangeText()
   }, [updateRenderRangeText])
 
-  // const onAfterRenderEvent: ExternalEventTypes['afterRenderEvent'] = (res) => {
-  //   console.group('onAfterRenderEvent')
-  //   console.log('Event Info : ', res.title)
-  //   console.groupEnd()
-  // }
-
-  // const onBeforeDeleteEvent: ExternalEventTypes['beforeDeleteEvent'] = (res) => {
-  //   console.group('onBeforeDeleteEvent')
-  //   console.log('Event Info : ', res.title)
-  //   console.groupEnd()
-
-  //   const { id, calendarId } = res
-
-  //   getCalInstance().deleteEvent(id, calendarId)
-  // }
+  // 월 이동 네브바
   const onClickNavi = (ev: MouseEvent<HTMLButtonElement>) => {
     if ((ev.target as HTMLButtonElement).tagName === 'BUTTON') {
       const button = ev.target as HTMLButtonElement
@@ -105,68 +209,52 @@ export default function HomePage() {
     }
   }
 
-  // const onChangeSelect = (ev: ChangeEvent<HTMLSelectElement>) => {
-  //   setSelectedView(ev.target.value as ViewType)
-  // }
-
-  // const onClickDayName: ExternalEventTypes['clickDayName'] = (res) => {
-  //   console.group('onClickDayName')
-  //   console.log('Date : ', res.date)
-  //   console.groupEnd()
-  // }
-
-  // const onClickEvent: ExternalEventTypes['clickEvent'] = (res) => {
-  //   console.group('onClickEvent')
-  //   console.log('MouseEvent : ', res.nativeEvent)
-  //   console.log('Event Info : ', res.event)
-  //   console.groupEnd()
-  // }
-
-  // const onClickTimezonesCollapseBtn: ExternalEventTypes['clickTimezonesCollapseBtn'] = (timezoneCollapsed) => {
-  //   console.group('onClickTimezonesCollapseBtn')
-  //   console.log('Is Timezone Collapsed?: ', timezoneCollapsed)
-  //   console.groupEnd()
-
-  //   const newTheme = {
-  //     'week.daygridLeft.width': '100px',
-  //     'week.timegridLeft.width': '100px',
-  //   }
-
-  //   getCalInstance().setTheme(newTheme)
-  // }
-
-  // const onBeforeUpdateEvent: ExternalEventTypes['beforeUpdateEvent'] = (updateData) => {
-  //   console.group('onBeforeUpdateEvent')
-  //   console.log(updateData)
-  //   console.groupEnd()
-
-  //   const targetEvent = updateData.event
-  //   const changes = { ...updateData.changes }
-
-  //   getCalInstance().updateEvent(targetEvent.id, targetEvent.calendarId, changes)
-  // }
-
-  // const onBeforeCreateEvent: ExternalEventTypes['beforeCreateEvent'] = (eventData) => {
-  //   const event = {
-  //     calendarId: eventData.calendarId || '',
-  //     id: String(Math.random()),
-  //     title: eventData.title,
-  //     isAllday: eventData.isAllday,
-  //     start: eventData.start,
-  //     end: eventData.end,
-  //     category: eventData.isAllday ? 'allday' : 'time',
-  //     dueDateClass: '',
-  //     location: eventData.location,
-  //     state: eventData.state,
-  //     isPrivate: eventData.isPrivate,
-  //   }
-
-  //   getCalInstance().createEvents([event])
-  // }
-
   return (
     <S.HomeWrapper>
       <S.TopBar>
+        <h2 className="render-range">{selectedDateRangeText}</h2>
+        <button
+          className="info"
+          onClick={() => {
+            setIsInfo((isInfo) => !isInfo)
+          }}
+        >
+          <AiFillInfoCircle size={'20px'} color="#383838" />
+        </button>
+        {isInfo ? (
+          <S.Info>
+            <div className="info-dayoff">
+              <img src="/public/noprofile.png" width={'10px'} />
+              연차
+            </div>
+            <div className="info-halfoff">
+              <img src="/public/noprofile.png" width={'10px'} />
+              반차
+            </div>
+            <div className="info-shift">
+              <img src="/public/noprofile.png" width={'10px'} />
+              당직
+            </div>
+          </S.Info>
+        ) : (
+          <></>
+        )}
+      </S.TopBar>
+      <S.ContorlBar>
+        <DropDown
+          list={['전체', '당직', '연차', '반차']}
+          width="50px"
+          fontSize="14px"
+          selectedItem={selectItem}
+          setSelectedItem={setSelectItem}
+        />
+        <DropDown
+          list={['전체', '나의팀', '내정보']}
+          width="60px"
+          fontSize="14px"
+          selectedItem={selectItem2}
+          setSelectedItem={setSelectItem2}
+        />
         <span>
           <button
             type="button"
@@ -193,65 +281,57 @@ export default function HomePage() {
             &#62;
           </button>
         </span>
-        <h2 className="render-range">{selectedDateRangeText}</h2>
-      </S.TopBar>
-      <Calendar
-        height="750px"
-        calendars={initialCalendars}
-        month={{
-          // startDayOfWeek: 1,
-          dayNames: ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'],
-          // narrowWeekend: true,
-          // visibleWeeksCount: 5,
-          visibleEventCount: 5,
-        }}
-        events={initialEvents}
-        template={{
-          // 반차
-          time(event) {
-            const { start, end, title, state } = event
-            return `<span style="color: black;"><img src=${state} width="13px"/> ${title}</span>`
-          },
-          // 연차
-          allday(event) {
-            const { start, end, title, state } = event
-            return `<span style="color: white;"><img src=${state} width="13px"/> ${title}</span>`
-          },
-          // 당직
-          milestone(event) {
-            const { start, end, title, state } = event
-            return `<div style="color: black;"><img src=${state} width="13px"/> ${title}</div>`
-          },
-          // 상세 팝업
-          popupDetailTitle(event) {
-            const { start, end, title, state } = event
-            return `<img src=${state} width="13px"/> ${title}`
-          },
-        }}
-        theme={theme}
-        timezone={{
-          zones: [
-            {
-              timezoneName: 'Asia/Seoul',
-              displayLabel: 'Seoul',
-              tooltip: 'UTC+09:00',
+      </S.ContorlBar>
+      <S.calendarWrapper>
+        <Calendar
+          height="600px"
+          calendars={initialCalendars}
+          month={{
+            // startDayOfWeek: 1,
+            dayNames: ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'],
+            // narrowWeekend: true,
+            // visibleWeeksCount: 5,
+            visibleEventCount: 5,
+          }}
+          events={initialEvents}
+          template={{
+            // 반차
+            time(event) {
+              const { start, end, title, state } = event
+              return `<span style="color: black;"><img src=${state} width="13px"/> ${title}</span>`
             },
-          ],
-        }}
-        useDetailPopup={true}
-        // useFormPopup={true}
-        view={'month'}
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
-        ref={calendarRef}
-        // onAfterRenderEvent={onAfterRenderEvent}
-        // onBeforeDeleteEvent={onBeforeDeleteEvent}
-        // onClickDayname={onClickDayName}
-        // onClickEvent={onClickEvent}
-        // onClickTimezonesCollapseBtn={onClickTimezonesCollapseBtn}
-        // onBeforeUpdateEvent={onBeforeUpdateEvent}
-        // onBeforeCreateEvent={onBeforeCreateEvent}
-      />
+            // 연차
+            allday(event) {
+              const { start, end, title, state } = event
+              return `<span style="color: white;"><img src=${state} width="13px"/> ${title}</span>`
+            },
+            // 당직
+            milestone(event) {
+              const { start, end, title, state } = event
+              return `<div style="color: black;"><img src=${state} width="13px"/> ${title}</div>`
+            },
+            // 상세 팝업
+            popupDetailTitle(event) {
+              const { start, end, title, state } = event
+              return `<img src=${state} width="13px"/> ${title}`
+            },
+          }}
+          theme={S.theme}
+          timezone={{
+            zones: [
+              {
+                timezoneName: 'Asia/Seoul',
+                displayLabel: 'Seoul',
+                tooltip: 'UTC+09:00',
+              },
+            ],
+          }}
+          useDetailPopup={true}
+          view={'month'}
+          // @ts-ignore
+          ref={calendarRef}
+        />
+      </S.calendarWrapper>
     </S.HomeWrapper>
   )
 }
