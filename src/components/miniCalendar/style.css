@@ -4,28 +4,47 @@
   min-width: 48%;
   max-height: 114%;
   border-radius: 8px;
-  /* box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.25); */
   box-shadow: rgba(0, 0, 0, 0.3) 0px 4px 10px;
   background-color: #fff;
 }
 
 .container {
-  margin: 12px;
+  margin: 16px;
+  min-width: 48%;
   min-height: 68%;
 }
 
+.miniCalendarNav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 22px 12px !important;
+}
+
+.toastui-calendar-weekday-grid-date-decorator {
+  background-color: #aa2727 !important;
+}
+
 .todayButton {
+  margin: 12px;
   background-color: #e15e5e;
   border-color: #e15e5e;
   border-radius: 6px;
   color: #fff;
-  padding: 5px 7px;
+  padding: 8px 12px;
 }
 .arrowButton {
   background-color: #aa2727;
   border-color: #aa2727;
   border-radius: 6px;
   color: #fff;
+  padding: 8px 12px;
+}
+.prevButton {
+  border-radius: 6px 0 0 6px;
+}
+.nextButton {
+  border-radius: 0 6px 6px 0;
 }
 
 .todayButton:hover {
@@ -71,4 +90,11 @@
   font-size: 23px;
   font-weight: 900;
   vertical-align: middle;
+}
+
+.toastui-calendar-popup-confirm {
+  background-color: #e15e5e !important;
+  border-color: #e15e5e !important;
+  border-radius: 40px !important;
+  color: #fff !important;
 }

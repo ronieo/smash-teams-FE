@@ -8,27 +8,12 @@ import { theme } from './theme'
 
 import type { EventObject, ExternalEventTypes, Options } from '@toast-ui/calendar'
 import { TZDate } from '@toast-ui/calendar'
-import type { ChangeEvent, MouseEvent } from 'react'
+import type { MouseEvent } from 'react'
 import { useCallback, useEffect, useRef, useState } from 'react'
 
 type ViewType = 'month'
 
 const today = new TZDate()
-
-const viewModeOptions = [
-  {
-    title: 'Monthly',
-    value: 'month',
-  },
-  {
-    title: 'Weekly',
-    value: 'week',
-  },
-  {
-    title: 'Daily',
-    value: 'day',
-  },
-]
 
 function MiniCalendar({ view }: { view: ViewType }) {
   const calendarRef = useRef<typeof Calendar>(null)
@@ -64,8 +49,6 @@ function MiniCalendar({ view }: { view: ViewType }) {
 
     const viewName = calInstance.getViewName()
     const calDate = calInstance.getDate()
-    const rangeStart = calInstance.getDateRangeStart()
-    const rangeEnd = calInstance.getDateRangeEnd()
 
     let year = calDate.getFullYear()
     let month = calDate.getMonth() + 1
@@ -75,18 +58,6 @@ function MiniCalendar({ view }: { view: ViewType }) {
     switch (viewName) {
       case 'month': {
         dateRangeText = `${year}.${month}.${date}`
-        break
-      }
-      case 'week': {
-        year = rangeStart.getFullYear()
-        month = rangeStart.getMonth() + 1
-        date = rangeStart.getDate()
-        const endMonth = rangeEnd.getMonth() + 1
-        const endDate = rangeEnd.getDate()
-
-        const start = `${year}-${month < 10 ? '0' : ''}${month}-${date < 10 ? '0' : ''}${date}`
-        const end = `${year}-${endMonth < 10 ? '0' : ''}${endMonth}-${endDate < 10 ? '0' : ''}${endDate}`
-        dateRangeText = `${start} ~ ${end}`
         break
       }
       default:
@@ -176,9 +147,6 @@ function MiniCalendar({ view }: { view: ViewType }) {
       end: eventData.end,
       category: eventData.isAllday ? 'allday' : 'time',
       dueDateClass: '',
-      location: eventData.location,
-      state: eventData.state,
-      isPrivate: eventData.isPrivate,
     }
 
     getCalInstance().createEvents([event])
@@ -187,9 +155,8 @@ function MiniCalendar({ view }: { view: ViewType }) {
   return (
     <div className="miniCalendarContainer">
       <div className="miniCalendarNav">
+        <span className="render-range">{selectedDateRangeText}</span>
         <span className="arrowButtonWrapper">
-          <span className="render-range">{selectedDateRangeText}</span>
-
           <button type="button" className="btn todayButton" data-action="move-today" onClick={onClickNavi}>
             Today
           </button>
@@ -204,16 +171,8 @@ function MiniCalendar({ view }: { view: ViewType }) {
       <Calendar
         height="900px"
         calendars={initialCalendars}
-        month={{ startDayOfWeek: 1 }}
+        month={{ startDayOfWeek: 1, dayNames: ['일', '월', '화', '수', '목', '금', '토'] }}
         events={initialEvents}
-        template={{
-          milestone(event) {
-            return `<span style="color: #fff; background-color: ${event.backgroundColor};">${event.title}</span>`
-          },
-          allday(event) {
-            return `[All day] ${event.title}`
-          },
-        }}
         theme={theme}
         timezone={{
           zones: [
@@ -228,8 +187,6 @@ function MiniCalendar({ view }: { view: ViewType }) {
         useFormPopup={true}
         view={selectedView}
         week={{
-          showTimezoneCollapseButton: true,
-          timezonesCollapsed: false,
           eventView: true,
           taskView: true,
         }}
