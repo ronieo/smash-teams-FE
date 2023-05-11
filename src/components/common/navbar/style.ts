@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 
 export const NavbarWrapper = styled.nav`
@@ -12,7 +12,7 @@ export const NavbarWrapper = styled.nav`
   border-left: 1px solid #c1c1c1;
   box-shadow: 2px 0px 3px -1px #c1c1c1;
 `
-export const NavbarLink = styled(Link)`
+export const NavbarLink = styled(NavLink)`
   width: 250px;
   color: #aa2727;
   font-weight: 400;
@@ -22,6 +22,9 @@ export const NavbarLink = styled(Link)`
   border-radius: 8px;
   display: flex;
   &:hover {
+    background-color: rgb(170, 39, 39, 0.2);
+  }
+  &.active {
     background-color: rgb(170, 39, 39, 0.2);
   }
 `
