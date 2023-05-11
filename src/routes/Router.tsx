@@ -5,7 +5,7 @@ import AdminPage from '../pages/adminPage'
 import DayOffPage from '../pages/dayoffPage'
 import HomePage from '../pages/homePage'
 import ManagePage from '../pages/managePage'
-import NightSheetPage from '../pages/nightsheetPage'
+import NightShiftPage from '../pages/nightshiftPage'
 import ProfilePage from '../pages/profilePage'
 import HistoryPage from '../pages/historyPage'
 import SideBar from '../components/common/sidebar'
@@ -20,9 +20,9 @@ function Router() {
           <Route path="/" element={<HomePage />} />
           <Route path="/admin" element={<AdminPage />} />
           <Route path="/dayoff" element={<DayOffPage />} />
+          <Route path="/nightshift" element={<DayOffPage />} />
           <Route path="/history" element={<HistoryPage />} />
           <Route path="/manage" element={<ManagePage />} />
-          <Route path="/nightsheet" element={<NightSheetPage />} />
           <Route path="/profile" element={<ProfilePage />} />
         </Route>
       </Routes>
