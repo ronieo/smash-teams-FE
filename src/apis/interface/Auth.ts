@@ -10,10 +10,7 @@ export interface RegisterRequest extends LoginRequest {
   phoneNumber: string
   startWork: string
   passwordConfirm?: string
-
 }
-
-export interface 
 
 export interface UserPayload {
   id: number
@@ -21,9 +18,7 @@ export interface UserPayload {
   username: string
 }
 
-export interface AuthResponse {
-  
-}
+export interface AuthResponse {}
 
 export interface Content extends UserPayload {
   iat: number
@@ -47,7 +42,7 @@ export interface EmailCheckRequest {
   email: string
 }
 
-export interface RegisterEnroll{
+export interface RegisterEnroll {
   username: string
   email: string
   password: string

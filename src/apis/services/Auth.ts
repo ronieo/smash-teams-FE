@@ -1,8 +1,12 @@
+import axios from 'axios'
 import { axiosInstance } from '../axios'
 import { AuthResponse, EmailCheckRequest, LoginRequest, RegisterRequest, User, UserPayload } from '../interface/Auth'
+import { setCookie } from '../../utils/cookies'
 
 export const login = async (user: LoginRequest) => {
-  const { data } = await axiosInstance().post<AuthResponse>('/login', user)
+  const { data, headers } = await axiosInstance().post<AuthResponse>('/login', user)
+  const token = headers.authorization.split(' ')[1]
+  setCookie('accessToken', token)
   return data
 }
 
