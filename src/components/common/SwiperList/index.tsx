@@ -6,6 +6,7 @@ import HistoryCard from '../../HistoryCard'
 import { SwiperSlide } from 'swiper/react'
 
 type SwiperType = Swiper | null
+
 function SwiperList({ seletedData }: { seletedData: MyScheduleData[] | undefined }) {
   // 스와이퍼
   SwiperCore.use([Pagination])
@@ -23,7 +24,6 @@ function SwiperList({ seletedData }: { seletedData: MyScheduleData[] | undefined
     }
   }
 
-  console.log(seletedData)
   return (
     <S.ListWrapper
       onSwiper={(swiper) => {

@@ -16,15 +16,36 @@ import {
   TitleWrapper,
   UserName,
 } from './style'
-import { MyScheduleData, ScheduleStatus } from '../../interface/schedule'
+import { ButtonStatusProps, MyScheduleData, ScheduleStatus, ToggleButtonProps } from '../../interface/schedule'
+import { useMutation } from 'react-query'
+import { orderSchedule } from '../../apis/services/Schedule'
+import Swal from 'sweetalert2'
+import { theme } from '../../styles/Theme'
+import { AxiosError } from 'axios'
 
-type HistoryCardProps = {
+interface HistoryCardProps {
   schedule: MyScheduleData
 }
 
+export interface orderScheduleProps {
+  scheduleId: number
+  status: 'FIRST' | 'REJECTED' | 'APPROVED' | 'LAST'
+}
+
+interface orderScheduleResponseProps extends orderScheduleProps {
+  remain: number
+}
+
 function HistoryCard({ schedule }: HistoryCardProps) {
-  const [userType, setUserType] = useState('USER') // CEO(사장), MANAGER(팀장), USER(팀원, default)
+  const [userType, setUserType] = useState('man') // CEO(사장), MANAGER(팀장), USER(팀원, default)
   const [status, setStatus] = useState(schedule.status as 'FIRST' | 'REJECTED' | 'APPROVED' | 'LAST')
+
+  const { mutate, isError, isLoading } = useMutation<orderScheduleResponseProps, AxiosError, orderScheduleProps>(
+    orderSchedule,
+    {
+      onSuccess: (data) => {},
+    },
+  )
 
   const scheduleStatus = {
     FIRST: '1차 결재 대기',
@@ -32,76 +53,106 @@ function HistoryCard({ schedule }: HistoryCardProps) {
     LAST: '최종 결재 대기',
     APPROVED: '승인',
   }
-  // function handleButtonClick(buttonType: 'accept' | 'reject') {
-  //   if (buttonType === 'accept' && status === ScheduleStatus.APPROVED) return
-  //   if (buttonType === 'reject' && status === ScheduleStatus.REJECTED) return
 
-  //   if (buttonType === 'accept') {
-  //     switch (status) {
-  //       case ScheduleStatus.FIRST:
-  //         setStatus(ScheduleStatus.APPROVED)
-  //         break
-  //       case ScheduleStatus.REJECTED:
-  //         setStatus(ScheduleStatus.LAST)
-  //         break
-  //       default:
-  //         break
-  //     }
-  //   } else {
-  //     switch (status) {
-  //       case ScheduleStatus.FIRST:
-  //         setStatus(ScheduleStatus.REJECTED)
-  //         break
-  //       case ScheduleStatus.APPROVED:
-  //         setStatus(ScheduleStatus.LAST)
-  //         break
-  //       default:
-  //         break
-  //     }
-  //   }
-  // }
-  const [isAccept, setisAccept] = useState(false) // 승인
-  const [isReject, setisReject] = useState(false) // 거절
+  // 승인
+  const [isAccept, setisAccept] = useState<'BEFORE' | 'APPROVED' | 'REJECTED'>('BEFORE')
+  // 거절
+  const [isReject, setisReject] = useState<'BEFORE' | 'APPROVED' | 'REJECTED'>('BEFORE')
 
-  function handleButtonClick(buttonType: 'accept' | 'reject') {
-    if (buttonType === 'accept' && isAccept) return
-    if (buttonType === 'reject' && isReject) return
+  // 승인, 거절 후 버튼 상태 변경
+  function handleButtonClick(buttonType: 'BEFORE' | 'APPROVED' | 'REJECTED') {
+    if (buttonType === 'APPROVED') {
+      Swal.fire({
+        title: '승인하시겠습니까?',
+        text: '승인 후 취소할 수 없습니다.',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: theme.colors.blue,
+        cancelButtonColor: theme.colors.redReject,
+        confirmButtonText: '네, 승인할게요!',
+        cancelButtonText: '취소할게요!',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire({
+            title: '승인되었습니다.',
+            text: `완료된 목록에서 확인해주세요. :)`,
+            icon: 'success',
+            confirmButtonColor: theme.colors.blue,
+            confirmButtonText: '완료된 목록 바로가기',
+          })
+          setisAccept(buttonType)
+          setisReject('BEFORE')
+          mutate({
+            scheduleId: schedule.scheduleId,
+            status: 'APPROVED',
+          })
+        }
+      })
+      //  승인 후 데이터 변경  해야함
+    }
+    if (buttonType === 'REJECTED') {
+      Swal.fire({
+        title: '거절하시겠습니까?',
+        text: '거절 후 취소할 수 없습니다.',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: theme.colors.blue,
+        cancelButtonColor: theme.colors.redReject,
+        confirmButtonText: '네, 거절할게요!',
+        cancelButtonText: '취소할게요!',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire({
+            title: '거절되었습니다.',
+            text: `완료된 목록에서 확인해주세요. :)`,
+            icon: 'error',
+            confirmButtonColor: theme.colors.blue,
+            confirmButtonText: '완료된 목록 바로가기',
+          })
 
-    setisAccept(buttonType === 'accept')
-    setisReject(buttonType === 'reject')
+          setisAccept('BEFORE')
+          mutate({
+            scheduleId: schedule.scheduleId,
+            status: 'REJECTED',
+          })
+        }
+      })
+      //  거절 후 데이터 변경  해야함
+    }
   }
 
-  return (
-    <CardWrapper isStatus={status}>
-      <TitleWrapper>
-        <TeamName>{schedule.user.teamName}</TeamName>
-        <PositionName>{schedule.user.role}</PositionName>
-        <UserName>{schedule.user.name}</UserName>
-      </TitleWrapper>
-      <DateWrapper>
-        <DateTitle>일정</DateTitle>
-        <DateSchedule>{schedule.startDate}</DateSchedule>
-      </DateWrapper>
-      <ReasonWrapper>
-        <ReasonTitle>사유</ReasonTitle>
-        <ReasonContent>쉬고싶어요</ReasonContent>
-      </ReasonWrapper>
-      <CardButtonWrapper>
-        {userType === 'USER' ? (
-          <CurrentStatusButton isStatus={status}>{scheduleStatus[status]}</CurrentStatusButton>
-        ) : (
-          <>
-            <AcceptButton onClick={() => handleButtonClick('accept')} isStatus={status}>
-              승인
-            </AcceptButton>
-            <RejectButton onClick={() => handleButtonClick('reject')} isStatus={status}>
-              거절
-            </RejectButton>
-          </>
-        )}
-      </CardButtonWrapper>
-    </CardWrapper>
-  )
+  if (isError)
+    return (
+      <CardWrapper isStatus={status}>
+        <TitleWrapper>
+          <TeamName>{schedule.user.teamName}</TeamName>
+          <PositionName>{schedule.user.role}</PositionName>
+          <UserName>{schedule.user.name}</UserName>
+        </TitleWrapper>
+        <DateWrapper>
+          <DateTitle>일정</DateTitle>
+          <DateSchedule>{schedule.startDate}</DateSchedule>
+        </DateWrapper>
+        <ReasonWrapper>
+          <ReasonTitle>사유</ReasonTitle>
+          <ReasonContent>쉬고싶어요</ReasonContent>
+        </ReasonWrapper>
+        <CardButtonWrapper>
+          {userType === 'USER' ? (
+            <CurrentStatusButton isStatus={status}>{scheduleStatus[status]}</CurrentStatusButton>
+          ) : (
+            <>
+              <AcceptButton onClick={() => handleButtonClick('APPROVED')} isButtonStatus={isAccept}>
+                승인
+              </AcceptButton>
+              <RejectButton onClick={() => handleButtonClick('REJECTED')} isButtonStatus={isReject}>
+                거절
+              </RejectButton>
+            </>
+          )}
+        </CardButtonWrapper>
+      </CardWrapper>
+    )
 }
 
 export default HistoryCard

@@ -9,6 +9,7 @@ export const ProfileWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   background-color: #952a2a;
+  min-height: 440px;
 `
 
 export const TeamTitle = styled.div`
