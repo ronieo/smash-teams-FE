@@ -26,7 +26,7 @@ export const join = async (user: RegisterRequest) => {
   }
 }
 
-export const emailCheck = async (email: EmailCheckRequest) => {
+export const emailCheck = async (email: string) => {
   try {
     const data = await axiosInstance().post<EmailCheckRequest>('/check', {
       email,
