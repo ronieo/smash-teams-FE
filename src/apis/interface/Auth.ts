@@ -1,3 +1,5 @@
+import { CgPassword } from 'react-icons/cg'
+
 export interface LoginRequest {
   email: string
   password: string
@@ -7,8 +9,11 @@ export interface RegisterRequest extends LoginRequest {
   username: string
   phoneNumber: string
   startWork: string
-  passwordConfirm: string
+  passwordConfirm?: string
+
 }
+
+export interface 
 
 export interface UserPayload {
   id: number
@@ -17,11 +22,7 @@ export interface UserPayload {
 }
 
 export interface AuthResponse {
-  accessToken: string
-  content: Content
-  multi?: boolean
-  exp: number
-  iat: number
+  
 }
 
 export interface Content extends UserPayload {
@@ -44,4 +45,12 @@ export interface User {
 
 export interface EmailCheckRequest {
   email: string
+}
+
+export interface RegisterEnroll{
+  username: string
+  email: string
+  password: string
+  phoneNumber: string
+  startWork: string
 }
