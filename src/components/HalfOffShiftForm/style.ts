@@ -52,3 +52,11 @@ export const ListWrapper = styled(Swiper)`
     background: ${theme.colors.black} !important;
   }
 `
+export const CompleteListWrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+  border-radius: 30px;
+  padding: 24px 40px;
+  overflow: scroll;
+`
