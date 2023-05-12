@@ -1,93 +1,56 @@
+import { theme } from './../../styles/Theme'
 import styled from 'styled-components'
 
-export const LoginWrapper = styled.div`
+export const LoginPageWrapper = styled.div`
+  width: 1440px;
   display: flex;
   align-items: center;
-  justify-content: center;
-  height: calc(100vh  - 400px);
-  margin: auto 0;
-
+  margin: auto;
 `
-export const LoginContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 400px;
-  height: 600px;
-  background: #FFFFFF;
-  box-shadow: 0px 4px 4px 3px rgba(0, 0, 0, 0.25);
-  border-radius: 6px;
-
+export const BackGround = styled.div`
+  width: 100vw;
+  min-width: 1440px;
+  height: 50vh;
+  background-color: #aa2727;
+  border-top-right-radius: 50vh;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
 `
 
-export const LoginLogoImage = styled.img`
-  width: 200px;
-
-  margin-top: 0px;
-  margin-bottom: 40px;
-  padding-left: 25px;
-
+export const LoginImage = styled.img`
+  width: 460px;
+  position: absolute;
+  top: -310px;
+  left: 30px;
 `
-
-export const LoginFormContainer = styled.form`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+export const LoginSourseWrapper = styled.div`
+  width: 1440px;
+  height: 50vh;
+  position: absolute;
+  bottom: 0;
+  left: calc(100vh - 1440px) / 2;
+  z-index: 1;
+`
+export const LoginTextWrapper = styled.div`
   width: 100%;
   height: 100%;
+  padding: 80px 50px;
 `
 
-export const LoginInput = styled.input`
-  box-sizing: border-box;
-  width: 300px;
-  height: 50px;
-  margin: 16px 0;
-
-  font-size: 13px;
-
-  background: #FFFFFF;
-  border: 1px solid #E0E0E0;
-  border-radius: 3px;
-`
-export const LoginPageButton = styled.button`
-  width: 300px;
-  height: 50px;
-  margin-top: 75px;
-  color: #FFFFFF;
-  background: #AA2727;
-  border-radius: 3px;
-`
-
-export const BottomFill = styled.div`
-  position: absolute;
-  width: 100vw;
-  height: 400px;
-  bottom: 0;
-  background: #952A2A;
-`
-
-export const BottomTitleText = styled.div`
-  position: absolute;
-  display: flex;
-  color: #FFFFFF;
+export const Title = styled.div`
+  color: ${theme.colors.white};
   font-size: 70px;
-  margin: 43px 672px 129px 34px;
-  line-height: 53px;
-  align-items: center;
-  font-family: Exo;
-  font-style: normal;
-  font-weight: 800;
-
-  /* margin-left: 34px; */
-` 
-
-export const BottomBodyText = styled.div`
-  position: absolute;
-  width: 245px;
-  height: 42px;
-  color: #FFFFFF;
-  font-size: 20px;
-  margin-top: 35px;
-  margin-left: 34px;
-` 
+  font-weight: 600;
+`
+export const Body = styled.div`
+  color: ${theme.colors.white};
+  font-size: 26px;
+  font-weight: 500;
+  margin-top: 70px;
+  span {
+    display: block;
+    margin-top: 10px;
+  }
+`

@@ -24,11 +24,6 @@ export const handlers = [
     const userEmail = loginInfo.find((user) => user.email === email)
     const userPw = loginInfo.find((user) => user.password === password)
 
-    localStorage.setItem(
-      'accessToken',
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c',
-    )
-
     if (!userEmail) {
       return res(ctx.status(400), ctx.json({ message: '가입되지 않은 회원입니다.' }))
     }
