@@ -1,4 +1,5 @@
 {
+  "msg": "OK",
   "data": {
     "scheduleList": [
       {
@@ -6,16 +7,16 @@
         "startDate": "2023-05-15T09:00:00",
         "endDate": "2023-05-16T18:00:00",
         "type": "DAYOFF",
-        "status": "FIRST",
+        "status": "APPROVED",
         "reason": "개인사정",
         "user": {
           "userId": 1,
-          "name": "김반차",
+          "name": "김사장",
           "email": "김사장@gmail.com",
           "phoneNumber": "010-1111-1111",
           "startWork": "2010-05-01T09:00:00",
           "role": "CEO",
-          "teamName": "개발팀",
+          "teamName": null,
           "profileImage": "https://서버/폴더/파일.jpg"
         }
       },
@@ -24,11 +25,11 @@
         "startDate": "2023-05-15T09:00:00",
         "endDate": "2023-05-16T18:00:00",
         "type": "DAYOFF",
-        "status": "REJECTED",
+        "status": "APPROVED",
         "reason": "개인사정",
         "user": {
           "userId": 2,
-          "name": "김반차",
+          "name": "김팀장",
           "email": "김팀장@gmail.com",
           "phoneNumber": "010-2222-2222",
           "startWork": "2019-05-01T09:00:00",

@@ -1,0 +1,39 @@
+{
+  "msg": "OK",
+  "data": {
+    "teamList": [
+      {
+        "teamId": 1,
+        "teamName": "개발팀",
+        "teamCount": 15
+      },
+      {
+        "teamId": 2,
+        "teamName": "회계팀",
+        "teamCount": 7
+      }
+    ],
+    "userList": [
+      {
+        "userId": 1,
+        "profileImage": "/public/noprofile.png",
+        "name": "이승민",
+        "email": "anonymous@gmail.com",
+        "phoneNumber": "010-1234-1234",
+        "startWork": "string",
+        "teamName": "개발팀",
+        "role": "USER"
+      },
+      {
+        "userId": 2,
+        "profileImage": "/public/noprofile.png",
+        "name": "송재근",
+        "email": "anonymous@gmail.com",
+        "phoneNumber": "010-1234-1234",
+        "startWork": "string",
+        "teamName": "개발팀",
+        "role": "MANAGER"
+      }
+    ]
+  }
+}
