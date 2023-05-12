@@ -1,3 +1,4 @@
+import { orderScheduleProps } from '../../components/HistoryCard'
 import { axiosInstance } from '../axios'
 
 export const getMainSchedule = async () => {
@@ -15,7 +16,7 @@ export const getSuperSchedule = async () => {
   return data
 }
 
-export const orderSchedule = async (schedule: { scheduleId: number; status: string }) => {
+export const orderSchedule = async (schedule: orderScheduleProps) => {
   const { data } = await axiosInstance().post('/auth/super/schedule/order', {
     schedule,
   })
