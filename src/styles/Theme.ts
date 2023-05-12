@@ -64,6 +64,8 @@ export const theme = {
 
     redDelete: '#812E2E',
 
+    greenBe: '#308FA4',
+
     blue: '#476FD3',
     blueDisable: '#A3B7E9',
 

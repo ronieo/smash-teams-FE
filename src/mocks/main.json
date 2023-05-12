@@ -12,9 +12,9 @@
             "role": "팀원",
             "profileImage": "/public/noprofile.png"
           },
-          "startDate": "2023-05-15T09:00:00",
-          "endDate": "2023-05-16T09:00:00",
-          "type": "연차",
+          "startDate": "2023-05-05T09:00:00",
+          "endDate": "2023-05-05T12:00:00",
+          "type": "HALFOFF",
           "reason": "힘들어서"
         },
         {
@@ -26,9 +26,9 @@
             "role": "팀원",
             "profileImage": "/public/noprofile.png"
           },
-          "startDate": "2023-05-15T09:00:00",
-          "endDate": "2023-05-16T09:00:00",
-          "type": "연차",
+          "startDate": "2023-05-05T09:00:00",
+          "endDate": "2023-05-05T09:00:00",
+          "type": "DAYOFF",
           "reason": "힘들어서"
         },
         {
@@ -42,8 +42,22 @@
           },
           "startDate": "2023-05-15T09:00:00",
           "endDate": "2023-05-16T09:00:00",
-          "type": "연차",
+          "type": "DAYOFF",
           "reason": "힘들어서"
+        },
+        {
+          "user": {
+            "userId": 3,
+            "name": "김대리",
+            "email": "test4@test.com",
+            "teamName": "디자인팀",
+            "role": "팀원",
+            "profileImage": "/public/redbox-logo.png"
+          },
+          "startDate": "2023-05-15T06:00:00",
+          "endDate": "2023-05-15T09:00:00",
+          "type": "SHIFT",
+          "reason": "당직입니다....하하하"
         }
       ]
     }
