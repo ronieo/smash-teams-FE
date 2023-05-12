@@ -21,18 +21,31 @@ import { useMutation } from 'react-query'
 import { orderSchedule } from '../../apis/services/Schedule'
 import Swal from 'sweetalert2'
 import { theme } from '../../styles/Theme'
+import { AxiosError } from 'axios'
 
-type HistoryCardProps = {
+interface HistoryCardProps {
   schedule: MyScheduleData
+}
+
+export interface orderScheduleProps {
+  scheduleId: number
+  status: 'FIRST' | 'REJECTED' | 'APPROVED' | 'LAST'
+}
+
+interface orderScheduleResponseProps extends orderScheduleProps {
+  remain: number
 }
 
 function HistoryCard({ schedule }: HistoryCardProps) {
   const [userType, setUserType] = useState('man') // CEO(사장), MANAGER(팀장), USER(팀원, default)
   const [status, setStatus] = useState(schedule.status as 'FIRST' | 'REJECTED' | 'APPROVED' | 'LAST')
 
-  const { mutate, isError, isLoading } = useMutation(orderSchedule, {
-    onSuccess: (data) => {},
-  })
+  const { mutate, isError, isLoading } = useMutation<orderScheduleResponseProps, AxiosError, orderScheduleProps>(
+    orderSchedule,
+    {
+      onSuccess: (data) => {},
+    },
+  )
 
   const scheduleStatus = {
     FIRST: '1차 결재 대기',
@@ -108,37 +121,38 @@ function HistoryCard({ schedule }: HistoryCardProps) {
     }
   }
 
-  return (
-    <CardWrapper isStatus={status}>
-      <TitleWrapper>
-        <TeamName>{schedule.user.teamName}</TeamName>
-        <PositionName>{schedule.user.role}</PositionName>
-        <UserName>{schedule.user.name}</UserName>
-      </TitleWrapper>
-      <DateWrapper>
-        <DateTitle>일정</DateTitle>
-        <DateSchedule>{schedule.startDate}</DateSchedule>
-      </DateWrapper>
-      <ReasonWrapper>
-        <ReasonTitle>사유</ReasonTitle>
-        <ReasonContent>쉬고싶어요</ReasonContent>
-      </ReasonWrapper>
-      <CardButtonWrapper>
-        {userType === 'USER' ? (
-          <CurrentStatusButton isStatus={status}>{scheduleStatus[status]}</CurrentStatusButton>
-        ) : (
-          <>
-            <AcceptButton onClick={() => handleButtonClick('APPROVED')} isButtonStatus={isAccept}>
-              승인
-            </AcceptButton>
-            <RejectButton onClick={() => handleButtonClick('REJECTED')} isButtonStatus={isReject}>
-              거절
-            </RejectButton>
-          </>
-        )}
-      </CardButtonWrapper>
-    </CardWrapper>
-  )
+  if (isError)
+    return (
+      <CardWrapper isStatus={status}>
+        <TitleWrapper>
+          <TeamName>{schedule.user.teamName}</TeamName>
+          <PositionName>{schedule.user.role}</PositionName>
+          <UserName>{schedule.user.name}</UserName>
+        </TitleWrapper>
+        <DateWrapper>
+          <DateTitle>일정</DateTitle>
+          <DateSchedule>{schedule.startDate}</DateSchedule>
+        </DateWrapper>
+        <ReasonWrapper>
+          <ReasonTitle>사유</ReasonTitle>
+          <ReasonContent>쉬고싶어요</ReasonContent>
+        </ReasonWrapper>
+        <CardButtonWrapper>
+          {userType === 'USER' ? (
+            <CurrentStatusButton isStatus={status}>{scheduleStatus[status]}</CurrentStatusButton>
+          ) : (
+            <>
+              <AcceptButton onClick={() => handleButtonClick('APPROVED')} isButtonStatus={isAccept}>
+                승인
+              </AcceptButton>
+              <RejectButton onClick={() => handleButtonClick('REJECTED')} isButtonStatus={isReject}>
+                거절
+              </RejectButton>
+            </>
+          )}
+        </CardButtonWrapper>
+      </CardWrapper>
+    )
 }
 
 export default HistoryCard
