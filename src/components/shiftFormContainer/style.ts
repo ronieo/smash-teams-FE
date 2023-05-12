@@ -98,6 +98,15 @@ export const HalfOffButton = styled.button`
   font-size: 16px;
   border-radius: 6px;
 `
+
+export const SizedBox = styled.div`
+  display: flex;
+  justify-content: space-between;
+  height: 230px;
+  width: 100%;
+`
+export const DropDown = styled.div``
+
 export const ApprovalRequestButton = styled.button`
   display: flex;
   align-items: center;
