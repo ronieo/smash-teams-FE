@@ -20,6 +20,7 @@ import { ButtonStatusProps, MyScheduleData, ScheduleStatus, ToggleButtonProps } 
 import { useMutation } from 'react-query'
 import { orderSchedule } from '../../apis/services/Schedule'
 import Swal from 'sweetalert2'
+import { theme } from '../../styles/Theme'
 
 type HistoryCardProps = {
   schedule: MyScheduleData
@@ -53,13 +54,19 @@ function HistoryCard({ schedule }: HistoryCardProps) {
         text: '승인 후 취소할 수 없습니다.',
         icon: 'warning',
         showCancelButton: true,
-        confirmButtonColor: 'rgb(71, 111, 211)',
-        cancelButtonColor: 'rgb(211, 71, 71)',
+        confirmButtonColor: theme.colors.blue,
+        cancelButtonColor: theme.colors.redReject,
         confirmButtonText: '네, 승인할게요!',
         cancelButtonText: '취소할게요!',
       }).then((result) => {
         if (result.isConfirmed) {
-          Swal.fire('승인되었습니다.', '완료된 목록에서 확인해주세요.', 'success')
+          Swal.fire({
+            title: '승인되었습니다.',
+            text: `완료된 목록에서 확인해주세요. :)`,
+            icon: 'success',
+            confirmButtonColor: theme.colors.blue,
+            confirmButtonText: '완료된 목록 바로가기',
+          })
           setisAccept(buttonType)
           setisReject('BEFORE')
           mutate({
@@ -76,14 +83,20 @@ function HistoryCard({ schedule }: HistoryCardProps) {
         text: '거절 후 취소할 수 없습니다.',
         icon: 'warning',
         showCancelButton: true,
-        confirmButtonColor: 'rgb(211, 71, 71)',
-        cancelButtonColor: 'rgb(71, 111, 211)',
+        confirmButtonColor: theme.colors.blue,
+        cancelButtonColor: theme.colors.redReject,
         confirmButtonText: '네, 거절할게요!',
         cancelButtonText: '취소할게요!',
       }).then((result) => {
         if (result.isConfirmed) {
-          Swal.fire('거절되었습니다.', '완료된 목록에서 확인해주세요.', 'error')
-          setisReject(buttonType)
+          Swal.fire({
+            title: '거절되었습니다.',
+            text: `완료된 목록에서 확인해주세요. :)`,
+            icon: 'error',
+            confirmButtonColor: theme.colors.blue,
+            confirmButtonText: '완료된 목록 바로가기',
+          })
+
           setisAccept('BEFORE')
           mutate({
             scheduleId: schedule.scheduleId,
