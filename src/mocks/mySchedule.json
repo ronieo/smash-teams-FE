@@ -16,8 +16,8 @@
           "phoneNumber": "010-1111-1111",
           "startWork": "2010-05-01T09:00:00",
           "role": "CEO",
-          "teamName": null,
-          "profileImage": "https://서버/폴더/파일.jpg"
+          "teamName": "개발팀",
+          "profileImage": "/public/noprofile.png"
         }
       },
       {
@@ -35,7 +35,7 @@
           "startWork": "2019-05-01T09:00:00",
           "role": "MANAGER",
           "teamName": "개발팀",
-          "profileImage": "https://서버/폴더/파일.jpg"
+          "profileImage": "/public/noprofile.png"
         }
       },
       {
