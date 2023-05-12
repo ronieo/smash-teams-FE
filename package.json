@@ -21,11 +21,19 @@
     "react-hook-form": "^7.43.9",
     "react-query": "^3.39.3",
     "react-router-dom": "^6.11.0",
+<<<<<<< HEAD
     "react-slick": "^0.29.0",
     "styled-components": "^5.3.10",
     "styled-reset": "^4.4.6",
     "sweetalert2": "^11.7.5",
     "swiper": "^9.2.4",
+=======
+    "sass": "^1.62.1",
+    "styled-components": "^5.3.10",
+    "styled-reset": "^4.4.6",
+    "sweetalert2": "^11.7.3",
+    "swiper": "^9.3.0",
+>>>>>>> f4f2983c8aa7f0866833458e0059dff1e7222ede
     "universal-cookie": "^4.0.4",
     "zustand": "^4.3.7"
   },

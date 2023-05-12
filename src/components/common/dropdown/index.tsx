@@ -11,7 +11,7 @@ function DropDown({ list, width, fontSize, selectedItem, setSelectedItem }: drop
   // 현재 설정되어 있는 아이템 이름
 
   return (
-    <S.DropDownWrapper width={width}>
+    <S.DropDownWrapper width={width} className="dropdown">
       <S.DropDownButton
         fonsSize={fontSize}
         onClick={() => {
