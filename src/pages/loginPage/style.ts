@@ -22,7 +22,7 @@ export const BackGround = styled.div`
 export const LoginImage = styled.img`
   width: 460px;
   position: absolute;
-  top: -310px;
+  top: -311px;
   left: 30px;
 `
 export const LoginSourseWrapper = styled.div`
