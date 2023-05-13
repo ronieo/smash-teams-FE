@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { theme } from '../../styles/Theme'
-import { ButtonStatusProps } from '../../interface/schedule'
+import { ButtonStatusProps, ToggleButtonProps } from '../../interface/schedule'
 
 export const CardWrapper = styled.div<ButtonStatusProps>`
   min-width: 340px;
@@ -79,21 +79,18 @@ export const CardButtonWrapper = styled.div`
   justify-content: space-between;
 `
 
-export const AcceptButton = styled.div<ButtonStatusProps>`
+export const AcceptButton = styled.div<ToggleButtonProps>`
   width: 134px;
   height: 36px;
   display: flex;
   justify-content: center;
   align-items: center;
-
   background-color: ${(props) => {
-    switch (props.isStatus) {
-      case 'REJECTED':
-        return theme.colors.redReject
-      case 'LAST':
-        return theme.colors.greenBe
+    switch (props.isButtonStatus) {
       case 'APPROVED':
         return theme.colors.blue
+      case 'REJECTED':
+        return theme.colors.redReject
       default:
         return theme.colors.grayFont
     }
@@ -103,14 +100,22 @@ export const AcceptButton = styled.div<ButtonStatusProps>`
   cursor: pointer;
   font-weight: 700;
 `
-export const RejectButton = styled.div<ButtonStatusProps>`
+export const RejectButton = styled.div<ToggleButtonProps>`
   width: 134px;
   height: 36px;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: ${(props) => (props.isStatus ? theme.colors.redDisable : theme.colors.redReject)};
-
+  background-color: ${(props) => {
+    switch (props.isButtonStatus) {
+      case 'APPROVED':
+        return theme.colors.blue
+      case 'REJECTED':
+        return theme.colors.redReject
+      default:
+        return theme.colors.grayFont
+    }
+  }};
   color: ${theme.colors.white};
   border-radius: 4px;
   cursor: pointer;

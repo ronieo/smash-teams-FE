@@ -1,17 +1,21 @@
-import { useCallback, useRef, useState } from 'react'
+import { useCallback, useState } from 'react'
 import { MyScheduleData } from '../../interface/schedule'
 import * as S from './style'
-import DropDown from '../common/dropdown'
 import 'swiper/swiper-bundle.min.css'
 import SwiperList from '../common/SwiperList'
 import ListToggleTopWrapper from '../TopWrapper'
+import CompleteItem from '../common/completeItem'
+import { useLocation } from 'react-router-dom'
 
 function HalfOffShiftForm(scheduleData: { scheduleData: MyScheduleData[] | undefined }) {
   const [isRequestList, setIsRequestList] = useState(true) // 승인 목록
   const [isCompletedList, setIsCompletedList] = useState(false) // 거절 목록
 
-  const items = ['연차', '반차'] // 드롭다운 아이템
-  const [selectedItem, setSelectedItem] = useState(items[0]) // 드롭다운 아이템 상태
+  const isManage = useLocation().pathname.includes('manage')
+
+  const userItems = ['연차', '반차'] // 드롭다운 아이템
+  const manageItems = ['연차', '반차', '당직'] // 드롭다운 아이템
+  const [selectedItem, setSelectedItem] = useState(userItems[0]) // 드롭다운 아이템 상태
 
   //  완료된 목록이 활성화되면 data에서 status가 APPROVED인 것만 보여준다.
   function listHandleButtonClick(buttonType: 'request' | 'completed') {
@@ -62,42 +66,72 @@ function HalfOffShiftForm(scheduleData: { scheduleData: MyScheduleData[] | undef
   const CompletedShiftList = filterScheduleByProperty(ShiftSchedule, 'status', ['APPROVED', 'REJECTED'])
 
   // 조건부 연차, 반차, 당직 신청중, 완료된 목록 리스트
-  const halfOffData = isRequestList
-    ? selectedItem === '연차'
-      ? RequestHalfOffList
-      : RequestDayOffList
-    : selectedItem === '연차'
-    ? CompletedHalfOffList
-    : CompletedDayOffList
+
+  let halfOffData
+
+  switch (selectedItem) {
+    case '연차':
+      halfOffData = isRequestList ? RequestDayOffList : CompletedDayOffList
+      break
+    case '반차':
+      halfOffData = isRequestList ? RequestHalfOffList : CompletedHalfOffList
+      break
+    case '당직':
+      halfOffData = CompletedShiftList
+      break
+    default:
+      halfOffData = CompletedShiftList
+  }
 
   // 조건부 당직 신청중, 완료된 목록 리스트
   const dayOffData = isRequestList ? RequestShiftList : CompletedShiftList
-
   return (
     <>
       <S.DayOffList>
-        <>
+        {isManage && isCompletedList ? (
           <ListToggleTopWrapper
-            items={items}
+            items={manageItems}
             selectedItem={selectedItem}
             setSelectedItem={setSelectedItem}
             isRequestList={isRequestList}
             isCompletedList={isCompletedList}
             listHandleButtonClick={listHandleButtonClick}
           ></ListToggleTopWrapper>
-        </>
-        <S.BottomWrapper>
-          <SwiperList seletedData={halfOffData}></SwiperList>
-        </S.BottomWrapper>
+        ) : (
+          <ListToggleTopWrapper
+            items={userItems}
+            selectedItem={selectedItem}
+            setSelectedItem={setSelectedItem}
+            isRequestList={isRequestList}
+            isCompletedList={isCompletedList}
+            listHandleButtonClick={listHandleButtonClick}
+          ></ListToggleTopWrapper>
+        )}
       </S.DayOffList>
-      <S.NightSheetList>
-        <S.TopWrapper>
-          <S.Title>당직</S.Title>
-        </S.TopWrapper>
-        <S.BottomWrapper>
-          <SwiperList seletedData={dayOffData}></SwiperList>
-        </S.BottomWrapper>
-      </S.NightSheetList>
+      {isManage && isCompletedList ? (
+        <>
+          <S.CompleteListWrapper>
+            {halfOffData &&
+              halfOffData.map((item) => {
+                return <CompleteItem key={item.scheduleId} schedule={item}></CompleteItem>
+              })}
+          </S.CompleteListWrapper>
+        </>
+      ) : (
+        <>
+          <S.BottomWrapper>
+            <SwiperList seletedData={halfOffData}></SwiperList>
+          </S.BottomWrapper>
+          <S.NightSheetList>
+            <S.TopWrapper>
+              <S.Title>당직</S.Title>
+            </S.TopWrapper>
+            <S.BottomWrapper>
+              <SwiperList seletedData={dayOffData}></SwiperList>
+            </S.BottomWrapper>
+          </S.NightSheetList>
+        </>
+      )}
     </>
   )
 }
