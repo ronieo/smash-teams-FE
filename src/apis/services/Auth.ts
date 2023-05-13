@@ -1,29 +1,23 @@
 import axios from 'axios'
 import { axiosInstance } from '../axios'
-import { AuthResponse, EmailCheckRequest, LoginRequest, RegisterRequest, User, UserPayload } from '../interface/Auth'
+import { EmailCheckRequest, LoginRequest, RegisterEnroll, RegisterRequest, User, UserPayload } from '../interface/Auth'
 import { setCookie } from '../../utils/cookies'
 
 export const login = async (user: LoginRequest) => {
-  const { data, headers } = await axiosInstance().post<AuthResponse>('/login', user)
+  const { data, headers } = await axiosInstance().post('/login', user)
   const token = headers.authorization.split(' ')[1]
   setCookie('accessToken', token)
   return data
 }
 
 export const logout = async () => {
-  const { data } = await axiosInstance().post<AuthResponse>('/logout')
+  const { data } = await axiosInstance().post('/logout')
   return data
 }
 
-export const join = async (user: RegisterRequest) => {
-  const formData = new FormData()
-  formData.append('email', user.email)
-  formData.append('password', user.password)
-  formData.append('username', user.username)
-  formData.append('phoneNumber', user.phoneNumber)
-  formData.append('startWork', user.startWork)
+export const join = async (user: RegisterEnroll) => {
   try {
-    const { data } = await axiosInstance({ multi: true }).post<AuthResponse>('/auth/register', formData)
+    const { data } = await axiosInstance().post('/join', user)
     return data
   } catch (error) {
     console.log(error)
@@ -32,7 +26,7 @@ export const join = async (user: RegisterRequest) => {
 
 export const emailCheck = async (email: string) => {
   try {
-    const data = await axiosInstance().post<EmailCheckRequest>('/check', {
+    const data = await axiosInstance().post<EmailCheckRequest>('/join/check', {
       email,
     })
     return data
@@ -47,7 +41,7 @@ export const verify = async () => {
 }
 
 export const refresh = async () => {
-  const { data } = await axiosInstance().get<AuthResponse>('/refresh')
+  const { data } = await axiosInstance().get('/refresh')
   return data
 }
 
