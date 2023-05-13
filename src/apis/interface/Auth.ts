@@ -1,3 +1,4 @@
+import { TeamName } from './../../components/HistoryCard/style'
 import { CgPassword } from 'react-icons/cg'
 
 export interface LoginRequest {
@@ -6,9 +7,10 @@ export interface LoginRequest {
 }
 
 export interface RegisterRequest extends LoginRequest {
-  username: string
+  name: string
   phoneNumber: string
   startWork: string
+  teamName: string
   passwordConfirm?: string
 }
 
@@ -16,13 +18,6 @@ export interface UserPayload {
   id: number
   email: string
   username: string
-}
-
-export interface AuthResponse {}
-
-export interface Content extends UserPayload {
-  iat: number
-  exp: number
 }
 
 export interface LogoutRequest {
@@ -43,9 +38,10 @@ export interface EmailCheckRequest {
 }
 
 export interface RegisterEnroll {
-  username: string
+  name: string
   email: string
   password: string
   phoneNumber: string
   startWork: string
+  teamName: string
 }
