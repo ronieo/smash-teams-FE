@@ -4,10 +4,14 @@ import { EmailCheckRequest, LoginRequest, RegisterEnroll, RegisterRequest, User,
 import { setCookie } from '../../utils/cookies'
 
 export const login = async (user: LoginRequest) => {
-  const { data, headers } = await axiosInstance().post('/login', user)
-  const token = headers.authorization.split(' ')[1]
-  setCookie('accessToken', token)
-  return data
+  try {
+    const { data, headers } = await axiosInstance().post('/login', user)
+    const token = headers.authorization.split(' ')[1]
+    setCookie('accessToken', token)
+    return data
+  } catch (error) {
+    throw error
+  }
 }
 
 export const logout = async () => {
@@ -50,7 +54,7 @@ export const getUsers = async () => {
   return data
 }
 
-export const getUser = async (userId: number) => {
-  const { data } = await axiosInstance().get<User[]>(`/users/${userId}`)
+export const getUser = async (userId: number | undefined) => {
+  const { data } = await axiosInstance().get<User[]>(`/auth/user/${userId}`)
   return data
 }

@@ -1,6 +1,19 @@
 import { TeamName } from './../../components/HistoryCard/style'
 import { CgPassword } from 'react-icons/cg'
 
+export interface LoginResponseData {
+  data: {
+    id: number
+    name: string
+    email: string
+    pnhoneNumber: string
+    profileImage: string
+    startWork: string
+    teamName: string
+    role: string
+  }
+}
+
 export interface LoginRequest {
   email: string
   password: string
@@ -18,10 +31,6 @@ export interface UserPayload {
   id: number
   email: string
   username: string
-}
-
-export interface LogoutRequest {
-  refreshToken: string
 }
 
 export interface User {
