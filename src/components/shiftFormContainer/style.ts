@@ -102,7 +102,7 @@ export const HalfOffButton = styled.button`
 export const SizedBox = styled.div`
   display: flex;
   justify-content: space-between;
-  height: 230px;
+  height: 120px;
   width: 100%;
 `
 export const DropDown = styled.div``

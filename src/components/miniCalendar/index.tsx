@@ -8,16 +8,25 @@ import { theme } from './theme'
 
 import type { EventObject, ExternalEventTypes, Options } from '@toast-ui/calendar'
 import { TZDate } from '@toast-ui/calendar'
-import type { MouseEvent } from 'react'
+import type { Dispatch, MouseEvent, SetStateAction } from 'react'
 import { useCallback, useEffect, useRef, useState } from 'react'
 
 type ViewType = 'month'
-
+interface miniCalendarProps {
+  view: ViewType
+  // startDate: string
+  // endDate: string
+  // reason: string
+  setStartDate: Dispatch<SetStateAction<string>>
+  setEndDate: Dispatch<SetStateAction<string>>
+  setReason: Dispatch<SetStateAction<string>>
+  // setShiftInputAll: Dispatch<SetStateAction<string>>
+}
 const today = new TZDate()
 
-function MiniCalendar({ view }: { view: ViewType }) {
+function MiniCalendar({ view, setStartDate, setEndDate, setReason }: miniCalendarProps) {
   const calendarRef = useRef<typeof Calendar>(null)
-  const [selectedDateRangeText, setSelectedDateRangeText] = useState('')
+  const [selectedDateRangeText, setSelectedDateRangeText] = useState<string>('')
   const [selectedView, setSelectedView] = useState(view)
   const initialCalendars: Options['calendars'] = [
     {
@@ -53,15 +62,17 @@ function MiniCalendar({ view }: { view: ViewType }) {
     let year = calDate.getFullYear()
     let month = calDate.getMonth() + 1
     let date = calDate.getDate()
+    let hour = calDate.getDate()
+    let minute = calDate.getDate()
     let dateRangeText: string
 
     switch (viewName) {
       case 'month': {
-        dateRangeText = `${year}.${month}.${date}`
+        dateRangeText = `${year}.${month}.${date}.${hour}.${minute}`
         break
       }
       default:
-        dateRangeText = `${year}-${month}-${date}`
+        dateRangeText = `${year}.${month}.${date}.${hour}.${minute}`
     }
 
     setSelectedDateRangeText(dateRangeText)
@@ -78,11 +89,15 @@ function MiniCalendar({ view }: { view: ViewType }) {
   const onAfterRenderEvent: ExternalEventTypes['afterRenderEvent'] = (res) => {
     console.group('onAfterRenderEvent')
     console.log('Event Info : ', res.title)
+    const dateKR = new Date()
+    setStartDate(res.start.d)
+    setEndDate(res.end.d)
+    setReason(res.title)
     console.groupEnd()
   }
 
   const onBeforeDeleteEvent: ExternalEventTypes['beforeDeleteEvent'] = (res) => {
-    console.group('onBeforeDeleteEvent')
+    console.group('onBeforeDeleteEvent', res)
     console.log('Event Info : ', res.title)
     console.groupEnd()
 

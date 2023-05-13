@@ -1,8 +1,9 @@
-import React, { useState, ReactNode } from 'react'
+import React, { useState, ReactNode, Dispatch, SetStateAction } from 'react'
 import * as S from './style'
 import Swal from 'sweetalert2'
 import DropDown from '../common/dropdown'
 import { theme } from '../../styles/Theme'
+import { createUserSchedule } from '../../apis/services/Schedule'
 
 type FormType = 'dayOff' | 'halfOff' | 'nightShift'
 const FORM_TYPES = {
@@ -10,30 +11,28 @@ const FORM_TYPES = {
   HALF_OFF: 'halfOff',
   NIGHT_SHIFT: 'nightShift',
 } as const
+
 interface ShiftFormContainerProps {
   children: ReactNode
   type: string
   location: string
-  // selectedDateRangeText: string
+  startDate: string
+  endDate: string
+  reason: string
 }
 
-function ShiftFormContainer({ type, location }: ShiftFormContainerProps) {
+function ShiftFormContainer({ type, location, startDate, endDate, reason }: ShiftFormContainerProps) {
   const [formType, setFormType] = useState<FormType>(FORM_TYPES.DAY_OFF)
   const handleTitleChange = location === '/dayoff' ? (formType === FORM_TYPES.DAY_OFF ? '연차' : '반차') : '당직'
-  const handleStartInputChange = location === '/dayoff' ? (formType === 'dayOff' ? '시작 날짜' : '날짜') : '근무 시작'
-  const handleEndInputChange = location === '/dayoff' ? (formType === 'dayOff' ? '시작 날짜' : '날짜') : '근무 종료'
-
-  // dropdown
-  const [selectItem, setSelectItem] = useState('당직시간 선택') //    e.preventDefault() 어떻게해야...?
-  const handleSelectItem = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault()
-    setSelectItem
-  }
+  const handleStartInputChange =
+    location === '/dayoff' ? (formType === 'dayOff' ? '시작 날짜' : '반차 시작') : '근무 시작'
+  const handleEndInputChange =
+    location === '/dayoff' ? (formType === 'dayOff' ? '종료 날짜' : '반차 종료') : '근무 종료'
 
   const handleDayOffButtonClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
     setFormType(FORM_TYPES.DAY_OFF)
-    console.log('연차버튼 클릭!')
+    console.log(formType, '연차버튼 클릭!')
   }
 
   const handleHalfOffButtonClick = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -84,31 +83,34 @@ function ShiftFormContainer({ type, location }: ShiftFormContainerProps) {
             id="startDate"
             type="text"
             name="startDate"
-            value="캘린더에서 받아오는값"
+            value={startDate}
+            readOnly
           />
         </S.InputWrapper>
       ) : (
         <S.InputWrapper>
-          <S.DateInput id="endDate" type="text" name="endDate" value="근무 시작" />{' '}
+          <S.Label htmlFor="startDate halfDate">{handleStartInputChange}</S.Label>
+          <S.DateInput id="endDate" type="text" name="endDate" value="" />{' '}
         </S.InputWrapper>
       )}
       {location === '/dayoff' ? (
         <S.InputWrapper>
           <S.Label htmlFor="endDate halfOffTime">{handleEndInputChange}</S.Label>
           {formType === 'dayOff' ? (
-            <S.DateInput id="endDate" type="text" name="endDate" value="종료 날짜" />
+            <S.DateInput id="endDate" type="text" name="endDate" value={endDate} readOnly />
           ) : (
-            <S.TimeInput id="endDate" type="text" name="endDate" value=" 반차 시간" />
+            <S.TimeInput id="endDate" type="text" name="endDate" value={endDate} readOnly />
           )}
         </S.InputWrapper>
       ) : (
         <S.InputWrapper>
-          <S.DateInput id="endDate" type="text" name="endDate" value="근무 종료" />{' '}
+          <S.Label htmlFor="startDate halfDate">{handleEndInputChange}</S.Label>
+          <S.DateInput id="endDate" type="text" name="endDate" value={endDate} readOnly />{' '}
         </S.InputWrapper>
       )}
       <S.InputWrapper>
         <S.Label htmlFor="reason">사유</S.Label>
-        <S.Input id="reason" type="text" name="reason" value="" />
+        <S.Input id="reason" type="text" name="reason" value={reason} />
       </S.InputWrapper>
       {location === '/dayoff' ? (
         <S.ButtonsWrapper>
