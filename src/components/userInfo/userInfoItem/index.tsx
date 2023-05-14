@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import DropDown from '../../common/dropdown'
 import * as S from './style'
-import { ConfirmAdminButtonClick, ConfirmButtonClick } from '../../common/alert'
+import { CofirmBasicButtonClick, ConfirmAdminButtonClick, ConfirmButtonClick } from '../../common/alert'
 import { useMutation } from 'react-query'
 import { updateAdmin } from '../../../apis/services/Admin'
 import { AxiosError } from 'axios'
@@ -17,10 +17,11 @@ function UserInfoItem({ user, team, refetch }: UserInfoItemProps) {
     () => updateAdmin(user.userId, selectItem === '무소속' ? 'common' : selectItem, changeRole[selectItem2]),
     {
       onSuccess: () => {
-        console.log('success')
+        CofirmBasicButtonClick('성공적으로 유저 정보를 수정하였습니다.')
         refetch()
       },
       onError: (err: AxiosError) => {
+        CofirmBasicButtonClick('다시 한 번 수정해주세요.')
         console.log(err)
       },
     },
@@ -31,10 +32,8 @@ function UserInfoItem({ user, team, refetch }: UserInfoItemProps) {
   }, [user])
   return (
     <S.UserInfoItem>
-      <S.UserProfile>
-        <img src={user.profileImage} />
-      </S.UserProfile>
-      <S.UserDetail>
+      <S.UserProfile>{user.profileImage === null ? <></> : <img src={user.profileImage} />}</S.UserProfile>
+      <S.UserDetail className="detail-1">
         <h1>{user.email}</h1>
         <h3>{user.name}</h3>
       </S.UserDetail>
@@ -65,7 +64,6 @@ function UserInfoItem({ user, team, refetch }: UserInfoItemProps) {
       <S.AdminButton
         onClick={() => {
           mutate()
-          // ConfirmAdminButtonClick(user.userId, selectItem, changeRole[selectItem2])
         }}
       >
         확인

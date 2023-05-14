@@ -9,7 +9,7 @@ export const AddTeamItem = styled.div`
   border-radius: 3px;
   display: flex;
   div {
-    width: 113px;
+    width: 154px;
     overflow-x: scroll;
     color: gray;
     font-size: 20px;
@@ -17,7 +17,8 @@ export const AddTeamItem = styled.div`
     margin: auto 18px auto 20px;
   }
   span {
-    margin: auto 10px auto 40px;
+    width: 30px;
+    margin: auto 0 auto 0;
     font-weight: 600;
     font-size: 14px;
   }

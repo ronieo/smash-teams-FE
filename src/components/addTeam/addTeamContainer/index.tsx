@@ -1,6 +1,6 @@
 import AddTeamItem from '../addTeamItem'
 import * as S from './style'
-import { ConfirmButtonClick } from '../../common/alert'
+import { ConfirmButtonClick, CofirmBasicButtonClick } from '../../common/alert'
 import { useMutation } from 'react-query'
 import { addTeam } from '../../../apis/services/Admin'
 import { AxiosError } from 'axios'
@@ -13,10 +13,11 @@ function AddTeamContainer({ teamInfo, refetch }: AddTeamProps) {
   const { mutate } = useMutation(() => addTeam(teamInput), {
     onSuccess: () => {
       refetch()
-      console.log('success')
+      CofirmBasicButtonClick('팀을 성공적으로 추가하였습니다.')
     },
     onError: (err: AxiosError) => {
       console.log(err)
+      CofirmBasicButtonClick('팀을 추가하지 못했습니다.')
     },
   })
   return (
@@ -34,9 +35,8 @@ function AddTeamContainer({ teamInfo, refetch }: AddTeamProps) {
             if (teamInput.includes('팀')) {
               mutate()
             } else {
-              alert('이름에 팀이 들어가야 합니다.')
+              CofirmBasicButtonClick('팀이 포함되어야 합니다.')
             }
-            // mutate(teamName)
           }}
         >
           추가
