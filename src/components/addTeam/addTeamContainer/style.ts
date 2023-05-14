@@ -2,8 +2,8 @@ import styled from 'styled-components'
 
 export const AddTeamContainer = styled.div`
   position: fixed;
-  left: calc((100vw - 220px) / 2);
-  top: calc((100vh - 400px) / 2);
+  left: calc((100vw - 360px) / 2);
+  top: calc((100vh - 460px) / 2);
   width: 360px;
   height: 460px;
   background-color: ${({ theme }) => theme.colors.redContainer};

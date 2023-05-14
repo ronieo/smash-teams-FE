@@ -27,14 +27,18 @@ export const UserProfile = styled.div`
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background-color: aliceblue;
-  margin: 0 20px 0 20px;
+  margin: 0 10px 0 20px;
+  img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+  }
 `
 
 export const UserDetail = styled.div`
-  width: 120px;
+  width: 140px;
   height: 100%;
-  margin: auto 50px auto 0px;
+  margin: auto 10px auto 0px;
   color: ${({ theme }) => theme.colors.grayConfirmButton};
   h1 {
     margin: 19px 0 0 0;
@@ -48,12 +52,15 @@ export const UserDetail = styled.div`
     margin: 5px 0 0 0;
     font-weight: 800;
   }
+  &.detail-1 {
+    width: 240px;
+  }
 `
 
 export const DropdownWrapper = styled.div`
   width: 180px;
   display: flex;
-  margin-left: 90px;
+  margin-left: 60px;
   .dropdown {
     margin: -10px 5px 0 0;
   }
