@@ -1,30 +1,39 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import DropDown from '../../common/dropdown'
 import * as S from './style'
 import { ConfirmAdminButtonClick, ConfirmButtonClick } from '../../common/alert'
-import { useUpdateAdmin } from '../../../hooks/useUpdateAdmin'
 import { useMutation } from 'react-query'
 import { updateAdmin } from '../../../apis/services/Admin'
 import { AxiosError } from 'axios'
+import { Role, UserInfoItemProps } from '../../../interface/admin'
 
-function UserInfoItem({ user, team }) {
-  const role = { ADMIN: '관리자', CEO: '대표', MANAGER: '팀장', USER: '팀원' }
-  const changeRole = { 관리자: 'ADMIN', 대표: 'CEO', 팀장: 'MANAGER', 팀원: 'USER' }
+function UserInfoItem({ user, team, refetch }: UserInfoItemProps) {
+  const role: Role = { ADMIN: '관리자', CEO: '대표', MANAGER: '팀장', USER: '팀원' }
+  const changeRole: { [key: string]: string } = { 관리자: 'ADMIN', 대표: 'CEO', 팀장: 'MANAGER', 팀원: 'USER' }
   const [selectItem, setSelectItem] = useState(`${user.teamName === 'common' ? '무소속' : user.teamName}`)
   const [selectItem2, setSelectItem2] = useState(`${role[user.role]}`)
 
-  const { mutate } = useMutation(() => updateAdmin(user.userId, selectItem, changeRole[selectItem2]), {
-    onSuccess: () => {
-      console.log('success')
+  const { mutate } = useMutation(
+    () => updateAdmin(user.userId, selectItem === '무소속' ? 'common' : selectItem, changeRole[selectItem2]),
+    {
+      onSuccess: () => {
+        console.log('success')
+        refetch()
+      },
+      onError: (err: AxiosError) => {
+        console.log(err)
+      },
     },
-    onError: (err: AxiosError) => {
-      console.log(err)
-    },
-  })
-
+  )
+  useEffect(() => {
+    setSelectItem(`${user.teamName === 'common' ? '무소속' : user.teamName}`)
+    setSelectItem2(`${role[user.role]}`)
+  }, [user])
   return (
     <S.UserInfoItem>
-      <S.UserProfile></S.UserProfile>
+      <S.UserProfile>
+        <img src={user.profileImage} />
+      </S.UserProfile>
       <S.UserDetail>
         <h1>{user.email}</h1>
         <h3>{user.name}</h3>
@@ -55,7 +64,7 @@ function UserInfoItem({ user, team }) {
       </S.DropdownWrapper>
       <S.AdminButton
         onClick={() => {
-          mutate(user.userId, selectItem, changeRole[selectItem2])
+          mutate()
           // ConfirmAdminButtonClick(user.userId, selectItem, changeRole[selectItem2])
         }}
       >

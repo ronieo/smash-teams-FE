@@ -8,27 +8,42 @@ import { useEffect, useState } from 'react'
 import AddTeamContainer from '../../components/addTeam/addTeamContainer'
 import { useQuery } from 'react-query'
 import { getAdmin } from '../../apis/services/Admin'
+import { TeamResponse, UserResponse } from '../../interface/user'
 
 // 관리자 유저 권한 설정 페이지
 function AdminPage() {
   const [teamList, setTeamName] = useState(['전체보기'])
+  const [teamInfo, setTeamInfo] = useState<{}[]>([])
   const [userList, setUserList] = useState<{}[]>([])
-  const { data, isLoading, error } = useQuery(['admin'], () =>
-    getAdmin('', '', 0).then((a) => {
+  const [adminQueryData, setAdminQueryData] = useState({ teamName: '', keyword: '', page: 0 })
+  const { data, isLoading, error, refetch } = useQuery(['admin'], () =>
+    getAdmin(adminQueryData.teamName, adminQueryData.keyword, adminQueryData.page).then((a) => {
       return a.data
     }),
   )
-
   // 팀 리스트 및 유저 리스트 설정
   useEffect(() => {
     if (!isLoading) {
-      data.teamList.map((teamlist) => {
+      setTeamInfo([])
+      setTeamName(['전체보기'])
+      setUserList([])
+      // pages
+      const pageNum = data.totalPages
+      const pagesCopy = [...pages]
+      pagesCopy.length = pageNum
+      pagesCopy.fill(0)
+      setPages(() => pagesCopy)
+
+      // teamlist
+      data.teamList.map((teamlist: TeamResponse) => {
+        console.log(teamlist)
         if (teamlist.teamName === 'admin' || teamlist.teamName === 'common') {
         } else {
+          setTeamInfo((teamInfo) => [...teamInfo, teamlist])
           setTeamName((teamList) => [...teamList, teamlist.teamName])
         }
       })
-      data.userList.map((userlist) => {
+      data.userList.map((userlist: UserResponse) => {
         if (userlist.role === 'ADMIN') {
         } else {
           setUserList((userList) => [...userList, userlist])
@@ -39,6 +54,21 @@ function AdminPage() {
 
   const params = useParams()
   const [isAddTeam, setIsAddTeam] = useState(false)
+  const [pages, setPages] = useState([1])
+
+  const handleLinkClick = (list: string) => {
+    if (list === '전체보기') {
+      setAdminQueryData({ teamName: '', keyword: '', page: 0 })
+    } else {
+      setAdminQueryData({ teamName: `${list}`, keyword: '', page: 0 })
+    }
+  }
+
+  useEffect(() => {
+    refetch()
+  }, [adminQueryData])
+
+  const [userSearchInput, setUserSearchInput] = useState('')
   return (
     <>
       <S.AdminWrapper
@@ -52,13 +82,38 @@ function AdminPage() {
           {teamList.map((list, key) => {
             if (params.id === list) {
               return (
-                <S.TopBarList key={key} to={`${list}`} color="#000" isparams={true}>
+                <S.TopBarList
+                  key={key}
+                  to={`${list}`}
+                  color="#000"
+                  click={'true'}
+                  onClick={() => handleLinkClick(list)}
+                >
+                  {list}
+                </S.TopBarList>
+              )
+            }
+            if (!params.id && list === '전체보기') {
+              return (
+                <S.TopBarList
+                  key={key}
+                  to={'전체보기'}
+                  color="#000"
+                  click={'true'}
+                  onClick={() => handleLinkClick(list)}
+                >
                   {list}
                 </S.TopBarList>
               )
             }
             return (
-              <S.TopBarList key={key} to={`${list}`} color="#A1A1A1" isparams={false}>
+              <S.TopBarList
+                key={key}
+                to={`${list}`}
+                color="#A1A1A1"
+                click={'false'}
+                onClick={() => handleLinkClick(list)}
+              >
                 {list}
               </S.TopBarList>
             )
@@ -73,13 +128,46 @@ function AdminPage() {
         </S.TeamBar>
         <S.Admin>
           <S.AdminSearch>
-            <input type="text" placeholder="검색할 이름을 입력해주세요."></input>
-            <button>검색</button>
+            <input
+              type="text"
+              placeholder="검색할 이름을 입력해주세요."
+              onChange={(e) => {
+                setUserSearchInput(e.target.value)
+              }}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter') {
+                  setAdminQueryData({ ...adminQueryData, keyword: userSearchInput })
+                }
+              }}
+            ></input>
+            <button
+              onClick={() => {
+                setAdminQueryData({ ...adminQueryData, keyword: userSearchInput })
+              }}
+            >
+              검색
+            </button>
           </S.AdminSearch>
-          <UserInfoContainer userList={userList} teamList={teamList} />
+          <UserInfoContainer userList={userList} teamList={teamList} refetch={refetch} />
+          <S.TotalPage>
+            {pages.map((arr, i) => {
+              const isPage = adminQueryData.page === i
+              return (
+                <S.PageButton
+                  key={i}
+                  isPage={isPage}
+                  onClick={() => {
+                    setAdminQueryData({ ...adminQueryData, page: i })
+                  }}
+                >
+                  {i + 1}
+                </S.PageButton>
+              )
+            })}
+          </S.TotalPage>
         </S.Admin>
       </S.AdminWrapper>
-      {isAddTeam ? <AddTeamContainer /> : <></>}
+      {isAddTeam ? <AddTeamContainer teamInfo={teamInfo} refetch={refetch} /> : <></>}
     </>
   )
 }
