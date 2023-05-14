@@ -13,6 +13,7 @@ interface ResponseData {
 }
 
 function RegisterForm() {
+  // useForm
   const {
     register,
     handleSubmit,
