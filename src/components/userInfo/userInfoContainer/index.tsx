@@ -1,7 +1,8 @@
+import { UserInfoProps } from '../../../interface/admin'
 import UserInfoItem from '../userInfoItem'
 import * as S from './style'
 
-function UserInfoContainer({ userList, teamList }) {
+function UserInfoContainer({ userList, teamList, refetch }: UserInfoProps) {
   const filterTeam = teamList.filter((team) => {
     if (team === '전체보기') {
       return false
@@ -9,11 +10,11 @@ function UserInfoContainer({ userList, teamList }) {
       return true
     }
   })
-  console.log(filterTeam, userList)
+  filterTeam[filterTeam.length + 1] = '무소속'
   return (
     <S.UserInfoContainer>
       {userList.map((user, key) => {
-        return <UserInfoItem key={key} user={user} team={filterTeam} />
+        return <UserInfoItem key={key} user={user} team={filterTeam} refetch={refetch} />
       })}
     </S.UserInfoContainer>
   )

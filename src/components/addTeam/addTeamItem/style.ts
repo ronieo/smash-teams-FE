@@ -9,13 +9,15 @@ export const AddTeamItem = styled.div`
   border-radius: 3px;
   display: flex;
   div {
+    width: 113px;
+    overflow-x: scroll;
     color: gray;
     font-size: 20px;
     font-weight: 700;
     margin: auto 18px auto 20px;
   }
   span {
-    margin: auto 10px auto 100px;
+    margin: auto 10px auto 40px;
     font-weight: 600;
     font-size: 14px;
   }
