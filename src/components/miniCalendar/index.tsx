@@ -12,11 +12,9 @@ import type { Dispatch, MouseEvent, SetStateAction } from 'react'
 import { useCallback, useEffect, useRef, useState } from 'react'
 
 type ViewType = 'month'
+
 interface miniCalendarProps {
   view: ViewType
-  // startDate: string
-  // endDate: string
-  // reason: string
   setStartDate: Dispatch<SetStateAction<string>>
   setEndDate: Dispatch<SetStateAction<string>>
   setReason: Dispatch<SetStateAction<string>>
@@ -68,7 +66,7 @@ function MiniCalendar({ view, setStartDate, setEndDate, setReason }: miniCalenda
 
     switch (viewName) {
       case 'month': {
-        dateRangeText = `${year}.${month}.${date}.${hour}.${minute}`
+        dateRangeText = `${year}.${month}.${date}`
         break
       }
       default:
@@ -89,10 +87,11 @@ function MiniCalendar({ view, setStartDate, setEndDate, setReason }: miniCalenda
   const onAfterRenderEvent: ExternalEventTypes['afterRenderEvent'] = (res) => {
     console.group('onAfterRenderEvent')
     console.log('Event Info : ', res.title)
-    const dateKR = new Date()
+
     setStartDate(res.start.d)
     setEndDate(res.end.d)
     setReason(res.title)
+
     console.groupEnd()
   }
 
