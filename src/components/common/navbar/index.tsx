@@ -20,7 +20,7 @@ function Navbar() {
           연차 신청하기
         </NavbarLinkText>
       </NavbarLink>
-      <NavbarLink to="/nightsheet">
+      <NavbarLink to="/nightshift">
         <NavbarLinkText>
           {' '}
           <BiTimeFive />
