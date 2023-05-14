@@ -13,8 +13,8 @@ import { TeamResponse, UserResponse } from '../../interface/user'
 // 관리자 유저 권한 설정 페이지
 function AdminPage() {
   const [teamList, setTeamName] = useState(['전체보기'])
-  const [teamInfo, setTeamInfo] = useState<{}[]>([])
-  const [userList, setUserList] = useState<{}[]>([])
+  const [teamInfo, setTeamInfo] = useState<TeamResponse[]>([])
+  const [userList, setUserList] = useState<UserResponse[]>([])
   const [adminQueryData, setAdminQueryData] = useState({ teamName: '', keyword: '', page: 0 })
   const { data, isLoading, error, refetch } = useQuery(['admin'], () =>
     getAdmin(adminQueryData.teamName, adminQueryData.keyword, adminQueryData.page).then((a) => {
@@ -36,7 +36,6 @@ function AdminPage() {
 
       // teamlist
       data.teamList.map((teamlist: TeamResponse) => {
-        console.log(teamlist)
         if (teamlist.teamName === 'admin' || teamlist.teamName === 'common') {
         } else {
           setTeamInfo((teamInfo) => [...teamInfo, teamlist])
