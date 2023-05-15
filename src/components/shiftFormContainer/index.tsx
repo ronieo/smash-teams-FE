@@ -22,9 +22,9 @@ export interface ShiftFormContainerProps {
 }
 
 function ShiftFormContainer({ location, startDate, endDate, reason }: ShiftFormContainerProps) {
+  console.log('startDate, endDate>>>>>', startDate, endDate)
   const navigate = useNavigate()
   const [formType, setFormType] = useState<FormType>('DAYOFF')
-  // const [remainCount, setRemainCount] = useState<number>(20)
 
   const handleTitleChange = location === '/dayoff' ? (formType === 'DAYOFF' ? '연차' : '반차') : '당직'
   const handleStartTitleChange =
@@ -42,11 +42,6 @@ function ShiftFormContainer({ location, startDate, endDate, reason }: ShiftFormC
     setFormType('HALFOFF' as FormType)
   }
 
-  // const handleOffCounter =
-  //   formType === 'DAYOFF'
-  //     ? setRemainCount((remainCount) => remainCount - 1)
-  //     : setRemainCount((remainCount) => remainCount - 0.5)
-
   function formatDate(dateString: string | number): string {
     const date = new Date(dateString)
     const year = date.getFullYear()
@@ -58,13 +53,12 @@ function ShiftFormContainer({ location, startDate, endDate, reason }: ShiftFormC
   const formatEndDate = formatDate(endDate) as string
 
   const { data: myUser, isLoading: user } = useQuery<LoginResponseData, AxiosError>('myUser', getUser)
-  // useEffect(() => {
-  //   if (!user) {
-  //     setRemainCount(myUser?.data?.remain)
-  //   }
-  // }, [])
 
-  const { mutate, isError, isLoading } = useMutation<ScheduleEnrollResponse, AxiosError, ScheduleEnroll>(
+  let isSDate: string
+  let isEDate: string
+
+  // const { mutate, isError, isLoading } = useMutation<ScheduleEnrollResponse, AxiosError, ScheduleEnroll>(
+  const { mutate, isError, isLoading } = useMutation(
     () =>
       createUserSchedule({
         schedule: { type: formType, startDate: isSDate, endDate: isEDate, reason },
@@ -81,12 +75,9 @@ function ShiftFormContainer({ location, startDate, endDate, reason }: ShiftFormC
     },
   )
 
-  let isSDate
-  let isEDate
-
   if (startDate && endDate) {
-    const SDate = new Date(startDate?.d)
-    const EDate = new Date(endDate?.d)
+    const SDate = new Date(startDate)
+    const EDate = new Date(endDate)
     isSDate = SDate.toISOString().slice(0, 19)
     isEDate = EDate.toISOString().slice(0, 19)
     console.log('isSDate>>>>>', isSDate)
