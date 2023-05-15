@@ -1,17 +1,20 @@
-import { TeamName } from './../../components/HistoryCard/style'
+import { TeamName } from '../../components/historyCard/style'
 import { CgPassword } from 'react-icons/cg'
 
 export interface LoginResponseData {
-  data: {
-    id: number
-    name: string
-    email: string
-    pnhoneNumber: string
-    profileImage: string
-    startWork: string
-    teamName: string
-    role: string
-  }
+  data?:
+    | {
+        id: number
+        name: string
+        email: string
+        phoneNumber: string
+        profileImage: string
+        startWork: string
+        teamName: string
+        role: string
+        remain: number
+      }
+    | undefined
 }
 
 export interface LoginRequest {
