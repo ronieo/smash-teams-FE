@@ -4,7 +4,7 @@ import 'tui-time-picker/dist/tui-time-picker.min.css'
 
 import './style.css'
 import Calendar from '@toast-ui/react-calendar'
-import { theme } from './theme'
+import { calendarTheme } from './theme'
 
 import type { EventObject, ExternalEventTypes, Options } from '@toast-ui/calendar'
 import { TZDate } from '@toast-ui/calendar'
@@ -18,14 +18,13 @@ interface miniCalendarProps {
   setStartDate: Dispatch<SetStateAction<string>>
   setEndDate: Dispatch<SetStateAction<string>>
   setReason: Dispatch<SetStateAction<string>>
-  // setShiftInputAll: Dispatch<SetStateAction<string>>
 }
 const today = new TZDate()
 
 function MiniCalendar({ view, setStartDate, setEndDate, setReason }: miniCalendarProps) {
   const calendarRef = useRef<typeof Calendar>(null)
-  const [selectedDateRangeText, setSelectedDateRangeText] = useState<string>('')
   const [selectedView, setSelectedView] = useState(view)
+  const [selectedDateRangeText, setSelectedDateRangeText] = useState<string>('')
   const initialCalendars: Options['calendars'] = [
     {
       id: '0',
@@ -194,7 +193,7 @@ function MiniCalendar({ view, setStartDate, setEndDate, setReason }: miniCalenda
         calendars={initialCalendars}
         month={{ startDayOfWeek: 1, dayNames: ['일', '월', '화', '수', '목', '금', '토'] }}
         events={initialEvents}
-        theme={theme}
+        theme={calendarTheme}
         timezone={{
           zones: [
             {
@@ -204,10 +203,29 @@ function MiniCalendar({ view, setStartDate, setEndDate, setReason }: miniCalenda
             },
           ],
         }}
+        template={{
+          // 반차
+          time(event) {
+            const { start, end, title, state } = event
+            return `<span style="color: black;"><img src=${state} width="13px"/> ${title}</span>`
+          },
+          // 연차
+          allday(event) {
+            const { start, end, title, state } = event
+            return `<span style="color: white;"><img src=${state} width="13px"/> ${title}</span>`
+          },
+          // 당직
+          milestone(event) {
+            const { start, end, title, state } = event
+            return `<div style="color: black;"><img src=${state} width="13px"/> ${title}</div>`
+          },
+        }}
         useDetailPopup={true}
         useFormPopup={true}
         view={selectedView}
         week={{
+          showTimezoneCollapseButton: true,
+          timezonesCollapsed: false,
           eventView: true,
           taskView: true,
         }}
