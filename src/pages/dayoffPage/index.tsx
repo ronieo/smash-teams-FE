@@ -10,22 +10,19 @@ function DayOffPage() {
   const location = useLocation()
   console.log('location 출력', location.pathname)
 
-  const [startDate, setStartDate] = useState<string>('')
-  const [endDate, setEndDate] = useState<string>('')
+  const [startDate, setStartDate] = useState('')
+  const [endDate, setEndDate] = useState('')
   const [reason, setReason] = useState<string>('')
 
   return (
     <DayOffWrapper>
       <MiniCalendar view={'month'} setStartDate={setStartDate} setEndDate={setEndDate} setReason={setReason} />
-
       <ShiftFormContainer
-        type={'DAYOFF'}
         location={location.pathname}
         children={undefined}
         startDate={startDate}
         endDate={endDate}
         reason={reason}
-        // dateFormat={''}
       />
     </DayOffWrapper>
   )

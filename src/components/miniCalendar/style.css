@@ -47,10 +47,12 @@
   border-radius: 0 6px 6px 0;
 }
 
+.prevButton,
+.nextButton,
 .todayButton:hover {
-  color: #e15e5e;
-  border: solid 1px #e15e5e;
-  background-color: #fff;
+  &:hover {
+    background-color: #772222;
+  }
 }
 
 .todayButton:active {
@@ -97,4 +99,9 @@
   border-color: #e15e5e !important;
   border-radius: 40px !important;
   color: #fff !important;
+}
+
+.toastui-calendar-popup-button.toastui-calendar-popup-close {
+  top: 18px !important;
+  left: 36em !important;
 }

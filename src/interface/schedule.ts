@@ -1,3 +1,5 @@
+import { CalendarProps } from './main'
+
 export interface ScheduleStatus {
   status: 'FIRST' | 'REJECTED' | 'APPROVED' | 'LAST'
 }
@@ -27,9 +29,17 @@ export interface MyScheduleData {
   startDate: string
   endDate: string
   type: string
-  status: string
+  status?: string
   reason: string
   user: User
+}
+
+export interface CalendarTheme {
+  id: string
+  name: string
+  backgroundColor: string
+  borderColor: string
+  dragBackgroundColor: string
 }
 
 export interface User {
@@ -42,17 +52,21 @@ export interface User {
   teamName: string
   profileImage: string
 }
-
+type FormType = 'DAYOFF' | 'HALFOFF' | 'NIGHTSHIFT'
 export interface ScheduleEnroll {
-  type: string
+  type: FormType
   startDate: string
   endDate: string
   reason: string
 }
 
 export interface ScheduleEnrollResponse {
-  type: string
+  type: FormType
   startDate: string
   endDate: string
   reason: string
+}
+
+export interface ExcelDownloadProps {
+  data: CalendarProps[]
 }
