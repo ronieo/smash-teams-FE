@@ -1,3 +1,5 @@
+import { CalendarProps } from './main'
+
 export interface ScheduleStatus {
   status: 'FIRST' | 'REJECTED' | 'APPROVED' | 'LAST'
 }
@@ -63,4 +65,8 @@ export interface ScheduleEnrollResponse {
   startDate: string
   endDate: string
   reason: string
+}
+
+export interface ExcelDownloadProps {
+  data: CalendarProps[]
 }
