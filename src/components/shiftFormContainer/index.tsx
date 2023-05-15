@@ -24,6 +24,7 @@ export interface ShiftFormContainerProps {
 function ShiftFormContainer({ location, startDate, endDate, reason }: ShiftFormContainerProps) {
   const navigate = useNavigate()
   const [formType, setFormType] = useState<FormType>('DAYOFF')
+  // const [remainCount, setRemainCount] = useState<number>(20)
 
   const handleTitleChange = location === '/dayoff' ? (formType === 'DAYOFF' ? '연차' : '반차') : '당직'
   const handleStartTitleChange =
@@ -41,6 +42,11 @@ function ShiftFormContainer({ location, startDate, endDate, reason }: ShiftFormC
     setFormType('HALFOFF' as FormType)
   }
 
+  // const handleOffCounter =
+  //   formType === 'DAYOFF'
+  //     ? setRemainCount((remainCount) => remainCount - 1)
+  //     : setRemainCount((remainCount) => remainCount - 0.5)
+
   function formatDate(dateString: string | number): string {
     const date = new Date(dateString)
     const year = date.getFullYear()
@@ -51,7 +57,13 @@ function ShiftFormContainer({ location, startDate, endDate, reason }: ShiftFormC
   const formatStartDate = formatDate(startDate) as string
   const formatEndDate = formatDate(endDate) as string
 
-  const { data: myUser } = useQuery<LoginResponseData, AxiosError>('myUser', getUser)
+  const { data: myUser, isLoading: user } = useQuery<LoginResponseData, AxiosError>('myUser', getUser)
+  // useEffect(() => {
+  //   if (!user) {
+  //     setRemainCount(myUser?.data?.remain)
+  //   }
+  // }, [])
+
   const { mutate, isError, isLoading } = useMutation<ScheduleEnrollResponse, AxiosError, ScheduleEnroll>(
     () =>
       createUserSchedule({
@@ -117,8 +129,7 @@ function ShiftFormContainer({ location, startDate, endDate, reason }: ShiftFormC
         {location === '/dayoff' ? (
           <S.DayOffCountContainer>
             <p>남은 연차 날짜</p>
-            {/* <p>`Day-${'dayOffCount'}`</p> */}
-            <p>Day-17.5</p>
+            <p>{`Day-${myUser?.data?.remain}`}</p>
           </S.DayOffCountContainer>
         ) : null}
         <S.ShiftTitle>{handleTitleChange}</S.ShiftTitle>
@@ -185,10 +196,20 @@ function ShiftFormContainer({ location, startDate, endDate, reason }: ShiftFormC
         </S.InputWrapper>
         {location === '/dayoff' ? (
           <S.ButtonsWrapper>
-            <S.DayOffButton id="dayOff" type="submit" onClick={handleDayOffButtonClick}>
+            <S.DayOffButton
+              isClicked={handleTitleChange === '연차'}
+              id="dayOff"
+              type="submit"
+              onClick={handleDayOffButtonClick}
+            >
               연차
             </S.DayOffButton>
-            <S.HalfOffButton id="halfOff" type="submit" onClick={handleHalfOffButtonClick}>
+            <S.HalfOffButton
+              isClicked={handleTitleChange === '반차'}
+              id="halfOff"
+              type="submit"
+              onClick={handleHalfOffButtonClick}
+            >
               반차
             </S.HalfOffButton>
           </S.ButtonsWrapper>

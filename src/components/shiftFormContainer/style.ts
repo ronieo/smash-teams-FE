@@ -80,37 +80,27 @@ export const ButtonsWrapper = styled.div`
   margin: 82px 0 0 0;
   width: 100%;
 `
-export const DayOffButton = styled.button`
+export const DayOffButton = styled.button<{ isClicked: boolean }>`
   margin-right: 12px;
   padding: 16px 68px;
   width: 100%;
 
-  background-color: ${({ theme }) => theme.colors.white};
-  color: ${({ theme }) => theme.colors.mainColor};
+  background-color: ${({ theme, isClicked }) => (isClicked ? theme.colors.white : theme.colors.mainColor)};
+  color: ${({ theme, isClicked }) => (isClicked ? theme.colors.mainColor : theme.colors.white)};
   font-weight: 600;
   font-size: 16px;
   border-radius: 6px;
-
-  :hover {
-    background-color: ${({ theme }) => theme.colors.mainColor};
-    color: ${({ theme }) => theme.colors.white};
-  }
 `
-export const HalfOffButton = styled.button`
+export const HalfOffButton = styled.button<{ isClicked: boolean }>`
   margin-left: 12px;
   padding: 16px 68px;
   width: 100%;
 
-  background-color: ${({ theme }) => theme.colors.mainColor};
-  color: ${({ theme }) => theme.colors.white};
+  background-color: ${({ theme, isClicked }) => (isClicked ? theme.colors.white : theme.colors.mainColor)};
+  color: ${({ theme, isClicked }) => (isClicked ? theme.colors.mainColor : theme.colors.white)};
   font-weight: 600;
   font-size: 16px;
   border-radius: 6px;
-
-  :hover {
-    background-color: ${({ theme }) => theme.colors.white};
-    color: ${({ theme }) => theme.colors.mainColor};
-  }
 `
 
 export const SizedBox = styled.div`
