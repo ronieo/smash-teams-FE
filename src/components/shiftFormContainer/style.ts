@@ -57,6 +57,7 @@ export const DateInput = styled.input`
   border: none;
   font-weight: 600;
   font-size: 16px;
+  text-align: right;
 `
 export const TimeInput = styled.input`
   margin-right: 25px;
@@ -64,10 +65,13 @@ export const TimeInput = styled.input`
   border: none;
   font-weight: 600;
   font-size: 16px;
+  text-align: right;
 `
 export const Input = styled.input`
   margin-right: 20px;
   border: none;
+  text-align: center;
+  text-overflow: ellipsis;
 `
 
 export const ButtonsWrapper = styled.div`
@@ -86,6 +90,11 @@ export const DayOffButton = styled.button`
   font-weight: 600;
   font-size: 16px;
   border-radius: 6px;
+
+  :hover {
+    background-color: ${({ theme }) => theme.colors.mainColor};
+    color: ${({ theme }) => theme.colors.white};
+  }
 `
 export const HalfOffButton = styled.button`
   margin-left: 12px;
@@ -97,6 +106,11 @@ export const HalfOffButton = styled.button`
   font-weight: 600;
   font-size: 16px;
   border-radius: 6px;
+
+  :hover {
+    background-color: ${({ theme }) => theme.colors.white};
+    color: ${({ theme }) => theme.colors.mainColor};
+  }
 `
 
 export const SizedBox = styled.div`
