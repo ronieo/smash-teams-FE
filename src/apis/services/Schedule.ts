@@ -29,8 +29,10 @@ export const getSuperSchedule = async () => {
 }
 
 export const orderSchedule = async (schedule: orderScheduleProps) => {
-  const { data } = await axiosInstance().post('/auth/super/schedule/order', {
-    schedule,
+  const { scheduleId, status } = schedule
+  const { data } = await axiosInstance().post('/auth/super/schedule', {
+    scheduleId,
+    status,
   })
   return data
 }
