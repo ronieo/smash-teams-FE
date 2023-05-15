@@ -3,7 +3,7 @@ import { ScheduleEnroll, ScheduleEnrollResponse } from '../../interface/schedule
 import { axiosInstance } from '../axios'
 
 export interface ScheduleEnrollRequest {
-  id: number
+  id: number | undefined
   schedule: ScheduleEnroll
 }
 
