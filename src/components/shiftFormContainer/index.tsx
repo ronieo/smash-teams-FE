@@ -1,6 +1,6 @@
 import { AxiosError } from 'axios'
 import React, { useState, ReactNode, Dispatch, SetStateAction, useEffect } from 'react'
-import { useMutation, useQueryClient } from 'react-query'
+import { useMutation, useQuery, useQueryClient } from 'react-query'
 import { createUserSchedule } from '../../apis/services/Schedule'
 import { ScheduleEnroll, ScheduleEnrollResponse } from '../../interface/schedule'
 
@@ -8,43 +8,37 @@ import * as S from './style'
 import Swal from 'sweetalert2'
 import { theme } from '../../styles/Theme'
 import { useNavigate } from 'react-router-dom'
+import { LoginResponseData } from '../../apis/interface/Auth'
+import { getUser } from '../../apis/services/Auth'
 
 type FormType = 'DAYOFF' | 'HALFOFF' | 'NIGHTSHIFT'
-const FORM_TYPES = {
-  DAY_OFF: 'DAYOFF',
-  HALF_OFF: 'HALFOFF',
-  NIGHT_SHIFT: 'NIGHTSHIFT',
-} as const
 
 export interface ShiftFormContainerProps {
   children: ReactNode
   location: string
-  type: string
   startDate: string
   endDate: string
   reason: string
 }
 
-function ShiftFormContainer({ type, location, startDate, endDate, reason }: ShiftFormContainerProps) {
+function ShiftFormContainer({ location, startDate, endDate, reason }: ShiftFormContainerProps) {
   const navigate = useNavigate()
-  const [confirmed, setConfirmed] = useState(false)
-  const [formType, setFormType] = useState<FormType>(FORM_TYPES.DAY_OFF)
+  const [formType, setFormType] = useState<FormType>('DAYOFF')
+
   const handleTitleChange = location === '/dayoff' ? (formType === 'DAYOFF' ? '연차' : '반차') : '당직'
-  const handleStartInputChange =
+  const handleStartTitleChange =
     location === '/dayoff' ? (formType === 'DAYOFF' ? '시작 날짜' : '반차 시작') : '근무 시작'
-  const handleEndInputChange =
+  const handleEndTitleChange =
     location === '/dayoff' ? (formType === 'DAYOFF' ? '종료 날짜' : '반차 종료') : '근무 종료'
 
   const handleDayOffButtonClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
-    const typeDayOff = setFormType(FORM_TYPES.DAY_OFF)
-    console.log('연차버튼 클릭!', typeDayOff)
+    setFormType('DAYOFF' as FormType)
   }
 
   const handleHalfOffButtonClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
-    const typeHalfOff = setFormType(FORM_TYPES.HALF_OFF)
-    console.log('반차버튼 클릭!', typeHalfOff)
+    setFormType('HALFOFF' as FormType)
   }
 
   function formatDate(dateString: string | number): string {
@@ -57,22 +51,17 @@ function ShiftFormContainer({ type, location, startDate, endDate, reason }: Shif
   const formatStartDate = formatDate(startDate) as string
   const formatEndDate = formatDate(endDate) as string
 
-  const data = {
-    type: '',
-    startDate: '',
-    endDate: '',
-    reason: '',
-  }
-
+  const { data: myUser } = useQuery<LoginResponseData, AxiosError>('myUser', getUser)
   const { mutate, isError, isLoading } = useMutation<ScheduleEnrollResponse, AxiosError, ScheduleEnroll>(
     () =>
       createUserSchedule({
-        schedule: { type, startDate: isSDate, endDate: isEDate, reason },
-        id: id,
+        schedule: { type: formType, startDate: isSDate, endDate: isEDate, reason },
+        id: myUser?.data?.id,
       }),
     {
       onSuccess: (data) => {
         console.log(data)
+        navigate('/history')
       },
       onError: (error: AxiosError) => {
         console.log(error)
@@ -94,6 +83,10 @@ function ShiftFormContainer({ type, location, startDate, endDate, reason }: Shif
 
   function handleConfirmButtonClick(e: React.MouseEvent<HTMLButtonElement>) {
     e.preventDefault()
+    if (location !== 'dayoff') {
+      setFormType('SHIFT' as FormType)
+    }
+
     Swal.fire({
       title: `${handleTitleChange} 신청하시겠어요?`,
       text: '신청 후 취소하실 수 없습니다!',
@@ -105,25 +98,18 @@ function ShiftFormContainer({ type, location, startDate, endDate, reason }: Shif
       cancelButtonText: '취소할게요!',
     }).then((result) => {
       if (result.isConfirmed) {
-        setConfirmed(true)
+        Swal.fire({
+          title: '신청!',
+          text: '신청이 완료되었어요! 내역보기에서 확인해보세요 :)',
+          icon: 'success',
+          confirmButtonColor: theme.colors.blue,
+          confirmButtonText: '내역보기 페이지 바로가기',
+        }).then(() => {
+          mutate()
+        })
       }
     })
   }
-
-  useEffect(() => {
-    if (confirmed) {
-      Swal.fire({
-        title: '신청!',
-        text: '신청이 완료되었어요! 내역보기에서 확인해보세요 :)',
-        icon: 'success',
-        confirmButtonColor: theme.colors.blue,
-        confirmButtonText: '내역보기 페이지 바로가기',
-      }).then(() => {
-        mutate()
-        navigate('/history')
-      })
-    }
-  })
 
   return (
     <>
@@ -138,35 +124,59 @@ function ShiftFormContainer({ type, location, startDate, endDate, reason }: Shif
         <S.ShiftTitle>{handleTitleChange}</S.ShiftTitle>
         {location === '/dayoff' ? (
           <S.InputWrapper>
-            <S.Label htmlFor="startDate halfDate">{handleStartInputChange}</S.Label>
+            <S.Label htmlFor="startDate halfDate">{handleStartTitleChange}</S.Label>
             <S.DateInput
               className="startDate halfDate"
               id="startDate"
               type="text"
               name="startDate"
-              value={formatStartDate}
+              value={formatStartDate === 'NaN.aN.aN' ? '캘린더에서 선택해 주세요' : formatStartDate}
               readOnly
             />
           </S.InputWrapper>
         ) : (
           <S.InputWrapper>
-            <S.Label htmlFor="startDate halfDate">{handleStartInputChange}</S.Label>
-            <S.DateInput id="endDate" type="text" name="endDate" value={formatEndDate} readOnly />
+            <S.Label htmlFor="startDate halfDate">{handleStartTitleChange}</S.Label>
+            <S.DateInput
+              id="endDate"
+              type="text"
+              name="endDate"
+              value={formatEndDate === 'NaN.aN.aN' ? '캘린더에서 선택해 주세요' : formatEndDate}
+              readOnly
+            />
           </S.InputWrapper>
         )}
         {location === '/dayoff' ? (
           <S.InputWrapper>
-            <S.Label htmlFor="endDate halfOffTime">{handleEndInputChange}</S.Label>
+            <S.Label htmlFor="endDate halfOffTime">{handleEndTitleChange}</S.Label>
             {formType === 'DAYOFF' ? (
-              <S.DateInput id="endDate" type="text" name="endDate" value={formatEndDate} readOnly />
+              <S.DateInput
+                id="endDate"
+                type="text"
+                name="endDate"
+                value={formatEndDate === 'NaN.aN.aN' ? '캘린더에서 선택해 주세요' : formatEndDate}
+                readOnly
+              />
             ) : (
-              <S.TimeInput id="endDate" type="text" name="endDate" value={formatEndDate} readOnly />
+              <S.TimeInput
+                id="endDate"
+                type="text"
+                name="endDate"
+                value={formatEndDate === 'NaN.aN.aN' ? '캘린더에서 선택해 주세요' : formatEndDate}
+                readOnly
+              />
             )}
           </S.InputWrapper>
         ) : (
           <S.InputWrapper>
-            <S.Label htmlFor="startDate halfDate">{handleEndInputChange}</S.Label>
-            <S.DateInput id="endDate" type="text" name="endDate" value={formatEndDate} readOnly />
+            <S.Label htmlFor="startDate halfDate">{handleEndTitleChange}</S.Label>
+            <S.DateInput
+              id="endDate"
+              type="text"
+              name="endDate"
+              value={formatEndDate === 'NaN.aN.aN' ? '캘린더에서 선택해 주세요' : formatEndDate}
+              readOnly
+            />
           </S.InputWrapper>
         )}
         <S.InputWrapper>
