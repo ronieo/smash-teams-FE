@@ -37,7 +37,7 @@ function Navbar() {
               연차 신청하기
             </S.NavbarLinkText>
           </S.NavbarLink>
-          <S.NavbarLink to="/nightsheet">
+          <S.NavbarLink to="/nightshift">
             <S.NavbarLinkText>
               {' '}
               <BiTimeFive />

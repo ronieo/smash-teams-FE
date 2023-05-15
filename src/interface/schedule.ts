@@ -50,16 +50,16 @@ export interface User {
   teamName: string
   profileImage: string
 }
-
+type FormType = 'DAYOFF' | 'HALFOFF' | 'NIGHTSHIFT'
 export interface ScheduleEnroll {
-  type: string
+  type: FormType
   startDate: string
   endDate: string
   reason: string
 }
 
 export interface ScheduleEnrollResponse {
-  type: string
+  type: FormType
   startDate: string
   endDate: string
   reason: string
