@@ -1,4 +1,4 @@
-import { orderScheduleProps } from '../../components/HistoryCard'
+import { orderScheduleProps } from '../../components/historyCard'
 import { ScheduleEnroll, ScheduleEnrollResponse } from '../../interface/schedule'
 import { axiosInstance } from '../axios'
 
@@ -18,8 +18,8 @@ export const getMainSchedule = async () => {
   return data
 }
 
-export const getUserSchedule = async () => {
-  const { data } = await axiosInstance().get('/auth/user/schedule')
+export const getUserSchedule = async (id: number) => {
+  const { data } = await axiosInstance().get(`/auth/user/${id}/schedule`)
   return data
 }
 
