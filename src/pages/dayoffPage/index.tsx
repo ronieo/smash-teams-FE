@@ -17,15 +17,12 @@ function DayOffPage() {
   return (
     <DayOffWrapper>
       <MiniCalendar view={'month'} setStartDate={setStartDate} setEndDate={setEndDate} setReason={setReason} />
-
       <ShiftFormContainer
-        type={'DAYOFF'}
         location={location.pathname}
         children={undefined}
         startDate={startDate}
         endDate={endDate}
         reason={reason}
-        // dateFormat={''}
       />
     </DayOffWrapper>
   )

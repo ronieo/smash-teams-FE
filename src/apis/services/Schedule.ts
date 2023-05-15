@@ -2,14 +2,13 @@ import { orderScheduleProps } from '../../components/historyCard'
 import { ScheduleEnroll, ScheduleEnrollResponse } from '../../interface/schedule'
 import { axiosInstance } from '../axios'
 
-export const createUserSchedule = async (schedule: ScheduleEnroll, id: number) => {
-  const { type, startDate, endDate, reason } = schedule.schedule
-  const { data } = await axiosInstance().post(`/auth/user/${schedule.id}/schedule`, {
-    type,
-    startDate,
-    endDate,
-    reason,
-  })
+export interface ScheduleEnrollRequest {
+  id: number
+  schedule: ScheduleEnroll
+}
+
+export const createUserSchedule = async ({ id, schedule }: ScheduleEnrollRequest) => {
+  const { data } = await axiosInstance().post(`/auth/user/${id}/schedule`, schedule)
   return data
 }
 

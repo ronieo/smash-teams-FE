@@ -1,4 +1,4 @@
-import './styles.css'
+import './styles.scss'
 import * as S from './style'
 import type { EventObject, ExternalEventTypes, Options } from '@toast-ui/calendar'
 import type { ChangeEvent, MouseEvent } from 'react'
@@ -203,7 +203,7 @@ export default function HomePage() {
   }, [filterData])
 
   return (
-    <S.HomeWrapper>
+    <S.HomeWrapper className="home">
       <S.TopBar>
         <h2 className="render-range">{selectedDateRangeText}</h2>
         <button
