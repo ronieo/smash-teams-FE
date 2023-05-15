@@ -30,16 +30,23 @@ function MiniCalendar({ view, setStartDate, setEndDate, setReason }: miniCalenda
     {
       id: '0',
       name: '연차',
-      backgroundColor: '#9e5fff',
-      borderColor: '#9e5fff',
-      dragBackgroundColor: '#9e5fff',
+      backgroundColor: '#D34747',
+      borderColor: '#D34747',
+      dragBackgroundColor: '#D34747',
     },
     {
       id: '1',
       name: '반차',
-      backgroundColor: '#00a9ff',
-      borderColor: '#00a9ff',
-      dragBackgroundColor: '#00a9ff',
+      backgroundColor: '#476FD3',
+      borderColor: '#476FD3',
+      dragBackgroundColor: '#476FD3',
+    },
+    {
+      id: '2',
+      name: '당직',
+      backgroundColor: '#A1A1A1',
+      borderColor: '#A1A1A1',
+      dragBackgroundColor: '#A1A1A1',
     },
   ]
   const initialEvents: Partial<EventObject>[] = []
