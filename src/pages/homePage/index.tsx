@@ -43,13 +43,13 @@ export default function HomePage() {
   // theme
   const [option, setOption] = useState<CalendarTheme[]>([
     calendarTheme(0, teamList[0]),
-    calendarTheme(1, teamList[1]),
-    calendarTheme(2, teamList[2]),
-    calendarTheme(3, teamList[3]),
-    calendarTheme(4, teamList[4]),
-    calendarTheme(5, teamList[5]),
-    calendarTheme(6, teamList[6]),
-    calendarTheme(7, teamList[7]),
+    calendarTheme(1, teamList[0]),
+    calendarTheme(2, teamList[1]),
+    calendarTheme(3, teamList[1]),
+    calendarTheme(4, teamList[2]),
+    calendarTheme(5, teamList[2]),
+    calendarTheme(6, teamList[3]),
+    calendarTheme(7, teamList[3]),
   ])
 
   const initialCalendars: Options['calendars'] = option
