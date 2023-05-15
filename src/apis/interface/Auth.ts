@@ -57,3 +57,9 @@ export interface RegisterEnroll {
   startWork: string
   teamName: string
 }
+
+export interface Admin {
+  teamName: string
+  keyword: string
+  page: number
+}

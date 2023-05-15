@@ -22,6 +22,7 @@ export interface EmailCheckResponseData {
 }
 
 function RegisterForm() {
+  // useForm
   const {
     register,
     handleSubmit,

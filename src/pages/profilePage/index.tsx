@@ -1,4 +1,5 @@
-import { ProfileContainer } from './style'
+import ProfileForm from '../../components/profileForm'
+
 
 // 프로필 페이지
 /**
@@ -12,7 +13,12 @@ import { ProfileContainer } from './style'
  */
 
 function ProfilePage() {
-  return <ProfileContainer>ProfilePage</ProfileContainer>
+
+  return (
+    <>
+      <ProfileForm/>
+    </>
+  )
 }
 
 export default ProfilePage
