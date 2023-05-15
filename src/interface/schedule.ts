@@ -27,9 +27,17 @@ export interface MyScheduleData {
   startDate: string
   endDate: string
   type: string
-  status: string
+  status?: string
   reason: string
   user: User
+}
+
+export interface CalendarTheme {
+  id: string
+  name: string
+  backgroundColor: string
+  borderColor: string
+  dragBackgroundColor: string
 }
 
 export interface User {
