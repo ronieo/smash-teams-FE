@@ -24,7 +24,6 @@ function HistoryPage() {
   })
 
   const scheduleData = mySchedule?.data?.scheduleList
-  console.log('첫 부분', scheduleData)
 
   // return <S.HistoryContainer> {scheduleData && <HalfOffShiftForm scheduleData={scheduleData} />}</S.HistoryContainer>
   return (

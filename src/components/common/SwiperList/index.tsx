@@ -23,7 +23,6 @@ function SwiperList({ seletedData }: { seletedData: MyScheduleData[] | undefined
       swiperRef.current.slideNext()
     }
   }
-  console.log('내가  찾는 콘솔', seletedData)
 
   return (
     <S.ListWrapper

@@ -13,7 +13,7 @@ import { getUser } from '../../apis/services/Auth'
 import { c } from 'msw/lib/glossary-de6278a9'
 
 function HalfOffShiftForm(scheduleData: { scheduleData: MyScheduleData[] | undefined }) {
-  const [isRequestList, setIsRequestList] = useState(true) // 승인 목록
+  const [isRequestList, setIsRequestList] = useState(true) // 신청 목록
   const [isCompletedList, setIsCompletedList] = useState(false) // 거절 목록
 
   const isManager = useLocation().pathname.includes('manage')
@@ -44,10 +44,10 @@ function HalfOffShiftForm(scheduleData: { scheduleData: MyScheduleData[] | undef
   )
 
   // 연차 내역 리스트
-  const HalfOffSchedule = filterScheduleByProperty(scheduleData.scheduleData, 'type', ['HALFOFF'])
+  const HalfOffSchedule = filterScheduleByProperty(scheduleData.scheduleData, 'type', ['DAYOFF'])
 
   // 반차 내역 리스트
-  const DayOffSchedule = filterScheduleByProperty(scheduleData.scheduleData, 'type', ['DAYOFF'])
+  const DayOffSchedule = filterScheduleByProperty(scheduleData.scheduleData, 'type', ['HALFOFF'])
 
   //  연차  신청중 목록 리스트
   const RequestHalfOffList = filterScheduleByProperty(HalfOffSchedule, 'status', ['FIRST', 'LAST'])
@@ -89,7 +89,6 @@ function HalfOffShiftForm(scheduleData: { scheduleData: MyScheduleData[] | undef
   }
   // 조건부 당직 신청중, 완료된 목록 리스트
   const dayOffData = isRequestList ? RequestShiftList : CompletedShiftList
-  console.log('현재 콘솔 확인', halfOffData)
   return (
     <>
       <S.DayOffList>

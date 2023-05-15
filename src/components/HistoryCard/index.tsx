@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import {
   AcceptButton,
   CardButtonWrapper,
@@ -39,18 +39,35 @@ interface orderScheduleResponseProps extends orderScheduleProps {
 }
 
 function HistoryCard({ schedule }: HistoryCardProps) {
-  console.log('카드 컴포넌트', schedule)
   const queryClient = useQueryClient()
   const { data } = queryClient.getQueryData('myUser') as LoginResponseData
+  const [isRefetch, setIsRefetch] = useState<boolean>(false)
   const [userType, setUserType] = useState<string | undefined>(data?.role) // CEO(사장), MANAGER(팀장), USER(팀원, default)
   const [status, setStatus] = useState(schedule.status as 'FIRST' | 'REJECTED' | 'APPROVED' | 'LAST')
   const location = useLocation()
-  console.log(location.pathname)
   const { mutate, isError, isLoading } = useMutation<orderScheduleResponseProps, AxiosError, orderScheduleProps>(
     orderSchedule,
     {
       onSuccess: (data) => {
-        //  성공 후 할것들
+        Swal.fire({
+          title: '승인되었습니다.',
+          text: `완료된 목록에서 확인해주세요. :)`,
+          icon: 'success',
+          confirmButtonColor: theme.colors.blue,
+          confirmButtonText: '완료된 목록 바로가기',
+        })
+        queryClient.invalidateQueries('userHistory', { refetchActive: true, refetchInactive: true })
+      },
+
+      onError: (error) => {
+        Swal.fire({
+          title: '거절되었습니다.',
+          text: `완료된 목록에서 확인해주세요. :)`,
+          icon: 'error',
+          confirmButtonColor: theme.colors.blue,
+          confirmButtonText: '완료된 목록 바로가기',
+        })
+        queryClient.invalidateQueries('userHistory', { refetchActive: true, refetchInactive: true })
       },
     },
   )
@@ -81,13 +98,6 @@ function HistoryCard({ schedule }: HistoryCardProps) {
         cancelButtonText: '취소할게요!',
       }).then((result) => {
         if (result.isConfirmed) {
-          Swal.fire({
-            title: '승인되었습니다.',
-            text: `완료된 목록에서 확인해주세요. :)`,
-            icon: 'success',
-            confirmButtonColor: theme.colors.blue,
-            confirmButtonText: '완료된 목록 바로가기',
-          })
           setisAccept(buttonType)
           setisReject('BEFORE')
           mutate({
@@ -96,7 +106,6 @@ function HistoryCard({ schedule }: HistoryCardProps) {
           })
         }
       })
-      //  승인 후 데이터 변경  해야함
     }
     if (buttonType === 'REJECTED') {
       Swal.fire({
@@ -110,14 +119,6 @@ function HistoryCard({ schedule }: HistoryCardProps) {
         cancelButtonText: '취소할게요!',
       }).then((result) => {
         if (result.isConfirmed) {
-          Swal.fire({
-            title: '거절되었습니다.',
-            text: `완료된 목록에서 확인해주세요. :)`,
-            icon: 'error',
-            confirmButtonColor: theme.colors.blue,
-            confirmButtonText: '완료된 목록 바로가기',
-          })
-
           setisAccept('BEFORE')
           mutate({
             scheduleId: schedule.scheduleId,
@@ -125,7 +126,6 @@ function HistoryCard({ schedule }: HistoryCardProps) {
           })
         }
       })
-      //  거절 후 데이터 변경  해야함
     }
   }
 
@@ -142,7 +142,7 @@ function HistoryCard({ schedule }: HistoryCardProps) {
       </DateWrapper>
       <ReasonWrapper>
         <ReasonTitle>사유</ReasonTitle>
-        <ReasonContent>쉬고싶어요</ReasonContent>
+        <ReasonContent>{schedule.reason}</ReasonContent>
       </ReasonWrapper>
       <CardButtonWrapper>
         {userType === '팀원' || location.pathname === '/history' ? (
