@@ -31,20 +31,20 @@ export const TopBar = styled.div`
   h2 {
     font-weight: 700;
     font-size: 28px;
-    width: 134px;
-    margin: 14px 0 0 14px;
+    width: 160px;
+    margin: 0 0 0 14px;
   }
   .info {
     width: 20px;
     height: 20px;
-    margin: 0 10px 0 0;
-    transform: translateY(13px);
+    margin: 0 10px 0 -10px;
+    transform: translateY(10px);
   }
   .excelDownloadButton {
     font-weight: 700;
     font-size: 13px;
     background-color: #17842f;
-    margin: 10px 0 0 560px;
+    margin: 10px 0 0 530px;
     border-radius: 8px;
     width: 70px;
     height: 30px;
