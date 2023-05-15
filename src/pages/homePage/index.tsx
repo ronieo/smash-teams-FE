@@ -9,7 +9,7 @@ import { useQuery } from 'react-query'
 import { getMainSchedule } from '../../apis/services/Schedule'
 import { CalendarProps } from '../../interface/main'
 import DropDown from '../../components/common/dropdown'
-import ExcelDownload from './ExcelDownload'
+import ExcelDownload from '../../utils/ExcelDownload'
 import { CalendarTheme, MyScheduleData } from '../../interface/schedule'
 import calendarTheme from '../../utils/calendarTheme'
 import { getUser } from '../../apis/services/Auth'
@@ -96,7 +96,6 @@ export default function HomePage() {
     }
   }
 
-  console.log(data)
   // 받아온 데이터를 library 형식에 맞게 변환
   useEffect(() => {
     if (!isLoading) {
