@@ -44,7 +44,6 @@ function LoginForm({ mutate }: { mutate: UseMutateFunction<unknown, AxiosError, 
               })}
             />
             {errors.email ? <S.Alert role="alert">{errors.email.message}</S.Alert> : <S.Alert role="alert"></S.Alert>}
-
             <S.LoginInput
               id="password"
               type="password"
