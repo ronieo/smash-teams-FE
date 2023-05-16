@@ -91,31 +91,18 @@ function MiniCalendar({ view, setStartDate, setEndDate, setReason }: miniCalenda
   }, [selectedView, updateRenderRangeText])
 
   const onAfterRenderEvent: ExternalEventTypes['afterRenderEvent'] = (res) => {
-    console.group('onAfterRenderEvent')
-    console.log('Event Info : ', res.title)
-
     setStartDate(res.start.d)
     setEndDate(res.end.d)
     setReason(res.title)
-
-    console.groupEnd()
   }
 
   const onBeforeDeleteEvent: ExternalEventTypes['beforeDeleteEvent'] = (res) => {
-    console.group('onBeforeDeleteEvent', res)
-    console.log('Event Info : ', res.title)
-    console.groupEnd()
-
     const { id, calendarId } = res
 
     getCalInstance().deleteEvent(id, calendarId)
   }
 
-  const onClickDayName: ExternalEventTypes['clickDayName'] = (res) => {
-    console.group('onClickDayName')
-    console.log('Date : ', res.date)
-    console.groupEnd()
-  }
+  const onClickDayName: ExternalEventTypes['clickDayName'] = (res) => {}
 
   const onClickNavi = (ev: MouseEvent<HTMLButtonElement>) => {
     if ((ev.target as HTMLButtonElement).tagName === 'BUTTON') {
@@ -126,18 +113,9 @@ function MiniCalendar({ view, setStartDate, setEndDate, setReason }: miniCalenda
     }
   }
 
-  const onClickEvent: ExternalEventTypes['clickEvent'] = (res) => {
-    console.group('onClickEvent')
-    console.log('MouseEvent : ', res.nativeEvent)
-    console.log('Event Info : ', res.event)
-    console.groupEnd()
-  }
+  const onClickEvent: ExternalEventTypes['clickEvent'] = (res) => {}
 
   const onClickTimezonesCollapseBtn: ExternalEventTypes['clickTimezonesCollapseBtn'] = (timezoneCollapsed) => {
-    console.group('onClickTimezonesCollapseBtn')
-    console.log('Is Timezone Collapsed?: ', timezoneCollapsed)
-    console.groupEnd()
-
     const newTheme = {
       'week.daygridLeft.width': '100px',
       'week.timegridLeft.width': '100px',
@@ -147,10 +125,6 @@ function MiniCalendar({ view, setStartDate, setEndDate, setReason }: miniCalenda
   }
 
   const onBeforeUpdateEvent: ExternalEventTypes['beforeUpdateEvent'] = (updateData) => {
-    console.group('onBeforeUpdateEvent')
-    console.log(updateData)
-    console.groupEnd()
-
     const targetEvent = updateData.event
     const changes = { ...updateData.changes }
 

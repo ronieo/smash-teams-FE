@@ -9,6 +9,7 @@
 <br />
 
 ## ✋ Team SMASH  팀 소개
+
 [권범준 (팀장)](https://github.com/kjungit)  | [이어진](https://github.com/boyon99) | [이로운](https://github.com/ronieo) | [조성민](https://github.com/FranzCho) 
 :----: | :----: | :----: | :----: 
 <img src="https://avatars.githubusercontent.com/u/100064540?v=4" style="width: 180px;" /> | <img src="https://avatars.githubusercontent.com/u/64579380?v=4" style="width: 150px" /> | <img src="https://avatars.githubusercontent.com/u/76941552?v=4" style="width: 150px"/> | <img src="https://avatars.githubusercontent.com/u/108110637?v=4" style="width: 150px;" /> 
@@ -26,43 +27,59 @@
 
 ## ✋ Team SMASH 작업과정
 - 작업 기간 : 2023.05.01 ~ 2023.05.15
-- 서비스 주소: [✋ Team SMASH ✋](http://hedwig-fe.eba-afs9gzxm.ap-northeast-2.elasticbeanstalk.com/auth)
+- 서비스 주소: [✋ Team SMASH ✋](https://deploy-preview-75--capable-pithivier-b30d65.netlify.app/login)
 - FE팀 레포지토리 주소 : [SMASH](https://github.com/smash-teams/smash-teams-FE)
 - FE팀 깃 프로젝트 태스크보드 주소: [SMASH Project Board](https://github.com/orgs/smash-teams/projects/3)
-*태스크보드 퍼블릭으로 바꾸기
-- FE팀 작업과정 노션문서 주소: [SMASH Notion](https://www.notion.so/4-4-3d1f37f6c11b459e91548aeb08f5e404?pvs=4#23c42e1cba6d4dd9b174d0527e6de957)
+- 전체팀 작업과정 노션문서 주소: [SMASH Notion](https://www.notion.so/4-4-3d1f37f6c11b459e91548aeb08f5e404?pvs=4#23c42e1cba6d4dd9b174d0527e6de957)
+  - <b>FE팀 노션문서 및 회의록</b>: [SMASH "FE" Notion](https://www.notion.so/4-4-3d1f37f6c11b459e91548aeb08f5e404?pvs=4#23c42e1cba6d4dd9b174d0527e6de957)
 - 테스트용 계정
+  - 어드민: admin@gmail.com | admin1234!
+  - 대표: heropy@smash.com | test1234!
+  - 디자인팀 팀장: campus@test.com | test1234!
+  - 개발팀 팀장: joontae@smash.com | test1234!
+  - 디자인팀 팀원: mega@test.com | test1234!
+  - 개발팀 팀원: dotori@smash.com | test1234!
+  
 
 <br/>
 
 ### ✋ 로그인, 회원가입 페이지 구성 - 수정필요
 <table>
 <th style={{width: "25%"}}>
-  <div style={{width: "50%"}>
-    <img src="" style={{width: "50%", height: "50%", objectFit: "contain"}}/>
+  <div style={{width: "50%"}}>
+    <img src="https://github.com/smash-teams/smash-teams-FE/assets/76941552/ca11d0b9-f33f-4cac-9ab6-a34fe5333c27" style={{width: "30%", height: "30%", objectFit: "contain"}}/>
   </div>
   <div align="center">
  ✋ 로그인 또는 회원가입 권유 페이지
   </div>
 </th>
+ 
+ <th style={{width: "25%"}}>
+  <div style={{width: "50%"}}>
+    <img src="https://github.com/smash-teams/smash-teams-FE/assets/76941552/76b79759-69ba-4a8b-afdf-e50362747550" style={{width: "50%", height: "50%", objectFit: "contain"}}/>
+  </div>
+  <div align="center">
+ ✋ 로그아웃
+  </div>
+</th>
+</table>
 
-
+<table>
 <th style={{width: "25%"}}>
-  <div style={{width: "50%"}>
-    <img src="" style={{width: "50%", height: "50%", objectFit: "contain"}}/>
+  <div style={{width: "50%"}}>
+    <img src="https://github.com/smash-teams/smash-teams-FE/assets/76941552/dfffe4a1-b1c7-4c47-9417-79c7e0082411" style={{width: "30%", height: "30%", objectFit: "contain"}}/>
   </div>
   <div align="center">
  ✋회원가입 페이지
   </div>
 </th>
-
-
-<th style={{width: "25%"}}>
-  <div style={{width: "50%"}>
-    <img src="" style={{width: "50%", height: "50%", objectFit: "contain"}}/>
+ 
+ <th style={{width: "25%"}}>
+  <div style={{width: "50%"}}>
+    <img src="https://github.com/smash-teams/smash-teams-FE/assets/76941552/56443f5b-8b50-4e03-8c5c-ef151c3f06a5" style={{width: "30%", height: "30%", objectFit: "contain"}}/>
   </div>
   <div align="center">
- ✋로그인 페이지
+ ✋개인정보수 페이지
   </div>
 </th>
 </table>
@@ -75,81 +92,97 @@
 ### ✋ Side Bar - 네비게이션 페이지 구성
 <table>
 <th style={{width: "25%"}}>
-  <div style={{width: "50%"}>
-    <img src="" style={{width: "50%", height: "50%", objectFit: "contain"}}/>
+  <div style={{width: "50%"}}>
+    <img src="https://github.com/smash-teams/smash-teams-FE/assets/76941552/1792fbb5-62f5-4f92-abaa-2449ac1cd147" style={{width: "50%", height: "50%", objectFit: "contain"}}/>
   </div>
   <div align="center">
  ✋ 전체 일정보기
   </div>
 </th>
 
-
 <th style={{width: "25%"}}>
-  <div style={{width: "50%"}>
-    <img src="" style={{width: "50%", height: "50%", objectFit: "contain"}}/>
+  <div style={{width: "50%"}}>
+    <img src="https://github.com/smash-teams/smash-teams-FE/assets/76941552/277b3d0a-3853-4868-8247-ef025f9acc15" style={{width: "50%", height: "50%", objectFit: "contain"}}/>
   </div>
   <div align="center">
  ✋ 연차/반차신청하기
   </div>
 </th>
-
-
-<th style={{width: "25%"}}>
-  <div style={{width: "50%"}>
-    <img src="" style={{width: "50%", height: "50%", objectFit: "contain"}}/>
-  </div>
-  <div align="center">
- ✋ 당직신청기기
-  </div>
-</th>
 </table>
 
-
-<!-- <table>
+<table>
 <th style={{width: "25%"}}>
-  <div style={{width: "50%"}>
-    <img src="" style={{width: "50%", height: "50%", objectFit: "contain"}}/>
+  <div style={{width: "50%"}}>
+    <img src="https://github.com/smash-teams/smash-teams-FE/assets/76941552/6d791c5b-1446-41ae-bbe4-bbcdaf8aa164" style={{width: "50%", height: "50%", objectFit: "contain"}}/>
+  </div>
+  <div align="center">
+ ✋ 당직신청하기
+  </div>
+</th>
+ 
+ <th style={{width: "25%"}}>
+  <div style={{width: "50%"}}>
+    <img src="https://github.com/smash-teams/smash-teams-FE/assets/76941552/4249b6f9-a994-4141-9cf8-5e62d948c8d8" style={{width: "50%", height: "50%", objectFit: "contain"}}/>
   </div>
   <div align="center">
  ✋ 연반차/당직 내역보기
   </div>
-</th> -->
+</th>
+</table>
+<br/>
 
-<!-- --- -->
-<!-- 
-### 🦉 하단 네비게이션 페이지 구성
+---
+<br/>
 
+### ✋ 어드민과 매니저 - 멤버권한, 관리자 페이지 구성
+<table>
 <th style={{width: "25%"}}>
-  <div style={{width: "50%"}>
-    <img src="https://user-images.githubusercontent.com/76941552/235031945-bddba2bc-416d-4512-b5c8-cfc5fd808383.png" style={{width: "50%", height: "50%", objectFit: "contain"}}/>
+  <div style={{width: "50%"}}>
+    <img src="https://github.com/smash-teams/smash-teams-FE/assets/76941552/29b0e1b0-d38f-470a-8959-b2e5e784f90e" style={{width: "50%", height: "50%", objectFit: "contain"}}/>
   </div>
   <div align="center">
- 🦉 홈 - 메인 페이지 랜더링
+ ✋ admin - 유저권한 설정하기
+  </div>
+</th>
+ 
+ <th style={{width: "25%"}}>
+  <div style={{width: "50%"}}>
+    <img src="https://github.com/smash-teams/smash-teams-FE/assets/76941552/4249b6f9-a994-4141-9cf8-5e62d948c8d8" style={{width: "50%", height: "50%", objectFit: "contain"}}/>
+  </div>
+  <div align="center">
+ ✋ 연반차/당직 내역보기
+  </div>
+</th>
+ </table>
+
+ <table>
+<th style={{width: "25%"}}>
+  <div style={{width: "50%"}}>
+    <img src="https://github.com/smash-teams/smash-teams-FE/assets/76941552/70e8b3b7-cb95-4539-a208-9f54a8736114" style={{width: "50%", height: "50%", objectFit: "contain"}}/>
+  </div>
+  <div align="center">
+ ✋ 승인권한 유저 - 연반차,당직 관리하기 신청중 목록
   </div>
 </th>
 
-
 <th style={{width: "25%"}}>
-  <div style={{width: "50%"}>
-    <img src="https://user-images.githubusercontent.com/76941552/235031942-72e0566e-be6a-4214-a0ac-31c185efa966.png" style={{width: "50%", height: "50%", objectFit: "contain"}}/>
+  <div style={{width: "50%"}}>
+    <img src="https://github.com/smash-teams/smash-teams-FE/assets/76941552/f4c63636-2cd4-4450-87e1-e6bed1e42cef" style={{width: "50%", height: "50%", objectFit: "contain"}}/>
   </div>
   <div align="center">
- 🦉 로그아웃 - 터치 후 로그아웃
+ ✋ 승인권한 유저 - 연반차,당직 관리하기 완료 목록
   </div>
 </th>
 </table>
-
-<br/> -->
-
----
 
 <br/>
 
 ### 🛠️Team SMASH 기술 스택
 ```
 FE
-- Basic: `React`, `Typescript`, `react-icon`, `styled-component`
-- Library:  `react-query`, `react-hook-form`, `axios`, `dotenv`, `eslint`, `react-cookie`, `react-color`, `sweetalert2`, `toast-ui-calendar`, `sass`
+- Basic: `React`, `Typescript`, `react-icon`, `styled-component`, `vite`, `yarn`
+- Library:  `react-query`, `react-hook-form`, `axios`, `dotenv`, 
+            `eslint`, `react-cookie`, `react-color`, `sweetalert2`, `toast-ui-calendar`, `sass`
 
 ```
 
@@ -157,37 +190,81 @@ FE
 <br/>
 
 
-### 📁 Team SMASH 프로젝트 구조 - 
+### 📁 Team SMASH 프로젝트 구조
 ```
 ┌─ src
-│  ├─ api
+│  ├─ apis
 │  │  └─ 공동 api 및 함수
+│  │  └─ services
+│  │     └─ 페이지 별 분기 된 API
 │  │  
 │  ├─ components
-│  │  └─ auth
-│  │  |   └─ 로그인/회원가입 컴포넌트
-│  │  └─ cards
-│  │      └─ 게시글과 댓글 컴포넌트 
-│  │  
+│  │  └─ common
+│  │  |   └─ 공통 컴포넌트
+│  │  └─ addTeam
+│  │      └─ 팀 추가
+│  │  └─ deleteButton
+│  │      └─ 삭제버튼   
+│  │  └─ halfOffShiftForm
+│  │      └─ 연반차당직 내역보기 폼
+│  │  └─ historyCard
+│  │      └─ 내역보기에서 출력되는 연반차당직 요청 카드 
+│  │  └─ loginForm
+│  │      └─ 로그인 폼
+│  │  └─ miniCalendar
+│  │      └─ 연반차 당직 승인요청 페이지에 출력되는 달력
+│  │  └─ profileForm
+│  │      └─ 내정보 수정 폼
+│  │  └─ registerForm
+│  │      └─ 회원가입 폼 
+│  │  └─ shiftFormContainer
+│  │      └─ 연반차 당직 승인요청 페이지에 출력되는 연반차당직 입력 폼
+│  │  └─ TopWrapper
+│  │      └─ 신청중 목록, 완료된 목록 버튼 묶음
+│  │  └─ userInfo
+│  │      └─ 어드민에서 사용하는 유저정보 수정 폼
+│  │ 
+│  ├─ㅡmocks - BE구축 전 사용한 더미데이터
+│  │ 
 │  ├─ pages - 컴포넌트 랜더링 페이지
-│  │  └─ auth
-│  │  └─post
+│  │  └─ adminPage - 어드민(관리자)페이지
+│  │  └─ dayoffPage - 연차페이지
+│  │  └─ historyPage - 내역페이지
+│  │  └─ homePage - 메인페이지
+│  │  └─ loginPage - 로그인페이지
+│  │  └─ managePage - 승인페이지
+│  │  └─ profilePage - 개인정보페이지
+│  │  └─ registerPage - 회원가입페이지
 │  │      
-│  ├─ types
-│  |   └─ 페이지에 필요한 타입선언
+│  ├─ routes - 페이지 라우팅
+│  |   └─ ProtectedRouter
+│  |   └─ router
 │  |  
-│  ├─ utils
+│  ├─ store
 │  │  
-├─.env
-├─.eslintrc.js
-├─next.config.js
-├─tsconfig.json
-├─README.md
-├─package.json
-└─package-lock.json
+│  ├─ styles
+│  |   └─ GlobalStyles
+│  |   └─ Theme
+│  │  
+│  ├─ utils
+│  │ 
+│  ├─ App
+│  ├─ main
+│  │ 
+├─ vite-env.d.ts
+├─ .eslintrc.cjs
+├─ .gitignore
+├─ .prettierrc
+├─ index.html
+├─ package.json
+├─ tsconfig.json
+├─ tsconfig.node.json
+├─ vite.config.ts
+└─ yarn.lock
 ```
 <br/>
 
 ---
 
 <br/>
+<h1>본 프로젝트 저작권 소유는 "Team SMASH"에게 있습니다. <br/> 배움을 위한 사용은 언제든 가능하나, "무단도용은 절대 금지"합니다.</h1>

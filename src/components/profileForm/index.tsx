@@ -79,7 +79,7 @@ function ProfileForm() {
     <>
       <S.ProfileContainer>
         <S.ProfileWrapper>
-          <S.ProfileLogoImage src="/public/title-logo.png" />
+          <S.ProfileLogoImage src="/title-logo.png" />
           <S.ProfileFormContainer onSubmit={handleSubmit(onSubmit)}>
             <S.Section>
               <S.ProfileInput id="email" type="email" placeholder="이메일" value={myUser?.data?.email} disabled />
@@ -201,8 +201,8 @@ function ProfileForm() {
               </S.InputWrapper>
             </S.Section>
             <S.ModifyButton type="submit">수정하기</S.ModifyButton>
-            <DeleteButton />
           </S.ProfileFormContainer>
+          <DeleteButton />
         </S.ProfileWrapper>
       </S.ProfileContainer>
     </>
