@@ -2,7 +2,7 @@ import { memo, useRef } from 'react'
 import * as S from './style'
 import SwiperCore, { Pagination, Swiper } from 'swiper'
 import { MyScheduleData, ScheduleData } from '../../../interface/schedule'
-import HistoryCard from '../../historyCard'
+import HistoryCard from '../../HistoryCard'
 import { SwiperSlide } from 'swiper/react'
 
 type SwiperType = Swiper | null

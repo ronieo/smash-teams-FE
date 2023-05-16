@@ -1,4 +1,4 @@
-import { orderScheduleProps } from '../../components/historyCard'
+import { orderScheduleProps } from '../../components/HistoryCard'
 import { ScheduleEnroll, ScheduleEnrollResponse } from '../../interface/schedule'
 import { axiosInstance } from '../axios'
 
