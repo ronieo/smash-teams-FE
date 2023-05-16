@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { BrowserRouter, HashRouter, Route, Routes } from 'react-router-dom'
 import LoginPage from '../pages/loginPage'
 import RegisterPage from '../pages/registerPage'
 import AdminPage from '../pages/adminPage'
@@ -24,9 +24,7 @@ function Router() {
             <Route path="/history" element={<HistoryPage />} />
             <Route path="/manage" element={<ManagePage />} />
             <Route path="/profile" element={<ProfilePage />} />
-            <Route path="/admin" element={<AdminPage />}>
-              <Route path=":id" element={<AdminPage />} />
-            </Route>
+            <Route path="/admin" element={<AdminPage />} />
           </Route>
         </Route>
       </Routes>
