@@ -1,0 +1,4 @@
+from = "/api/*"
+to = "http://52.78.70.225:7777"
+status = 200
+force = true
