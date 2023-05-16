@@ -57,7 +57,6 @@ function ShiftFormContainer({ location, startDate, endDate, reason }: ShiftFormC
   let isSDate: string
   let isEDate: string
 
-  // const { mutate, isError, isLoading } = useMutation<ScheduleEnrollResponse, AxiosError, ScheduleEnroll>(
   const { mutate, isError, isLoading } = useMutation(
     () =>
       createUserSchedule({
