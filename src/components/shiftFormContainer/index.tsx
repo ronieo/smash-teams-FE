@@ -22,7 +22,6 @@ export interface ShiftFormContainerProps {
 }
 
 function ShiftFormContainer({ location, startDate, endDate, reason }: ShiftFormContainerProps) {
-  console.log('startDate, endDate>>>>>', startDate, endDate)
   const navigate = useNavigate()
   const [formType, setFormType] = useState<FormType>('DAYOFF')
 
