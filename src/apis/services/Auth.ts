@@ -13,7 +13,7 @@ import { EmailCheckResponseData } from '../../components/registerForm'
 
 export const login = async (user: LoginRequest) => {
   try {
-    const { data, headers } = await axiosInstance().post('/login', user)
+    const { data, headers } = await axiosInstance().post('/api/login', user)
     const token = headers.authorization.split(' ')[1]
     setCookie('accessToken', token)
     return data
