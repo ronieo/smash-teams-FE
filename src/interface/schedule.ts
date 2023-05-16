@@ -34,6 +34,16 @@ export interface MyScheduleData {
   user: User
 }
 
+export interface CalendarData {
+  scheduleId: number
+  startDate: string
+  endDate: string
+  type: string
+  status?: string
+  reason: string
+  user: User
+}
+
 export interface CalendarTheme {
   id: string
   name: string
