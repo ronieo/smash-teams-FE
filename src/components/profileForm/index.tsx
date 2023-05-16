@@ -201,8 +201,8 @@ function ProfileForm() {
               </S.InputWrapper>
             </S.Section>
             <S.ModifyButton type="submit">수정하기</S.ModifyButton>
-            <DeleteButton />
           </S.ProfileFormContainer>
+          <DeleteButton />
         </S.ProfileWrapper>
       </S.ProfileContainer>
     </>

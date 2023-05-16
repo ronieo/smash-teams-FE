@@ -1,6 +1,3 @@
-import { TeamName } from '../../components/historyCard/style'
-import { CgPassword } from 'react-icons/cg'
-import { EditProfileFormProps } from '../../interface/component'
 import { FieldValues } from 'react-hook-form'
 
 export interface LoginResponseData {
