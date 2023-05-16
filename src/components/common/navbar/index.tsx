@@ -5,14 +5,21 @@ import { BsPencilSquare } from 'react-icons/bs'
 import { GoChecklist } from 'react-icons/go'
 import { BsFillFilePersonFill } from 'react-icons/bs'
 import * as S from './style'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useQuery, useQueryClient } from 'react-query'
 import { LoginResponseData } from '../../../apis/interface/Auth'
 import { AxiosError } from 'axios'
 import { getUser } from '../../../apis/services/Auth'
+import { useNavigate } from 'react-router-dom'
 
 function Navbar() {
-  const { data: myUser } = useQuery<LoginResponseData, AxiosError>('myUser', getUser)
+  const navigate = useNavigate()
+  const { data: myUser, refetch } = useQuery<LoginResponseData, AxiosError>('myUser', getUser, {
+    enabled: true, // 초기에는 요청을 보내지 않도록 설정
+  })
+  if (myUser?.data?.role === 'ADMIN') {
+    navigate('/admin')
+  }
 
   return (
     <S.NavbarWrapper>
@@ -50,7 +57,7 @@ function Navbar() {
               연차 / 당직 내역보기
             </S.NavbarLinkText>
           </S.NavbarLink>
-          {myUser?.data?.role === 'USER' ? null : (
+          {myUser?.data?.role !== 'USER' && (
             <S.NavbarLink to="/manage">
               <S.NavbarLinkText>
                 <GoChecklist />

@@ -1,5 +1,7 @@
 import { TeamName } from '../../components/historyCard/style'
 import { CgPassword } from 'react-icons/cg'
+import { EditProfileFormProps } from '../../interface/component'
+import { FieldValues } from 'react-hook-form'
 
 export interface LoginResponseData {
   data?:
@@ -62,4 +64,45 @@ export interface Admin {
   teamName: string
   keyword: string
   page: number
+}
+
+export interface EmailCheckRequest {
+  email: string
+}
+
+export interface WithdrawalRequest extends FieldValues {
+  userId: number | undefined
+  userData: {
+    email: string | undefined
+    password: string | undefined
+  }
+  email?: string
+  password?: string
+}
+
+export interface ProfileUpdateRequest {
+  userId: number
+  profileImage: Blob
+}
+
+export interface EditProfileRequest {
+  userId: number | undefined
+  userData: {
+    curPassword: string
+    newPassword: string
+    phoneNumber: string
+    startWork: string
+  }
+}
+
+export interface WithdrawalResponseData {
+  status: number
+  msg: string
+}
+export interface EditProfileHookFormProps extends EditProfileRequest {
+  curPassword: string
+  newPassword: string
+  passwordConfirm: string
+  phoneNumber: string
+  startWork: string
 }
