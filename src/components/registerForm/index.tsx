@@ -124,7 +124,7 @@ function RegisterForm() {
     <>
       <S.RegisterContainer>
         <S.RegisterWrapper>
-          <S.RegisterLogoImage src="/public/title-logo.png" />
+          <S.RegisterLogoImage src="/title-logo.png" />
           <S.RegisterFormContainer onSubmit={handleSubmit(onSubmit)}>
             <S.EmailSection>
               <S.InputWrapper>
