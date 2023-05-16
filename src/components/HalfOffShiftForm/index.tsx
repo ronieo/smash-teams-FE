@@ -6,13 +6,19 @@ import CompleteItem from '../common/completeItem'
 import { useLocation } from 'react-router-dom'
 import { MyScheduleData, ScheduleData } from '../../interface/schedule'
 import { useCallback, useState } from 'react'
+import { useQuery } from 'react-query'
+import { LoginResponseData } from '../../apis/interface/Auth'
+import { AxiosError } from 'axios'
+import { getUser } from '../../apis/services/Auth'
 
 // ScheduleData
 function HalfOffShiftForm(scheduleData: { scheduleData: any }) {
   const [isRequestList, setIsRequestList] = useState(true) // 신청 목록
   const [isCompletedList, setIsCompletedList] = useState(false) // 거절 목록
+  const { data: myUser, refetch } = useQuery<LoginResponseData, AxiosError>('myUser', getUser)
 
   const isManager = useLocation().pathname.includes('manage')
+  const isCeo = myUser?.data?.role === 'CEO'
 
   const userItems = ['연차', '반차'] // 드롭다운 아이템
   const manageItems = ['연차', '반차', '당직'] // 드롭다운 아이템
@@ -45,46 +51,75 @@ function HalfOffShiftForm(scheduleData: { scheduleData: any }) {
   // 반차 내역 리스트
   const DayOffSchedule = filterScheduleByProperty(scheduleData.scheduleData, 'type', ['HALFOFF'])
 
-  //  연차  신청중 목록 리스트
-  const RequestHalfOffList = filterScheduleByProperty(HalfOffSchedule, 'status', ['FIRST', 'LAST'])
+  //  연차 신청중 목록 리스트
+  const RequestHalfOffList = filterScheduleByProperty(HalfOffSchedule, 'status', ['FIRST'])
 
-  //  반차  신청중 목록 리스트
-  const RequestDayOffList = filterScheduleByProperty(DayOffSchedule, 'status', ['FIRST', 'LAST'])
+  //  연차 신청중 CEO 목록 리스트
+  const RequestCeoHalfOffList = filterScheduleByProperty(HalfOffSchedule, 'status', ['LAST'])
 
-  //  연차  완료된 목록 리스트
+  //  반차 신청중 목록 리스트
+  const RequestDayOffList = filterScheduleByProperty(DayOffSchedule, 'status', ['FIRST'])
+
+  //  반차 신청중 CEO 목록 리스트
+  const RequestCeoDayOffList = filterScheduleByProperty(DayOffSchedule, 'status', ['LAST'])
+
+  //  연차 완료된 목록 리스트
   const CompletedHalfOffList = filterScheduleByProperty(HalfOffSchedule, 'status', ['APPROVED', 'REJECTED'])
 
-  //  반차  완료된 목록 리스트
+  //  반차 완료된 목록 리스트
   const CompletedDayOffList = filterScheduleByProperty(DayOffSchedule, 'status', ['APPROVED', 'REJECTED'])
 
   // 당직 내역 리스트
   const ShiftSchedule = filterScheduleByProperty(scheduleData.scheduleData, 'type', ['SHIFT'])
 
   // 당직 신청중 목록 리스트
-  const RequestShiftList = filterScheduleByProperty(ShiftSchedule, 'status', ['FIRST', 'LAST'])
+  const RequestShiftList = filterScheduleByProperty(ShiftSchedule, 'status', ['FIRST'])
+
+  // 당직 신청중 CEO 목록 리스트
+  const RequestCeoShiftList = filterScheduleByProperty(ShiftSchedule, 'status', ['LAST'])
 
   // 당직 완료된 목록 리스트
   const CompletedShiftList = filterScheduleByProperty(ShiftSchedule, 'status', ['APPROVED', 'REJECTED'])
 
   // 조건부 연차, 반차, 당직 신청중, 완료된 목록 리스트
-
+  console.log(RequestCeoShiftList)
   let halfOffData
-
-  switch (selectedItem) {
-    case '연차':
-      halfOffData = isRequestList ? RequestHalfOffList : CompletedHalfOffList
-      break
-    case '반차':
-      halfOffData = isRequestList ? RequestDayOffList : CompletedDayOffList
-      break
-    case '당직':
-      halfOffData = CompletedShiftList
-      break
-    default:
-      halfOffData = CompletedShiftList
+  if (isCeo) {
+    switch (selectedItem) {
+      case '연차':
+        halfOffData = isRequestList ? RequestCeoHalfOffList : CompletedHalfOffList
+        break
+      case '반차':
+        halfOffData = isRequestList ? RequestCeoDayOffList : CompletedDayOffList
+        break
+      case '당직':
+        halfOffData = CompletedShiftList
+        break
+      default:
+        halfOffData = CompletedShiftList
+    }
+  } else {
+    switch (selectedItem) {
+      case '연차':
+        halfOffData = isRequestList ? RequestHalfOffList : CompletedHalfOffList
+        break
+      case '반차':
+        halfOffData = isRequestList ? RequestDayOffList : CompletedDayOffList
+        break
+      case '당직':
+        halfOffData = CompletedShiftList
+        break
+      default:
+        halfOffData = CompletedShiftList
+    }
   }
+  let dayOffData
   // 조건부 당직 신청중, 완료된 목록 리스트
-  const dayOffData = isRequestList ? RequestShiftList : CompletedShiftList
+  if (isCeo) {
+    dayOffData = isRequestList ? RequestCeoShiftList : CompletedShiftList
+  } else {
+    dayOffData = isRequestList ? RequestShiftList : CompletedShiftList
+  }
   return (
     <>
       <S.DayOffList>

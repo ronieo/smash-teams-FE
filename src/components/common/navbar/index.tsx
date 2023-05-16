@@ -14,9 +14,7 @@ import { useNavigate } from 'react-router-dom'
 
 function Navbar() {
   const navigate = useNavigate()
-  const { data: myUser, refetch } = useQuery<LoginResponseData, AxiosError>('myUser', getUser, {
-    enabled: true, // 초기에는 요청을 보내지 않도록 설정
-  })
+  const { data: myUser, refetch } = useQuery<LoginResponseData, AxiosError>('myUser', getUser)
   if (myUser?.data?.role === 'ADMIN') {
     navigate('/admin')
   }

@@ -34,7 +34,6 @@ function HistoryCard({ schedule }: HistoryCardProps) {
     {
       onSuccess: (data) => {
         queryClient.invalidateQueries('userHistory', { refetchActive: true, refetchInactive: true })
-
         Swal.fire({
           title: '승인되었습니다.',
           text: `완료된 목록에서 확인해주세요. :)`,
@@ -46,13 +45,14 @@ function HistoryCard({ schedule }: HistoryCardProps) {
 
       onError: (error) => {
         queryClient.invalidateQueries('userHistory', { refetchActive: true, refetchInactive: true })
-
+        setisAccept('BEFORE')
+        setisReject('BEFORE')
         Swal.fire({
-          title: '거절되었습니다.',
-          text: `완료된 목록에서 확인해주세요. :)`,
+          title: '잘못된 승인입니다.',
+          text: `승인 상태를 확인해주세요.`,
           icon: 'error',
           confirmButtonColor: theme.colors.blue,
-          confirmButtonText: '완료된 목록 바로가기',
+          confirmButtonText: '확인',
         })
       },
     },
@@ -105,7 +105,7 @@ function HistoryCard({ schedule }: HistoryCardProps) {
         cancelButtonText: '취소할게요!',
       }).then((result) => {
         if (result.isConfirmed) {
-          setisAccept('BEFORE')
+          setisAccept(buttonType)
           mutate({
             scheduleId: schedule.scheduleId,
             status: 'REJECTED',

@@ -65,10 +65,11 @@ function CompleteItem(schedule: any) {
     default:
       break
   }
+  const profileImage = schedule.schedule.user.profileImage ? schedule.schedule.user.profileImage : '/noprofile.png'
 
   return (
     <S.CompleteItemWrapper isStatus={scheduleStatus}>
-      <S.ProfileImg src={schedule.schedule.user.profileImage}></S.ProfileImg>
+      <S.ProfileImg src={profileImage}></S.ProfileImg>
       <S.UserInfoWrapper>
         <S.UserName>성명</S.UserName>
         <S.UserEmail>{schedule.schedule.user.name}</S.UserEmail>
