@@ -144,7 +144,7 @@ export default function HomePage() {
             start: new Date(list.startDate.split('T')[0]),
             end: new Date(list.endDate.split('T')[0]),
             attendees: [`${list.user.email}`],
-            state: list.user.profileImage === null ? '/public/noprofile.png' : list.user.profileImage,
+            state: list.user.profileImage === null ? '/noprofile.png' : list.user.profileImage,
           },
         ])
         return list
@@ -207,15 +207,15 @@ export default function HomePage() {
           {isInfo ? (
             <S.Info>
               <div className="info-dayoff">
-                <img src="/public/noprofile.png" width={'10px'} />
+                <img src="/noprofile.png" width={'10px'} />
                 연차
               </div>
               <div className="info-halfoff">
-                <img src="/public/noprofile.png" width={'10px'} />
+                <img src="/noprofile.png" width={'10px'} />
                 반차
               </div>
               <div className="info-shift">
-                <img src="/public/noprofile.png" width={'10px'} />
+                <img src="/noprofile.png" width={'10px'} />
                 당직
               </div>
             </S.Info>
