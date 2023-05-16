@@ -1,0 +1,853 @@
+{
+  "msg": "OK",
+  "data": {
+    "scheduleList": [
+      {
+        "scheduleId": 1,
+        "startDate": "2023-05-15T09:00:00",
+        "endDate": "2023-05-16T18:00:00",
+        "type": "DAYOFF",
+        "status": "FIRST",
+        "reason": "개인사정",
+        "user": {
+          "userId": 1,
+          "name": "김사장",
+          "email": "김사장@gmail.com",
+          "phoneNumber": "010-1111-1111",
+          "startWork": "2010-05-01T09:00:00",
+          "role": "CEO",
+          "teamName": "개발팀",
+          "profileImage": "https://서버/폴더/파일.jpg"
+        }
+      },
+      {
+        "scheduleId": 2,
+        "startDate": "2023-05-15T09:00:00",
+        "endDate": "2023-05-16T18:00:00",
+        "type": "DAYOFF",
+        "status": "REJECTED",
+        "reason": "개인사정",
+        "user": {
+          "userId": 2,
+          "name": "김팀장",
+          "email": "김팀장@gmail.com",
+          "phoneNumber": "010-2222-2222",
+          "startWork": "2019-05-01T09:00:00",
+          "role": "MANAGER",
+          "teamName": "개발팀",
+          "profileImage": "/public/noprofile.png"
+        }
+      },
+      {
+        "scheduleId": 3,
+        "startDate": "2023-05-15T09:00:00",
+        "endDate": "2023-05-16T18:00:00",
+        "type": "DAYOFF",
+        "status": "APPROVED",
+        "reason": "김반차",
+        "user": {
+          "userId": 3,
+          "name": "김반차",
+          "email": "김연차@gmail.com",
+          "phoneNumber": "010-3333-3333",
+          "startWork": "2022-05-01T09:00:00",
+          "role": "USER",
+          "teamName": "개발팀",
+          "profileImage": "/public/noprofile.png"
+        }
+      },
+      {
+        "scheduleId": 4,
+        "startDate": "2023-05-15T09:00:00",
+        "endDate": "2023-05-16T18:00:00",
+        "type": "DAYOFF",
+        "status": "LAST",
+        "reason": "개인사정",
+        "user": {
+          "userId": 3,
+          "name": "김반차",
+          "email": "김연차@gmail.com",
+          "phoneNumber": "010-3333-3333",
+          "startWork": "2022-05-01T09:00:00",
+          "role": "USER",
+          "teamName": "개발팀",
+          "profileImage": "/public/noprofile.png"
+        }
+      },
+      {
+        "scheduleId": 5,
+        "startDate": "2023-05-15T09:00:00",
+        "endDate": "2023-05-16T18:00:00",
+        "type": "HALFOFF",
+        "status": "FIRST",
+        "reason": "개인사정",
+        "user": {
+          "userId": 3,
+          "name": "김연차",
+          "email": "김연차@gmail.com",
+          "phoneNumber": "010-3333-3333",
+          "startWork": "2022-05-01T09:00:00",
+          "role": "USER",
+          "teamName": "개발팀",
+          "profileImage": "/public/noprofile.png"
+        }
+      },
+      {
+        "scheduleId": 6,
+        "startDate": "2023-05-15T09:00:00",
+        "endDate": "2023-05-16T18:00:00",
+        "type": "HALFOFF",
+        "status": "REJECTED",
+        "reason": "개인사정",
+        "user": {
+          "userId": 3,
+          "name": "김연차",
+          "email": "김연차@gmail.com",
+          "phoneNumber": "010-3333-3333",
+          "startWork": "2022-05-01T09:00:00",
+          "role": "USER",
+          "teamName": "개발팀",
+          "profileImage": "/public/noprofile.png"
+        }
+      },
+      {
+        "scheduleId": 7,
+        "startDate": "2023-05-15T09:00:00",
+        "endDate": "2023-05-16T18:00:00",
+        "type": "HALFOFF",
+        "status": "LAST",
+        "reason": "개인사정",
+        "user": {
+          "userId": 3,
+          "name": "김연차",
+          "email": "김연차@gmail.com",
+          "phoneNumber": "010-3333-3333",
+          "startWork": "2022-05-01T09:00:00",
+          "role": "USER",
+          "teamName": "개발팀",
+          "profileImage": "/public/noprofile.png"
+        }
+      },
+      {
+        "scheduleId": 8,
+        "startDate": "2023-05-15T09:00:00",
+        "endDate": "2023-05-16T18:00:00",
+        "type": "HALFOFF",
+        "status": "APPROVED",
+        "reason": "개인사정",
+        "user": {
+          "userId": 3,
+          "name": "김연차",
+          "email": "김연차@gmail.com",
+          "phoneNumber": "010-3333-3333",
+          "startWork": "2022-05-01T09:00:00",
+          "role": "USER",
+          "teamName": "개발팀",
+          "profileImage": "/public/noprofile.png"
+        }
+      },
+      {
+        "scheduleId": 9,
+        "startDate": "2023-05-15T09:00:00",
+        "endDate": "2023-05-16T18:00:00",
+        "type": "SHIFT",
+        "status": "FIRST",
+        "reason": "개인사정",
+        "user": {
+          "userId": 3,
+          "name": "김당직",
+          "email": "김연차@gmail.com",
+          "phoneNumber": "010-3333-3333",
+          "startWork": "2022-05-01T09:00:00",
+          "role": "USER",
+          "teamName": "개발팀",
+          "profileImage": "/public/noprofile.png"
+        }
+      },
+      {
+        "scheduleId": 10,
+        "startDate": "2023-05-15T09:00:00",
+        "endDate": "2023-05-16T18:00:00",
+        "type": "SHIFT",
+        "status": "LAST",
+        "reason": "개인사정",
+        "user": {
+          "userId": 3,
+          "name": "김당직",
+          "email": "김연차@gmail.com",
+          "phoneNumber": "010-3333-3333",
+          "startWork": "2022-05-01T09:00:00",
+          "role": "USER",
+          "teamName": "개발팀",
+          "profileImage": "/public/noprofile.png"
+        }
+      },
+      {
+        "scheduleId": 11,
+        "startDate": "2023-05-15T09:00:00",
+        "endDate": "2023-05-16T18:00:00",
+        "type": "SHIFT",
+        "status": "REJECTED",
+        "reason": "개인사정",
+        "user": {
+          "userId": 3,
+          "name": "김당직",
+          "email": "김연차@gmail.com",
+          "phoneNumber": "010-3333-3333",
+          "startWork": "2022-05-01T09:00:00",
+          "role": "USER",
+          "teamName": "개발팀",
+          "profileImage": "/public/noprofile.png"
+        }
+      },
+      {
+        "scheduleId": 12,
+        "startDate": "2023-05-15T09:00:00",
+        "endDate": "2023-05-16T18:00:00",
+        "type": "SHIFT",
+        "status": "APPROVED",
+        "reason": "개인사정",
+        "user": {
+          "userId": 3,
+          "name": "김당직",
+          "email": "김연차@gmail.com",
+          "phoneNumber": "010-3333-3333",
+          "startWork": "2022-05-01T09:00:00",
+          "role": "USER",
+          "teamName": "개발팀",
+          "profileImage": "/public/noprofile.png"
+        }
+      },
+      {
+        "scheduleId": 13,
+        "startDate": "2023-05-15T09:00:00",
+        "endDate": "2023-05-16T18:00:00",
+        "type": "HALFOFF",
+        "status": "REJECTED",
+        "reason": "개인사정",
+        "user": {
+          "userId": 3,
+          "name": "김연차",
+          "email": "김연차@gmail.com",
+          "phoneNumber": "010-3333-3333",
+          "startWork": "2022-05-01T09:00:00",
+          "role": "USER",
+          "teamName": "개발팀",
+          "profileImage": "/public/noprofile.png"
+        }
+      },
+      {
+        "scheduleId": 14,
+        "startDate": "2023-05-15T09:00:00",
+        "endDate": "2023-05-16T18:00:00",
+        "type": "HALFOFF",
+        "status": "REJECTED",
+        "reason": "개인사정",
+        "user": {
+          "userId": 3,
+          "name": "김연차",
+          "email": "김연차@gmail.com",
+          "phoneNumber": "010-3333-3333",
+          "startWork": "2022-05-01T09:00:00",
+          "role": "USER",
+          "teamName": "개발팀",
+          "profileImage": "/public/noprofile.png"
+        }
+      },
+      {
+        "scheduleId": 15,
+        "startDate": "2023-05-15T09:00:00",
+        "endDate": "2023-05-16T18:00:00",
+        "type": "HALFOFF",
+        "status": "REJECTED",
+        "reason": "개인사정",
+        "user": {
+          "userId": 3,
+          "name": "김연차",
+          "email": "김연차@gmail.com",
+          "phoneNumber": "010-3333-3333",
+          "startWork": "2022-05-01T09:00:00",
+          "role": "USER",
+          "teamName": "개발팀",
+          "profileImage": "/public/noprofile.png"
+        }
+      },
+      {
+        "scheduleId": 16,
+        "startDate": "2023-05-15T09:00:00",
+        "endDate": "2023-05-16T18:00:00",
+        "type": "HALFOFF",
+        "status": "REJECTED",
+        "reason": "개인사정",
+        "user": {
+          "userId": 3,
+          "name": "김연차",
+          "email": "김연차@gmail.com",
+          "phoneNumber": "010-3333-3333",
+          "startWork": "2022-05-01T09:00:00",
+          "role": "USER",
+          "teamName": "개발팀",
+          "profileImage": "/public/noprofile.png"
+        }
+      },
+      {
+        "scheduleId": 4,
+        "startDate": "2023-05-15T09:00:00",
+        "endDate": "2023-05-16T18:00:00",
+        "type": "DAYOFF",
+        "status": "LAST",
+        "reason": "개인사정",
+        "user": {
+          "userId": 3,
+          "name": "김연차",
+          "email": "김연차@gmail.com",
+          "phoneNumber": "010-3333-3333",
+          "startWork": "2022-05-01T09:00:00",
+          "role": "USER",
+          "teamName": "개발팀",
+          "profileImage": "/public/noprofile.png"
+        }
+      },
+      {
+        "scheduleId": 5,
+        "startDate": "2023-05-15T09:00:00",
+        "endDate": "2023-05-16T18:00:00",
+        "type": "HALFOFF",
+        "status": "FIRST",
+        "reason": "개인사정",
+        "user": {
+          "userId": 3,
+          "name": "김연차",
+          "email": "김연차@gmail.com",
+          "phoneNumber": "010-3333-3333",
+          "startWork": "2022-05-01T09:00:00",
+          "role": "USER",
+          "teamName": "개발팀",
+          "profileImage": "/public/noprofile.png"
+        }
+      },
+      {
+        "scheduleId": 6,
+        "startDate": "2023-05-15T09:00:00",
+        "endDate": "2023-05-16T18:00:00",
+        "type": "HALFOFF",
+        "status": "REJECTED",
+        "reason": "개인사정",
+        "user": {
+          "userId": 3,
+          "name": "김연차",
+          "email": "김연차@gmail.com",
+          "phoneNumber": "010-3333-3333",
+          "startWork": "2022-05-01T09:00:00",
+          "role": "USER",
+          "teamName": "개발팀",
+          "profileImage": "/public/noprofile.png"
+        }
+      },
+      {
+        "scheduleId": 7,
+        "startDate": "2023-05-15T09:00:00",
+        "endDate": "2023-05-16T18:00:00",
+        "type": "HALFOFF",
+        "status": "LAST",
+        "reason": "개인사정",
+        "user": {
+          "userId": 3,
+          "name": "김연차",
+          "email": "김연차@gmail.com",
+          "phoneNumber": "010-3333-3333",
+          "startWork": "2022-05-01T09:00:00",
+          "role": "USER",
+          "teamName": "개발팀",
+          "profileImage": "/public/noprofile.png"
+        }
+      },
+      {
+        "scheduleId": 8,
+        "startDate": "2023-05-15T09:00:00",
+        "endDate": "2023-05-16T18:00:00",
+        "type": "HALFOFF",
+        "status": "APPROVED",
+        "reason": "개인사정",
+        "user": {
+          "userId": 3,
+          "name": "김연차",
+          "email": "김연차@gmail.com",
+          "phoneNumber": "010-3333-3333",
+          "startWork": "2022-05-01T09:00:00",
+          "role": "USER",
+          "teamName": "개발팀",
+          "profileImage": "/public/noprofile.png"
+        }
+      },
+      {
+        "scheduleId": 9,
+        "startDate": "2023-05-15T09:00:00",
+        "endDate": "2023-05-16T18:00:00",
+        "type": "SHIFT",
+        "status": "FIRST",
+        "reason": "개인사정",
+        "user": {
+          "userId": 3,
+          "name": "김연차",
+          "email": "김연차@gmail.com",
+          "phoneNumber": "010-3333-3333",
+          "startWork": "2022-05-01T09:00:00",
+          "role": "USER",
+          "teamName": "개발팀",
+          "profileImage": "/public/noprofile.png"
+        }
+      },
+      {
+        "scheduleId": 10,
+        "startDate": "2023-05-15T09:00:00",
+        "endDate": "2023-05-16T18:00:00",
+        "type": "SHIFT",
+        "status": "LAST",
+        "reason": "개인사정",
+        "user": {
+          "userId": 3,
+          "name": "김연차",
+          "email": "김연차@gmail.com",
+          "phoneNumber": "010-3333-3333",
+          "startWork": "2022-05-01T09:00:00",
+          "role": "USER",
+          "teamName": "개발팀",
+          "profileImage": "/public/noprofile.png"
+        }
+      },
+      {
+        "scheduleId": 11,
+        "startDate": "2023-05-15T09:00:00",
+        "endDate": "2023-05-16T18:00:00",
+        "type": "SHIFT",
+        "status": "REJECTED",
+        "reason": "개인사정",
+        "user": {
+          "userId": 3,
+          "name": "김연차",
+          "email": "김연차@gmail.com",
+          "phoneNumber": "010-3333-3333",
+          "startWork": "2022-05-01T09:00:00",
+          "role": "USER",
+          "teamName": "개발팀",
+          "profileImage": "/public/noprofile.png"
+        }
+      },
+      {
+        "scheduleId": 12,
+        "startDate": "2023-05-15T09:00:00",
+        "endDate": "2023-05-16T18:00:00",
+        "type": "SHIFT",
+        "status": "APPROVED",
+        "reason": "김반차",
+        "user": {
+          "userId": 3,
+          "name": "김반차",
+          "email": "김연차@gmail.com",
+          "phoneNumber": "010-3333-3333",
+          "startWork": "2022-05-01T09:00:00",
+          "role": "USER",
+          "teamName": "개발팀",
+          "profileImage": "/public/noprofile.png"
+        }
+      },
+      {
+        "scheduleId": 4,
+        "startDate": "2023-05-15T09:00:00",
+        "endDate": "2023-05-16T18:00:00",
+        "type": "DAYOFF",
+        "status": "LAST",
+        "reason": "개인사정",
+        "user": {
+          "userId": 3,
+          "name": "김반차",
+          "email": "김연차@gmail.com",
+          "phoneNumber": "010-3333-3333",
+          "startWork": "2022-05-01T09:00:00",
+          "role": "USER",
+          "teamName": "개발팀",
+          "profileImage": "/public/noprofile.png"
+        }
+      },
+      {
+        "scheduleId": 5,
+        "startDate": "2023-05-15T09:00:00",
+        "endDate": "2023-05-16T18:00:00",
+        "type": "HALFOFF",
+        "status": "FIRST",
+        "reason": "개인사정",
+        "user": {
+          "userId": 3,
+          "name": "김연차",
+          "email": "김연차@gmail.com",
+          "phoneNumber": "010-3333-3333",
+          "startWork": "2022-05-01T09:00:00",
+          "role": "USER",
+          "teamName": "개발팀",
+          "profileImage": "/public/noprofile.png"
+        }
+      },
+      {
+        "scheduleId": 6,
+        "startDate": "2023-05-15T09:00:00",
+        "endDate": "2023-05-16T18:00:00",
+        "type": "HALFOFF",
+        "status": "REJECTED",
+        "reason": "개인사정",
+        "user": {
+          "userId": 3,
+          "name": "김연차",
+          "email": "김연차@gmail.com",
+          "phoneNumber": "010-3333-3333",
+          "startWork": "2022-05-01T09:00:00",
+          "role": "USER",
+          "teamName": "개발팀",
+          "profileImage": "/public/noprofile.png"
+        }
+      },
+      {
+        "scheduleId": 7,
+        "startDate": "2023-05-15T09:00:00",
+        "endDate": "2023-05-16T18:00:00",
+        "type": "HALFOFF",
+        "status": "LAST",
+        "reason": "개인사정",
+        "user": {
+          "userId": 3,
+          "name": "김연차",
+          "email": "김연차@gmail.com",
+          "phoneNumber": "010-3333-3333",
+          "startWork": "2022-05-01T09:00:00",
+          "role": "USER",
+          "teamName": "개발팀",
+          "profileImage": "/public/noprofile.png"
+        }
+      },
+      {
+        "scheduleId": 8,
+        "startDate": "2023-05-15T09:00:00",
+        "endDate": "2023-05-16T18:00:00",
+        "type": "HALFOFF",
+        "status": "APPROVED",
+        "reason": "개인사정",
+        "user": {
+          "userId": 3,
+          "name": "김연차",
+          "email": "김연차@gmail.com",
+          "phoneNumber": "010-3333-3333",
+          "startWork": "2022-05-01T09:00:00",
+          "role": "USER",
+          "teamName": "개발팀",
+          "profileImage": "/public/noprofile.png"
+        }
+      },
+      {
+        "scheduleId": 9,
+        "startDate": "2023-05-15T09:00:00",
+        "endDate": "2023-05-16T18:00:00",
+        "type": "SHIFT",
+        "status": "FIRST",
+        "reason": "개인사정",
+        "user": {
+          "userId": 3,
+          "name": "김당직",
+          "email": "김연차@gmail.com",
+          "phoneNumber": "010-3333-3333",
+          "startWork": "2022-05-01T09:00:00",
+          "role": "USER",
+          "teamName": "개발팀",
+          "profileImage": "/public/noprofile.png"
+        }
+      },
+      {
+        "scheduleId": 10,
+        "startDate": "2023-05-15T09:00:00",
+        "endDate": "2023-05-16T18:00:00",
+        "type": "SHIFT",
+        "status": "LAST",
+        "reason": "개인사정",
+        "user": {
+          "userId": 3,
+          "name": "김당직",
+          "email": "김연차@gmail.com",
+          "phoneNumber": "010-3333-3333",
+          "startWork": "2022-05-01T09:00:00",
+          "role": "USER",
+          "teamName": "개발팀",
+          "profileImage": "/public/noprofile.png"
+        }
+      },
+      {
+        "scheduleId": 11,
+        "startDate": "2023-05-15T09:00:00",
+        "endDate": "2023-05-16T18:00:00",
+        "type": "SHIFT",
+        "status": "REJECTED",
+        "reason": "개인사정",
+        "user": {
+          "userId": 3,
+          "name": "김당직",
+          "email": "김연차@gmail.com",
+          "phoneNumber": "010-3333-3333",
+          "startWork": "2022-05-01T09:00:00",
+          "role": "USER",
+          "teamName": "개발팀",
+          "profileImage": "/public/noprofile.png"
+        }
+      },
+      {
+        "scheduleId": 12,
+        "startDate": "2023-05-15T09:00:00",
+        "endDate": "2023-05-16T18:00:00",
+        "type": "SHIFT",
+        "status": "APPROVED",
+        "reason": "개인사정",
+        "user": {
+          "userId": 3,
+          "name": "김당직",
+          "email": "김연차@gmail.com",
+          "phoneNumber": "010-3333-3333",
+          "startWork": "2022-05-01T09:00:00",
+          "role": "USER",
+          "teamName": "개발팀",
+          "profileImage": "/public/noprofile.png"
+        }
+      },
+      {
+        "scheduleId": 13,
+        "startDate": "2023-05-15T09:00:00",
+        "endDate": "2023-05-16T18:00:00",
+        "type": "HALFOFF",
+        "status": "REJECTED",
+        "reason": "개인사정",
+        "user": {
+          "userId": 3,
+          "name": "김연차",
+          "email": "김연차@gmail.com",
+          "phoneNumber": "010-3333-3333",
+          "startWork": "2022-05-01T09:00:00",
+          "role": "USER",
+          "teamName": "개발팀",
+          "profileImage": "/public/noprofile.png"
+        }
+      },
+      {
+        "scheduleId": 14,
+        "startDate": "2023-05-15T09:00:00",
+        "endDate": "2023-05-16T18:00:00",
+        "type": "HALFOFF",
+        "status": "REJECTED",
+        "reason": "개인사정",
+        "user": {
+          "userId": 3,
+          "name": "김연차",
+          "email": "김연차@gmail.com",
+          "phoneNumber": "010-3333-3333",
+          "startWork": "2022-05-01T09:00:00",
+          "role": "USER",
+          "teamName": "개발팀",
+          "profileImage": "/public/noprofile.png"
+        }
+      },
+      {
+        "scheduleId": 15,
+        "startDate": "2023-05-15T09:00:00",
+        "endDate": "2023-05-16T18:00:00",
+        "type": "HALFOFF",
+        "status": "REJECTED",
+        "reason": "개인사정",
+        "user": {
+          "userId": 3,
+          "name": "김연차",
+          "email": "김연차@gmail.com",
+          "phoneNumber": "010-3333-3333",
+          "startWork": "2022-05-01T09:00:00",
+          "role": "USER",
+          "teamName": "개발팀",
+          "profileImage": "/public/noprofile.png"
+        }
+      },
+      {
+        "scheduleId": 16,
+        "startDate": "2023-05-15T09:00:00",
+        "endDate": "2023-05-16T18:00:00",
+        "type": "HALFOFF",
+        "status": "REJECTED",
+        "reason": "개인사정",
+        "user": {
+          "userId": 3,
+          "name": "김연차",
+          "email": "김연차@gmail.com",
+          "phoneNumber": "010-3333-3333",
+          "startWork": "2022-05-01T09:00:00",
+          "role": "USER",
+          "teamName": "개발팀",
+          "profileImage": "/public/noprofile.png"
+        }
+      },
+      {
+        "scheduleId": 4,
+        "startDate": "2023-05-15T09:00:00",
+        "endDate": "2023-05-16T18:00:00",
+        "type": "DAYOFF",
+        "status": "LAST",
+        "reason": "개인사정",
+        "user": {
+          "userId": 3,
+          "name": "김연차",
+          "email": "김연차@gmail.com",
+          "phoneNumber": "010-3333-3333",
+          "startWork": "2022-05-01T09:00:00",
+          "role": "USER",
+          "teamName": "개발팀",
+          "profileImage": "/public/noprofile.png"
+        }
+      },
+      {
+        "scheduleId": 5,
+        "startDate": "2023-05-15T09:00:00",
+        "endDate": "2023-05-16T18:00:00",
+        "type": "HALFOFF",
+        "status": "FIRST",
+        "reason": "개인사정",
+        "user": {
+          "userId": 3,
+          "name": "김연차",
+          "email": "김연차@gmail.com",
+          "phoneNumber": "010-3333-3333",
+          "startWork": "2022-05-01T09:00:00",
+          "role": "USER",
+          "teamName": "개발팀",
+          "profileImage": "/public/noprofile.png"
+        }
+      },
+      {
+        "scheduleId": 6,
+        "startDate": "2023-05-15T09:00:00",
+        "endDate": "2023-05-16T18:00:00",
+        "type": "HALFOFF",
+        "status": "REJECTED",
+        "reason": "개인사정",
+        "user": {
+          "userId": 3,
+          "name": "김연차",
+          "email": "김연차@gmail.com",
+          "phoneNumber": "010-3333-3333",
+          "startWork": "2022-05-01T09:00:00",
+          "role": "USER",
+          "teamName": "개발팀",
+          "profileImage": "/public/noprofile.png"
+        }
+      },
+      {
+        "scheduleId": 7,
+        "startDate": "2023-05-15T09:00:00",
+        "endDate": "2023-05-16T18:00:00",
+        "type": "HALFOFF",
+        "status": "LAST",
+        "reason": "개인사정",
+        "user": {
+          "userId": 3,
+          "name": "김연차",
+          "email": "김연차@gmail.com",
+          "phoneNumber": "010-3333-3333",
+          "startWork": "2022-05-01T09:00:00",
+          "role": "USER",
+          "teamName": "개발팀",
+          "profileImage": "/public/noprofile.png"
+        }
+      },
+      {
+        "scheduleId": 8,
+        "startDate": "2023-05-15T09:00:00",
+        "endDate": "2023-05-16T18:00:00",
+        "type": "HALFOFF",
+        "status": "APPROVED",
+        "reason": "개인사정",
+        "user": {
+          "userId": 3,
+          "name": "김연차",
+          "email": "김연차@gmail.com",
+          "phoneNumber": "010-3333-3333",
+          "startWork": "2022-05-01T09:00:00",
+          "role": "USER",
+          "teamName": "개발팀",
+          "profileImage": "/public/noprofile.png"
+        }
+      },
+      {
+        "scheduleId": 9,
+        "startDate": "2023-05-15T09:00:00",
+        "endDate": "2023-05-16T18:00:00",
+        "type": "SHIFT",
+        "status": "FIRST",
+        "reason": "개인사정",
+        "user": {
+          "userId": 3,
+          "name": "김연차",
+          "email": "김연차@gmail.com",
+          "phoneNumber": "010-3333-3333",
+          "startWork": "2022-05-01T09:00:00",
+          "role": "USER",
+          "teamName": "개발팀",
+          "profileImage": "/public/noprofile.png"
+        }
+      },
+      {
+        "scheduleId": 10,
+        "startDate": "2023-05-15T09:00:00",
+        "endDate": "2023-05-16T18:00:00",
+        "type": "SHIFT",
+        "status": "LAST",
+        "reason": "개인사정",
+        "user": {
+          "userId": 3,
+          "name": "김연차",
+          "email": "김연차@gmail.com",
+          "phoneNumber": "010-3333-3333",
+          "startWork": "2022-05-01T09:00:00",
+          "role": "USER",
+          "teamName": "개발팀",
+          "profileImage": "/public/noprofile.png"
+        }
+      },
+      {
+        "scheduleId": 11,
+        "startDate": "2023-05-15T09:00:00",
+        "endDate": "2023-05-16T18:00:00",
+        "type": "SHIFT",
+        "status": "REJECTED",
+        "reason": "개인사정",
+        "user": {
+          "userId": 3,
+          "name": "김연차",
+          "email": "김연차@gmail.com",
+          "phoneNumber": "010-3333-3333",
+          "startWork": "2022-05-01T09:00:00",
+          "role": "USER",
+          "teamName": "개발팀",
+          "profileImage": "/public/noprofile.png"
+        }
+      },
+      {
+        "scheduleId": 12,
+        "startDate": "2023-05-15T09:00:00",
+        "endDate": "2023-05-16T18:00:00",
+        "type": "SHIFT",
+        "status": "APPROVED",
+        "reason": "개인사정",
+        "user": {
+          "userId": 3,
+          "name": "김연차",
+          "email": "김연차@gmail.com",
+          "phoneNumber": "010-3333-3333",
+          "startWork": "2022-05-01T09:00:00",
+          "role": "USER",
+          "teamName": "개발팀",
+          "profileImage": "/public/noprofile.png"
+        }
+      }
+    ]
+  }
+}

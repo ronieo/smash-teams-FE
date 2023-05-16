@@ -1,0 +1,40 @@
+{
+  "status": 200,
+  "msg": "OK",
+  "data": {
+    "teamList": [
+      {
+        "teamId": 1,
+        "teamName": "개발팀",
+        "teamCount": 15
+      },
+      {
+        "teamId": 2,
+        "teamName": "회계팀",
+        "teamCount": 7
+      }
+    ],
+    "userList": [
+      {
+        "userId": 1,
+        "profileImage": "/public/noprofile.png",
+        "name": "이승민",
+        "email": "anonymous@gmail.com",
+        "phoneNumber": "010-1234-1234",
+        "startWork": "2022-05-01T09:00:00",
+        "teamName": "개발팀",
+        "role": "MANAGER"
+      },
+      {
+        "userId": 2,
+        "profileImage": "/public/noprofile.png",
+        "name": "송재근",
+        "email": "anonymous@gmail.com",
+        "phoneNumber": "010-1234-1234",
+        "startWork": "2023-05-01T09:00:00",
+        "teamName": "개발팀",
+        "role": "MANAGER"
+      }
+    ]
+  }
+}

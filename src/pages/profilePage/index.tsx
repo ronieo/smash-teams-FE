@@ -1,8 +1,11 @@
-import { ProfileContainer } from './style'
+import ProfileForm from '../../components/profileForm'
 
-// 프로필 페이지
 function ProfilePage() {
-  return <ProfileContainer>ProfilePage</ProfileContainer>
+  return (
+    <>
+      <ProfileForm />
+    </>
+  )
 }
 
 export default ProfilePage

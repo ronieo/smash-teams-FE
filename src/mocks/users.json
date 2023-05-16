@@ -1,0 +1,35 @@
+[
+  {
+    "userId": 1,
+    "profileImage": "/noprofile.png",
+    "name": "김준태",
+    "email": "test@test.com",
+    "phoneNumber": "010-1234-1234",
+    "startWork": "2023-01-01",
+    "teamName": "개발팀",
+    "remain": 15,
+    "role": "MANAGER"
+  },
+  {
+    "userId": 2,
+    "profileImage": "/noprofile.png",
+    "name": "박영웅",
+    "email": "heropy@gmail.com",
+    "phoneNumber": "010-1234-1234",
+    "startWork": "2023-01-01",
+    "teamName": "개발팀",
+    "remain": 15,
+    "role": "USER"
+  },
+  {
+    "userId": 3,
+    "profileImage": "/noprofile.png",
+    "name": "김상헌",
+    "email": "honey@gmail.com",
+    "phoneNumber": "010-1234-1234",
+    "startWork": "2023-01-01",
+    "teamName": "개발팀",
+    "remain": 15,
+    "role": "USER"
+  }
+]
