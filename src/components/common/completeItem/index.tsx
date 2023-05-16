@@ -1,10 +1,9 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import * as S from './style'
 import { HistoryScheduleData } from '../../../interface/schedule'
 
 // HistoryScheduleData
 function CompleteItem(schedule: any) {
-  console.log(schedule.schedule.status)
   const [scheduleStatus, setScheduleStatus] = useState(
     schedule.schedule.status as 'FIRST' | 'REJECTED' | 'APPROVED' | 'LAST',
   )
