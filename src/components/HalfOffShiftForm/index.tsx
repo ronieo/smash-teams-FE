@@ -82,7 +82,6 @@ function HalfOffShiftForm(scheduleData: { scheduleData: any }) {
   const CompletedShiftList = filterScheduleByProperty(ShiftSchedule, 'status', ['APPROVED', 'REJECTED'])
 
   // 조건부 연차, 반차, 당직 신청중, 완료된 목록 리스트
-  console.log(RequestCeoShiftList)
   let halfOffData
   if (isCeo) {
     switch (selectedItem) {
