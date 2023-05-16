@@ -1,6 +1,9 @@
 <p align="center">
 <img src="https://github.com/smash-teams/smash-teams-FE/assets/76941552/28477e9c-19e8-4991-b492-47578df5a10f" width="70%" height="70%"/>
 </p>
+<p align="center">
+<img src="https://github.com/smash-teams/smash-teams-FE/assets/100064540/da215db1-35cd-4867-a72c-17289928a436" width="70%" height="70%"/>
+</p>
 
 <br />
 
@@ -8,7 +11,10 @@
 
 <br />
 
-## ✋ Team SMASH  팀 소개
+<h1 align="center"><strong>✋ Team SMASH ✋</strong></h1>
+
+
+<br />
 
 [권범준 (팀장)](https://github.com/kjungit)  | [이어진](https://github.com/boyon99) | [이로운](https://github.com/ronieo) | [조성민](https://github.com/FranzCho) 
 :----: | :----: | :----: | :----: 
