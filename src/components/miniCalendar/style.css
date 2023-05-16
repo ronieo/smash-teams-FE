@@ -33,6 +33,7 @@
   color: #fff;
   padding: 8px 12px;
 }
+
 .arrowButton {
   background-color: #aa2727;
   border-color: #aa2727;
@@ -40,9 +41,11 @@
   color: #fff;
   padding: 8px 12px;
 }
+
 .prevButton {
   border-radius: 6px 0 0 6px;
 }
+
 .nextButton {
   border-radius: 0 6px 6px 0;
 }
@@ -50,9 +53,7 @@
 .prevButton,
 .nextButton,
 .todayButton:hover {
-  &:hover {
-    background-color: #772222;
-  }
+  background-color: #772222;
 }
 
 .todayButton:active {
