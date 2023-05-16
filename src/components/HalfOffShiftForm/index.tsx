@@ -1,16 +1,11 @@
-import { useCallback, useState } from 'react'
-import { MyScheduleData, ScheduleData } from '../../interface/schedule'
 import * as S from './style'
 import 'swiper/swiper-bundle.min.css'
 import SwiperList from '../common/SwiperList'
 import ListToggleTopWrapper from '../TopWrapper'
 import CompleteItem from '../common/completeItem'
 import { useLocation } from 'react-router-dom'
-import { useQuery } from 'react-query'
-import { LoginResponseData } from '../../apis/interface/Auth'
-import { AxiosError } from 'axios'
-import { getUser } from '../../apis/services/Auth'
-import { c } from 'msw/lib/glossary-de6278a9'
+import { MyScheduleData, ScheduleData } from '../../interface/schedule'
+import { useCallback, useState } from 'react'
 
 // ScheduleData
 function HalfOffShiftForm(scheduleData: { scheduleData: any }) {
