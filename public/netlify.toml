@@ -2,3 +2,12 @@ from = "/api/*"
 to = "http://52.78.70.225:7777"
 status = 200
 force = true
+
+// netlify.toml
+[build]
+  command = "npm run build"
+  publish = "build"
+
+[context.production.environment]
+  SMATH_ENV_VAR = "From netlify.toml"
+  VITE_SERVER_URL = "From netlify.toml (REACT_APP_)"
