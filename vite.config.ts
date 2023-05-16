@@ -7,7 +7,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'http://52.78.70.225:7777',
+        target: 'https://www.smash-be.shop:7777',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ''),
       },
