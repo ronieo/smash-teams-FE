@@ -1,7 +1,7 @@
 import './styles.scss'
 import * as S from './style'
-import type { EventObject, ExternalEventTypes, Options } from '@toast-ui/calendar'
-import type { ChangeEvent, MouseEvent } from 'react'
+import type { EventObject, Options } from '@toast-ui/calendar'
+import type { MouseEvent } from 'react'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import Calendar from '@toast-ui/react-calendar'
 import { AiFillInfoCircle } from 'react-icons/ai'
@@ -10,7 +10,7 @@ import { getMainSchedule } from '../../apis/services/Schedule'
 import { CalendarProps } from '../../interface/main'
 import DropDown from '../../components/common/dropdown'
 import ExcelDownload from '../../utils/ExcelDownload'
-import { CalendarTheme, MyScheduleData } from '../../interface/schedule'
+import { CalendarData, CalendarTheme, MyScheduleData } from '../../interface/schedule'
 import calendarTheme from '../../utils/calendarTheme'
 import { getUser } from '../../apis/services/Auth'
 import { LoginResponseData } from '../../apis/interface/Auth'
@@ -20,7 +20,7 @@ export default function HomePage() {
   // home api
   const [returnData, setReturnData] = useState<CalendarProps[]>([])
   const [filterData, setFilterData] = useState<CalendarProps[]>([])
-  const { data, isLoading, error } = useQuery<MyScheduleData[], AxiosError>(
+  const { data, isLoading, error } = useQuery<CalendarData, AxiosError>(
     ['user'],
     () =>
       getMainSchedule().then((a) => {

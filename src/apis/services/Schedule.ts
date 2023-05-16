@@ -17,7 +17,7 @@ export const getMainSchedule = async () => {
   return data
 }
 
-export const getUserSchedule = async (id: number) => {
+export const getUserSchedule = async (id: number | undefined) => {
   const { data } = await axiosInstance().get(`/auth/user/${id}/schedule`)
   return data
 }

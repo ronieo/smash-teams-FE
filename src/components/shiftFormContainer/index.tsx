@@ -1,8 +1,7 @@
 import { AxiosError } from 'axios'
-import React, { useState, ReactNode, Dispatch, SetStateAction, useEffect } from 'react'
-import { useMutation, useQuery, useQueryClient } from 'react-query'
+import React, { useState, ReactNode } from 'react'
+import { useMutation, useQuery } from 'react-query'
 import { createUserSchedule } from '../../apis/services/Schedule'
-import { ScheduleEnroll, ScheduleEnrollResponse } from '../../interface/schedule'
 
 import * as S from './style'
 import Swal from 'sweetalert2'
@@ -64,7 +63,6 @@ function ShiftFormContainer({ location, startDate, endDate, reason }: ShiftFormC
       }),
     {
       onSuccess: (data) => {
-        console.log(data)
         navigate('/history')
       },
       onError: (error: AxiosError) => {
@@ -78,8 +76,6 @@ function ShiftFormContainer({ location, startDate, endDate, reason }: ShiftFormC
     const EDate = new Date(endDate)
     isSDate = SDate.toISOString().slice(0, 19)
     isEDate = EDate.toISOString().slice(0, 19)
-    console.log('isSDate>>>>>', isSDate)
-    console.log('isEDate>>>>>', isEDate)
   }
 
   function handleConfirmButtonClick(e: React.MouseEvent<HTMLButtonElement>) {

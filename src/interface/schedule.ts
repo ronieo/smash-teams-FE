@@ -24,7 +24,13 @@ export interface HistoryScheduleData {
   schedule: MyScheduleData
 }
 
-export interface MyScheduleData {
+export interface MyScheduleData extends ScheduleData {
+  data: {
+    scheduleList: ScheduleData[]
+  }
+}
+
+export interface CalendarData {
   scheduleId: number
   startDate: string
   endDate: string
@@ -32,6 +38,20 @@ export interface MyScheduleData {
   status?: string
   reason: string
   user: User
+}
+
+export interface ScheduleData {
+  scheduleId: number
+  startDate: string
+  endDate: string
+  type: string
+  status?: string
+  reason: string
+  user: User
+}
+
+export interface ScheduleProps {
+  scheduleData: ScheduleData[]
 }
 
 export interface CalendarTheme {
@@ -43,7 +63,7 @@ export interface CalendarTheme {
 }
 
 export interface User {
-  userId: number
+  userId: number | undefined
   name: string
   email: string
   phoneNumber: string
@@ -52,6 +72,7 @@ export interface User {
   teamName: string
   profileImage: string
 }
+
 type FormType = 'DAYOFF' | 'HALFOFF' | 'NIGHTSHIFT'
 export interface ScheduleEnroll {
   type: FormType

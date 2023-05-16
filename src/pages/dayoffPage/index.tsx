@@ -8,7 +8,6 @@ import { DayOffWrapper } from './style'
 // 연차/반차 신청 페이지
 function DayOffPage() {
   const location = useLocation()
-  console.log('location 출력', location.pathname)
 
   const [startDate, setStartDate] = useState('')
   const [endDate, setEndDate] = useState('')

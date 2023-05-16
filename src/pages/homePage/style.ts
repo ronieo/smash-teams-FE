@@ -49,9 +49,13 @@ export const TopBar = styled.div`
     border-radius: 8px;
     width: 70px;
     height: 30px;
+    line-height: 18px;
     color: ${({ theme }) => theme.colors.white};
     svg {
       transform: translateY(2px);
+    }
+    &:hover {
+      background-color: #0e5f1e;
     }
   }
   /* month, today btn */
