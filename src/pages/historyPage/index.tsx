@@ -4,7 +4,7 @@ import { useQuery, useQueryClient } from 'react-query'
 import * as S from './style'
 
 import { getUserSchedule } from '../../apis/services/Schedule'
-import HalfOffShiftForm from '../../components/halfOffShiftForm'
+import HalfOffShiftForm from '../../components/HalfOffShiftForm'
 import { MyScheduleData, ScheduleData } from '../../interface/schedule'
 import { AxiosError } from 'axios'
 import { LoginResponseData } from '../../apis/interface/Auth'
