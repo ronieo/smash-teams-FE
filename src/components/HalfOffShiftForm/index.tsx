@@ -1,5 +1,5 @@
 import { useCallback, useState } from 'react'
-import { MyScheduleData } from '../../interface/schedule'
+import { MyScheduleData, ScheduleData } from '../../interface/schedule'
 import * as S from './style'
 import 'swiper/swiper-bundle.min.css'
 import SwiperList from '../common/SwiperList'
@@ -12,7 +12,8 @@ import { AxiosError } from 'axios'
 import { getUser } from '../../apis/services/Auth'
 import { c } from 'msw/lib/glossary-de6278a9'
 
-function HalfOffShiftForm(scheduleData: { scheduleData: MyScheduleData[] | undefined }) {
+// ScheduleData
+function HalfOffShiftForm(scheduleData: { scheduleData: any }) {
   const [isRequestList, setIsRequestList] = useState(true) // 신청 목록
   const [isCompletedList, setIsCompletedList] = useState(false) // 거절 목록
 
@@ -33,10 +34,10 @@ function HalfOffShiftForm(scheduleData: { scheduleData: MyScheduleData[] | undef
 
   // 연차, 반차, 당직 리스트 필터링
   const filterScheduleByProperty = useCallback(
-    (scheduleList: MyScheduleData[] | undefined, propName: 'type' | 'status', propValues: string[]) => {
+    (scheduleList: MyScheduleData[] | ScheduleData[], propName: 'type' | 'status', propValues: string[]) => {
       return Array.isArray(scheduleList)
-        ? scheduleList.filter((schedule: MyScheduleData) => {
-            return propValues.includes(schedule[propName])
+        ? scheduleList.filter((schedule: ScheduleData) => {
+            return propValues.includes(schedule[propName] as string)
           })
         : []
     },
