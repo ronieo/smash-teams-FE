@@ -17,12 +17,11 @@
 
 <br />
 
-[권범준 (팀장)](https://github.com/kjungit)  | [이어진](https://github.com/boyon99) | [이로운](https://github.com/ronieo) | [조성민](https://github.com/FranzCho) 
-:----: | :----: | :----: | :----: 
-<img src="https://avatars.githubusercontent.com/u/100064540?v=4" style="width: 180px;" /> | <img src="https://avatars.githubusercontent.com/u/64579380?v=4" style="width: 150px" /> | <img src="https://avatars.githubusercontent.com/u/76941552?v=4" style="width: 150px"/> | <img src="https://avatars.githubusercontent.com/u/108110637?v=4" style="width: 150px;" /> 
+[권범준 (팀장)](https://github.com/kjungit) | [이어진](https://github.com/boyon99) | [이로운](https://github.com/ronieo) | [조성민](https://github.com/FranzCho) 
+:--: | :--: | :--: | :--: 
+<img src="https://avatars.githubusercontent.com/u/100064540?v=4" style="zoom: 20%;" /> | <img src="https://avatars.githubusercontent.com/u/64579380?v=4" style="zoom: 20%;" /> | <img src="https://avatars.githubusercontent.com/u/76941552?v=4" style="zoom: 20%;" /> | <img src="https://avatars.githubusercontent.com/u/108110637?v=4" style="zoom: 20%;" /> 
 [kjungit](https://github.com/kjungit) | [boyon99](https://github.com/boyon99) | [ronieo](https://github.com/ronieo) | [FranzCho](https://github.com/FranzCho) 
 [CI/CD]<br> [연차/당직 내역보기]<br> [연차/당직 관리하기]<br>[공통 컴포넌트]<br>[라우터 설정]<br>[회원가입]<br> [로그인]<br> [개인정보수정]<br>|[메인 페이지]<br>[관리자 페이지]<br>[폴더구조]<br>[환경세팅]<br>|[연반차 신청하기]<br> [당직 신청하기]<br> [문서관리]<br> [글로벌 스타일]<br>|[회원가입]<br> [로그인]<br> [개인정보수정]<br>
-
 <br/>
 
  ## ✋ Team SMASH  프로젝트 소개
