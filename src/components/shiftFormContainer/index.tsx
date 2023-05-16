@@ -85,7 +85,7 @@ function ShiftFormContainer({ location, startDate, endDate, reason }: ShiftFormC
 
   function handleConfirmButtonClick(e: React.MouseEvent<HTMLButtonElement>) {
     e.preventDefault()
-    if (location === 'nightshift') {
+    if (location === '/nightshift') {
       setFormType('SHIFT' as FormType)
     }
 
