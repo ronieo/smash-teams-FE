@@ -207,15 +207,15 @@ export default function HomePage() {
           {isInfo ? (
             <S.Info>
               <div className="info-dayoff">
-                <img src="/noprofile.png" width={'10px'} />
+                <img src="/redbox-logo.png" width={'10px'} />
                 연차
               </div>
               <div className="info-halfoff">
-                <img src="/noprofile.png" width={'10px'} />
+                <img src="/redbox-logo.png" width={'10px'} />
                 반차
               </div>
               <div className="info-shift">
-                <img src="/noprofile.png" width={'10px'} />
+                <img src="/redbox-logo.png" width={'10px'} />
                 당직
               </div>
             </S.Info>

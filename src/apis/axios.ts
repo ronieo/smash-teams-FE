@@ -5,7 +5,7 @@ const getAxiosInstance = (option?: { multi?: boolean }) => {
   // axios의 기본 설정을 한다.
 
   const config: AxiosRequestConfig = {
-    baseURL: import.meta.env.VITE_SERVER_URL,
+    baseURL: '/api',
     headers: {
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*', // CORS 문제 해결
