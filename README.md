@@ -29,9 +29,11 @@
 - 서비스 주소: [✋ Team SMASH ✋](http://hedwig-fe.eba-afs9gzxm.ap-northeast-2.elasticbeanstalk.com/auth)
 - FE팀 레포지토리 주소 : [SMASH](https://github.com/smash-teams/smash-teams-FE)
 - FE팀 깃 프로젝트 태스크보드 주소: [SMASH Project Board](https://github.com/orgs/smash-teams/projects/3)
-*태스크보드 퍼블릭으로 바꾸기
 - FE팀 작업과정 노션문서 주소: [SMASH Notion](https://www.notion.so/4-4-3d1f37f6c11b459e91548aeb08f5e404?pvs=4#23c42e1cba6d4dd9b174d0527e6de957)
 - 테스트용 계정
+  어드민: admin@gmail.com | admin1234!
+  대표  : heropy@smash.com | test1234!
+  
 
 <br/>
 
@@ -148,8 +150,9 @@
 ### 🛠️Team SMASH 기술 스택
 ```
 FE
-- Basic: `React`, `Typescript`, `react-icon`, `styled-component`
-- Library:  `react-query`, `react-hook-form`, `axios`, `dotenv`, `eslint`, `react-cookie`, `react-color`, `sweetalert2`, `toast-ui-calendar`, `sass`
+- Basic: `React`, `Typescript`, `react-icon`, `styled-component`, `vite`, `yarn`
+- Library:  `react-query`, `react-hook-form`, `axios`, `dotenv`, 
+            `eslint`, `react-cookie`, `react-color`, `sweetalert2`, `toast-ui-calendar`, `sass`
 
 ```
 
@@ -160,34 +163,78 @@ FE
 ### 📁 Team SMASH 프로젝트 구조 - 
 ```
 ┌─ src
-│  ├─ api
+│  ├─ apis
 │  │  └─ 공동 api 및 함수
+│  │  └─ services
+│  │     └─ 페이지 별 분기 된 API
 │  │  
 │  ├─ components
-│  │  └─ auth
-│  │  |   └─ 로그인/회원가입 컴포넌트
-│  │  └─ cards
-│  │      └─ 게시글과 댓글 컴포넌트 
-│  │  
+│  │  └─ common
+│  │  |   └─ 공통 컴포넌트
+│  │  └─ addTeam
+│  │      └─ 팀 추가
+│  │  └─ deleteButton
+│  │      └─ 삭제버튼   
+│  │  └─ halfOffShiftForm
+│  │      └─ 연반차당직 내역보기 폼
+│  │  └─ historyCard
+│  │      └─ 내역보기에서 출력되는 연반차당직 요청 카드 
+│  │  └─ loginForm
+│  │      └─ 로그인 폼
+│  │  └─ miniCalendar
+│  │      └─ 연반차 당직 승인요청 페이지에 출력되는 달력
+│  │  └─ profileForm
+│  │      └─ 내정보 수정 폼
+│  │  └─ registerForm
+│  │      └─ 회원가입 폼 
+│  │  └─ shiftFormContainer
+│  │      └─ 연반차 당직 승인요청 페이지에 출력되는 연반차당직 입력 폼
+│  │  └─ TopWrapper
+│  │      └─ 신청중 목록, 완료된 목록 버튼 묶음
+│  │  └─ userInfo
+│  │      └─ 어드민에서 사용하는 유저정보 수정 폼
+│  │ 
+│  ├─ㅡmocks - BE구축 전 사용한 더미데이터
+│  │ 
 │  ├─ pages - 컴포넌트 랜더링 페이지
-│  │  └─ auth
-│  │  └─post
+│  │  └─ adminPage - 어드민(관리자)페이지
+│  │  └─ dayoffPage - 연차페이지
+│  │  └─ historyPage - 내역페이지
+│  │  └─ homePage - 메인페이지
+│  │  └─ loginPage - 로그인페이지
+│  │  └─ managePage - 승인페이지
+│  │  └─ profilePage - 개인정보페이지
+│  │  └─ registerPage - 회원가입페이지
 │  │      
-│  ├─ types
-│  |   └─ 페이지에 필요한 타입선언
+│  ├─ routes - 페이지 라우팅
+│  |   └─ ProtectedRouter
+│  |   └─ router
 │  |  
-│  ├─ utils
+│  ├─ store
 │  │  
-├─.env
-├─.eslintrc.js
-├─next.config.js
-├─tsconfig.json
-├─README.md
-├─package.json
-└─package-lock.json
+│  ├─ styles
+│  |   └─ GlobalStyles
+│  |   └─ Theme
+│  │  
+│  ├─ utils
+│  │ 
+│  ├─ App
+│  ├─ main
+│  │ 
+├─ vite-env.d.ts
+├─ .eslintrc.cjs
+├─ .gitignore
+├─ .prettierrc
+├─ index.html
+├─ package.json
+├─ tsconfig.json
+├─ tsconfig.node.json
+├─ vite.config.ts
+└─ yarn.lock
 ```
 <br/>
 
 ---
 
 <br/>
+<h3>본 프로젝트 저작권 소유는 Team SMASH에 있습니다.<br/> 배움을 위한 사용은 언제든 가능하나, 무단도용은 절대 금지합니다.</h3>
