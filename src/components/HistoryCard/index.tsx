@@ -33,6 +33,8 @@ function HistoryCard({ schedule }: HistoryCardProps) {
     orderSchedule,
     {
       onSuccess: (data) => {
+        queryClient.invalidateQueries('userHistory', { refetchActive: true, refetchInactive: true })
+
         Swal.fire({
           title: '승인되었습니다.',
           text: `완료된 목록에서 확인해주세요. :)`,
@@ -40,10 +42,11 @@ function HistoryCard({ schedule }: HistoryCardProps) {
           confirmButtonColor: theme.colors.blue,
           confirmButtonText: '완료된 목록 바로가기',
         })
-        queryClient.invalidateQueries('userHistory', { refetchActive: true, refetchInactive: true })
       },
 
       onError: (error) => {
+        queryClient.invalidateQueries('userHistory', { refetchActive: true, refetchInactive: true })
+
         Swal.fire({
           title: '거절되었습니다.',
           text: `완료된 목록에서 확인해주세요. :)`,
@@ -51,7 +54,6 @@ function HistoryCard({ schedule }: HistoryCardProps) {
           confirmButtonColor: theme.colors.blue,
           confirmButtonText: '완료된 목록 바로가기',
         })
-        queryClient.invalidateQueries('userHistory', { refetchActive: true, refetchInactive: true })
       },
     },
   )
