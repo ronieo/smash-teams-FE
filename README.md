@@ -1,9 +1,10 @@
 <p align="center">
-<img src="https://github.com/smash-teams/smash-teams-FE/assets/76941552/28477e9c-19e8-4991-b492-47578df5a10f" width="70%" height="70%"/>
+<img src="https://github.com/smash-teams/smash-teams-FE/assets/100064540/33a5e7f4-0081-4970-8bd9-65868200c8bd" width="70%" height="70%"/>
 </p>
 <p align="center">
 <img src="https://github.com/smash-teams/smash-teams-FE/assets/100064540/da215db1-35cd-4867-a72c-17289928a436" width="70%" height="70%"/>
 </p>
+
 
 <br />
 
