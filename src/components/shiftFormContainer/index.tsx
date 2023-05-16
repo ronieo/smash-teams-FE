@@ -55,7 +55,6 @@ function ShiftFormContainer({ location, startDate, endDate, reason }: ShiftFormC
   let isSDate: string
   let isEDate: string
 
-  // const { mutate, isError, isLoading } = useMutation<ScheduleEnrollResponse, AxiosError, ScheduleEnroll>(
   const { mutate, isError, isLoading } = useMutation(
     () =>
       createUserSchedule({
@@ -81,7 +80,7 @@ function ShiftFormContainer({ location, startDate, endDate, reason }: ShiftFormC
 
   function handleConfirmButtonClick(e: React.MouseEvent<HTMLButtonElement>) {
     e.preventDefault()
-    if (location === 'nightshift') {
+    if (location === '/nightshift') {
       setFormType('SHIFT' as FormType)
     }
 
