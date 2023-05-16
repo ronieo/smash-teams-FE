@@ -6,7 +6,7 @@ const getAxiosInstance = (option?: { multi?: boolean }) => {
 
   const config: AxiosRequestConfig = {
     // baseURL: import.meta.env.VITE_SERVER_URL,
-    baseURL: '/api',
+    baseURL: 'http://52.78.70.225:7777',
     headers: {
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*', // CORS 문제 해결
