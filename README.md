@@ -35,7 +35,7 @@
 ## ✋ Team SMASH 작업과정
 - 작업 기간 : 2023.05.01 ~ 2023.05.15
 - 서비스 주소: [✋ Team SMASH ✋](https://deploy-preview-75--capable-pithivier-b30d65.netlify.app/login)
-- FE팀 레포지토리 주소 : [SMASH](https://github.com/smash-teams/smash-teams-FE)
+- FE팀 레포지토리 주소 : [SMASH](https://github.com/smash-teams/smash-teams-FE/tree/develop)
 - FE팀 깃 프로젝트 태스크보드 주소: [SMASH Project Board](https://github.com/orgs/smash-teams/projects/3)
 - 전체팀 작업과정 노션문서 주소: [SMASH Notion](https://www.notion.so/4-4-3d1f37f6c11b459e91548aeb08f5e404?pvs=4#23c42e1cba6d4dd9b174d0527e6de957)
   - <b>FE팀 노션문서 및 회의록</b>: [SMASH "FE" Notion](https://www.notion.so/4-4-3d1f37f6c11b459e91548aeb08f5e404?pvs=4#23c42e1cba6d4dd9b174d0527e6de957)
