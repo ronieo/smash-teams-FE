@@ -10,7 +10,7 @@ import { getMainSchedule } from '../../apis/services/Schedule'
 import { CalendarProps } from '../../interface/main'
 import DropDown from '../../components/common/dropdown'
 import ExcelDownload from '../../utils/ExcelDownload'
-import { CalendarData, CalendarTheme, MyScheduleData } from '../../interface/schedule'
+import { CalendarTheme, CalendarData } from '../../interface/schedule'
 import calendarTheme from '../../utils/calendarTheme'
 import { getUser } from '../../apis/services/Auth'
 import { LoginResponseData } from '../../apis/interface/Auth'
@@ -20,7 +20,7 @@ export default function HomePage() {
   // home api
   const [returnData, setReturnData] = useState<CalendarProps[]>([])
   const [filterData, setFilterData] = useState<CalendarProps[]>([])
-  const { data, isLoading, error } = useQuery<CalendarData, AxiosError>(
+  const { data, isLoading, error } = useQuery<CalendarData[], AxiosError>(
     ['user'],
     () =>
       getMainSchedule().then((a) => {
