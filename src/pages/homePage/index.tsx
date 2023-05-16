@@ -144,7 +144,7 @@ export default function HomePage() {
             start: new Date(list.startDate.split('T')[0]),
             end: new Date(list.endDate.split('T')[0]),
             attendees: [`${list.user.email}`],
-            state: list.user.profileImage === null ? '/noprofile.png' : list.user.profileImage,
+            state: list.user.profileImage === null ? '/noprofile2.png' : list.user.profileImage,
           },
         ])
         return list

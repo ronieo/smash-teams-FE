@@ -33,7 +33,7 @@ function UserInfoItem({ user, team, refetch }: UserInfoItemProps) {
   return (
     <S.UserInfoItem>
       <S.UserProfile>
-        {user.profileImage === null ? <img src="/noprofile.png" /> : <img src={user.profileImage} />}
+        {user.profileImage === null ? <img src="/noprofile2.png" /> : <img src={user.profileImage} />}
       </S.UserProfile>
       <S.UserDetail className="detail-1">
         <h1>{user.email}</h1>
