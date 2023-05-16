@@ -10,6 +10,10 @@ import type { EventObject, ExternalEventTypes, Options } from '@toast-ui/calenda
 import { TZDate } from '@toast-ui/calendar'
 import type { Dispatch, MouseEvent, SetStateAction } from 'react'
 import { useCallback, useEffect, useRef, useState } from 'react'
+import { useQuery } from 'react-query'
+import { LoginResponseData } from '../../apis/interface/Auth'
+import { AxiosError } from 'axios'
+import { getUser } from '../../apis/services/Auth'
 
 type ViewType = 'month'
 
@@ -146,6 +150,8 @@ function MiniCalendar({ view, setStartDate, setEndDate, setReason }: miniCalenda
     getCalInstance().createEvents([event])
   }
 
+  const { data: myUser, isLoading: user } = useQuery<LoginResponseData, AxiosError>('myUser', getUser)
+
   return (
     <div className="miniCalendarContainer">
       <div className="miniCalendarNav">
@@ -181,17 +187,17 @@ function MiniCalendar({ view, setStartDate, setEndDate, setReason }: miniCalenda
           // 반차
           time(event) {
             const { start, end, title, state } = event
-            return `<span style="color: black;"><img src=${state} width="13px"/> ${title}</span>`
+            return `<span style="color: black;"><img src=${myUser?.data?.profileImage} width="13px"/> ${title}</span>`
           },
           // 연차
           allday(event) {
             const { start, end, title, state } = event
-            return `<span style="color: white;"><img src=${state} width="13px"/> ${title}</span>`
+            return `<span style="color: white;"><img src=${myUser?.data?.profileImage} width="13px"/> ${title}</span>`
           },
           // 당직
           milestone(event) {
             const { start, end, title, state } = event
-            return `<div style="color: black;"><img src=${state} width="13px"/> ${title}</div>`
+            return `<div style="color: black;"><img src=${myUser?.data?.profileImage} width="13px"/> ${title}</div>`
           },
         }}
         useDetailPopup={true}
