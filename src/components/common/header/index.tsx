@@ -48,7 +48,7 @@ function Header() {
     <S.HeaderWrapper>
       <S.InnerWrapper>
         <S.HeaderLogo>
-          <S.Logo onClick={LogoClickHandler} src="/public/title-logo.png" alt="logo" />
+          <S.Logo onClick={LogoClickHandler} src="/title-logo.png" alt="logo" />
         </S.HeaderLogo>
         <S.LogoutButton onClick={handleLogout}>로그아웃</S.LogoutButton>
       </S.InnerWrapper>
