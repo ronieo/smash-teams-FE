@@ -189,21 +189,21 @@ function MiniCalendar({ view, setStartDate, setEndDate, setReason }: miniCalenda
           time(event) {
             const { start, end, title, state } = event
             return `<span style="color: black;"><img src=${
-              imageSrc ? imageSrc : myUser?.data?.profileImage
+              imageSrc ? myUser?.data?.profileImage : imageSrc
             } width="13px"/> ${title}</span>`
           },
           // 연차
           allday(event) {
             const { start, end, title, state } = event
             return `<span style="color: white;"><img src=${
-              imageSrc ? imageSrc : myUser?.data?.profileImage
+              imageSrc ? myUser?.data?.profileImage : imageSrc
             } width="13px"/> ${title}</span>`
           },
           // 당직
           milestone(event) {
             const { start, end, title, state } = event
             return `<div style="color: black;"><img src=${
-              imageSrc ? imageSrc : myUser?.data?.profileImage
+              imageSrc ? myUser?.data?.profileImage : imageSrc
             } width="13px"/> ${title}</div>`
           },
         }}
