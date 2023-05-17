@@ -151,6 +151,7 @@ function MiniCalendar({ view, setStartDate, setEndDate, setReason }: miniCalenda
   }
 
   const { data: myUser, isLoading: user } = useQuery<LoginResponseData, AxiosError>('myUser', getUser)
+  const [imageSrc, setImageSrc] = useState<string>('/noprofile.png')
 
   return (
     <div className="miniCalendarContainer">
@@ -187,17 +188,23 @@ function MiniCalendar({ view, setStartDate, setEndDate, setReason }: miniCalenda
           // 반차
           time(event) {
             const { start, end, title, state } = event
-            return `<span style="color: black;"><img src=${myUser?.data?.profileImage} width="13px"/> ${title}</span>`
+            return `<span style="color: black;"><img src=${
+              imageSrc ? imageSrc : myUser?.data?.profileImage
+            } width="13px"/> ${title}</span>`
           },
           // 연차
           allday(event) {
             const { start, end, title, state } = event
-            return `<span style="color: white;"><img src=${myUser?.data?.profileImage} width="13px"/> ${title}</span>`
+            return `<span style="color: white;"><img src=${
+              imageSrc ? imageSrc : myUser?.data?.profileImage
+            } width="13px"/> ${title}</span>`
           },
           // 당직
           milestone(event) {
             const { start, end, title, state } = event
-            return `<div style="color: black;"><img src=${myUser?.data?.profileImage} width="13px"/> ${title}</div>`
+            return `<div style="color: black;"><img src=${
+              imageSrc ? imageSrc : myUser?.data?.profileImage
+            } width="13px"/> ${title}</div>`
           },
         }}
         useDetailPopup={true}
