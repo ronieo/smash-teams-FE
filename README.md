@@ -31,6 +31,16 @@
 
 <br/>
 
+## 🧑🏻‍💻 프로젝트 실행 방법
+```
+1. $ git clone https://github.com/smash-teams/smash-teams-FE.git
+2. $ cd smash-teams-FE
+3. $ yarn
+4. $ yarn dev
+```
+
+<br/>
+
 ## ✋ Team SMASH 작업과정
 - 작업 기간 : 2023.05.01 ~ 2023.05.15
 - 서비스 주소: [✋ Team SMASH ✋](https://capable-pithivier-b30d65.netlify.app/login)
@@ -48,6 +58,19 @@
   
 
 <br/>
+
+### 🛠️ Team SMASH 기술 스택
+
+- Development Tools: `vite` `yarn`
+- Basic: `React` `Typescript` `eslint`
+- Styling: `styled-components` `sass`
+- Library: `react-query` `react-hook-form` `axios` `dotenv` `react-cookie` `react-color` `sweetalert2` `toast-ui-calendar` `react-icon`
+- Deploy: `netlify`
+
+
+---  
+<br/>
+
 
 ### 📌 로그인, 회원가입 페이지 구성
 <table>
@@ -183,17 +206,7 @@
 
 <br/>
 
-### 🛠️Team SMASH 기술 스택
-```
-FE
-- Basic: `React`, `Typescript`, `react-icon`, `styled-component`, `vite`, `yarn`
-- Library:  `react-query`, `react-hook-form`, `axios`, `dotenv`, 
-            `eslint`, `react-cookie`, `react-color`, `sweetalert2`, `toast-ui-calendar`, `sass`
 
-```
-
----  
-<br/>
 
 
 ### 📁 Team SMASH 프로젝트 구조
